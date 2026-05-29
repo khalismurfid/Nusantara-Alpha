@@ -1,0 +1,521 @@
+openapi: 3.1.0
+info:
+  title: Nusantara Alpha API
+  version: 0.1.0
+  description: >
+    Service contract for curated model selection, evidence review, supported IDX
+    stock checks, next-market-session prediction, prediction logging, and public
+    demo status.
+servers:
+  - url: http://localhost:8000
+  - url: https://{publicDemoHost}
+    variables:
+      publicDemoHost:
+        default: demo.example.com
+        description: Public portfolio demo host configured after deployment.
+paths:
+  /health:
+    get:
+      summary: Check API health
+      responses:
+        "200":
+          description: API is available
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+  /demo/status:
+    get:
+      summary: Get public demo status and limitations
+      responses:
+        "200":
+          description: Demo status, data mode, and public prediction availability
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemoStatusResponse"
+  /models:
+    get:
+      summary: List approved curated models visible in the main customer flow
+      responses:
+        "200":
+          description: Approved curated models
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [models]
+                properties:
+                  models:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CuratedModel"
+  /models/{model_id}/evidence:
+    get:
+      summary: Get required evidence for an approved model before prediction
+      parameters:
+        - name: model_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Evidence summary for an approved model
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelEvidence"
+        "404":
+          description: Model is unavailable or not approved for display
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /models/{model_id}/stocks:
+    get:
+      summary: Search stock availability for a selected model
+      parameters:
+        - name: model_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Supported and unavailable stock results
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [stocks]
+                properties:
+                  stocks:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/StockAvailability"
+  /unsupported-stock-interest:
+    post:
+      summary: Record aggregate non-personal unsupported-stock interest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UnsupportedStockInterestRequest"
+      responses:
+        "202":
+          description: Aggregate interest recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnsupportedStockInterestResponse"
+  /predictions:
+    post:
+      summary: Request next-market-session predictions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PredictionRequest"
+      responses:
+        "200":
+          description: Prediction response with successful and blocked items
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PredictionResponse"
+        "400":
+          description: Invalid prediction request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Prediction unavailable because of model, evidence, data, chronology, or public-demo eligibility
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: string
+          enum: [ok]
+    DemoStatusResponse:
+      type: object
+      required:
+        - environment_name
+        - app_status
+        - api_status
+        - public_predictions_available
+        - release_status
+        - real_approved_model_available
+        - approved_data_source_available
+        - data_source_mode
+        - data_as_of
+        - demo_limitations
+        - disclaimer
+      properties:
+        environment_name:
+          type: string
+          enum: [local, public_demo, review]
+        public_demo_url:
+          type: string
+          format: uri
+        app_status:
+          type: string
+          enum: [available, degraded, unavailable]
+        api_status:
+          type: string
+          enum: [available, degraded, unavailable]
+        public_predictions_available:
+          type: boolean
+        release_status:
+          type: string
+          enum: [full, degraded, unavailable]
+        real_approved_model_available:
+          type: boolean
+        approved_data_source_available:
+          type: boolean
+        release_gate_reason:
+          type: string
+        unavailable_reason:
+          type: string
+        data_source_mode:
+          $ref: "#/components/schemas/DataSourceMode"
+        data_as_of:
+          type: string
+          format: date-time
+        demo_limitations:
+          type: string
+        disclaimer:
+          type: string
+    CuratedModel:
+      type: object
+      required:
+        - model_id
+        - model_version
+        - model_name
+        - description
+        - status
+        - model_origin
+        - public_demo_eligible
+        - registry_sync_status
+        - evaluation_period
+        - supported_universe_id
+        - evidence_available
+        - evidence_load_status
+        - limitations
+      properties:
+        model_id:
+          type: string
+        model_version:
+          type: string
+        model_name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [approved]
+        model_origin:
+          type: string
+          enum: [real, local_mock, demo_only, experimental]
+        public_demo_eligible:
+          type: boolean
+        registry_sync_status:
+          type: string
+          enum: [current, stale, incomplete, conflict]
+        registry_conflict_reason:
+          type: string
+        evaluation_period:
+          $ref: "#/components/schemas/DateRange"
+        supported_universe_id:
+          type: string
+        evidence_available:
+          type: boolean
+        evidence_load_status:
+          type: string
+          enum: [loaded, missing, stale, unavailable, not_loaded]
+        limitations:
+          type: array
+          items:
+            type: string
+    ModelEvidence:
+      type: object
+      required:
+        - evidence_id
+        - model_id
+        - model_version
+        - evidence_type
+        - evaluation_period
+        - key_metrics
+        - supported_universe
+        - limitations
+        - data_quality_notes
+        - historical_performance_caveat
+        - evidence_status
+        - evidence_load_status
+        - evidence_as_of
+        - data_source_mode
+      properties:
+        evidence_id:
+          type: string
+        model_id:
+          type: string
+        model_version:
+          type: string
+        evidence_type:
+          type: string
+          enum: [backtest, paper_trading, validation_summary]
+        evaluation_period:
+          $ref: "#/components/schemas/DateRange"
+        key_metrics:
+          type: array
+          items:
+            $ref: "#/components/schemas/Metric"
+        supported_universe:
+          type: array
+          items:
+            type: string
+        limitations:
+          type: array
+          items:
+            type: string
+        data_quality_notes:
+          type: array
+          items:
+            type: string
+        historical_performance_caveat:
+          type: string
+        paper_trading_summary:
+          type: string
+        evidence_status:
+          type: string
+          enum: [complete, weak, data_limited, missing, stale]
+        evidence_load_status:
+          type: string
+          enum: [loaded, missing, stale, unavailable, not_loaded]
+        evidence_as_of:
+          type: string
+          format: date-time
+        data_source_mode:
+          $ref: "#/components/schemas/DataSourceMode"
+    StockAvailability:
+      type: object
+      required: [ticker, name, exchange, support_status]
+      properties:
+        ticker:
+          type: string
+        name:
+          type: string
+        exchange:
+          type: string
+          enum: [IDX]
+        support_status:
+          type: string
+          enum: [supported, unsupported, temporarily_unavailable]
+        unavailable_reason:
+          type: string
+        data_as_of:
+          type: string
+          format: date-time
+        freshness_status:
+          type: string
+          enum: [fresh, stale, missing]
+        market_data_flags:
+          type: array
+          items:
+            type: string
+    PredictionRequest:
+      type: object
+      required: [model_id, model_version, tickers, target]
+      properties:
+        model_id:
+          type: string
+        model_version:
+          type: string
+        tickers:
+          type: array
+          minItems: 1
+          items:
+            type: string
+        target:
+          type: string
+          enum: [next_market_session_direction]
+    PredictionResponse:
+      type: object
+      required: [request_id, predictions, blocked, disclaimer]
+      properties:
+        request_id:
+          type: string
+        predictions:
+          type: array
+          items:
+            $ref: "#/components/schemas/PredictionOutput"
+        blocked:
+          type: array
+          items:
+            $ref: "#/components/schemas/BlockedPrediction"
+        disclaimer:
+          type: string
+    PredictionOutput:
+      type: object
+      required:
+        - prediction_id
+        - ticker
+        - prediction_target
+        - model_signal
+        - confidence_category
+        - confidence_explanation
+        - context_summary
+        - limitation_summary
+        - model_name
+        - model_id
+        - model_version
+        - data_as_of_timestamp
+        - feature_generation_timestamp
+        - prediction_timestamp
+        - evaluation_context
+        - evidence_reference
+        - disclaimer_text
+      properties:
+        prediction_id:
+          type: string
+        ticker:
+          type: string
+        prediction_target:
+          type: string
+        model_signal:
+          type: string
+          enum: [up, down, neutral, unavailable]
+        confidence_category:
+          type: string
+          enum: [Low, Medium, High]
+        numeric_confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+        confidence_explanation:
+          type: string
+        context_summary:
+          type: string
+        limitation_summary:
+          type: string
+        model_name:
+          type: string
+        model_id:
+          type: string
+        model_version:
+          type: string
+        data_as_of_timestamp:
+          type: string
+          format: date-time
+        feature_generation_timestamp:
+          type: string
+          format: date-time
+        prediction_timestamp:
+          type: string
+          format: date-time
+        evaluation_context:
+          type: string
+        evidence_reference:
+          type: string
+        disclaimer_text:
+          type: string
+        disclaimer_version:
+          type: string
+    BlockedPrediction:
+      type: object
+      required: [ticker, reason, user_message]
+      properties:
+        ticker:
+          type: string
+        reason:
+          type: string
+          enum:
+            - unsupported_stock
+            - stale_data
+            - missing_data
+            - missing_required_evidence
+            - stale_required_evidence
+            - unavailable_required_evidence
+            - evidence_not_loaded
+            - chronology_violation
+            - missing_feature_timestamp
+            - invalid_feature_timestamp
+            - unreliable_or_untraceable
+            - unavailable_model
+            - registry_conflict
+            - registry_sync_stale
+            - registry_sync_incomplete
+            - public_demo_model_unavailable
+            - public_demo_release_gate_failed
+            - mock_model_blocked_in_public_demo
+            - invalid_prediction_response
+        user_message:
+          type: string
+        next_step:
+          type: string
+    UnsupportedStockInterestRequest:
+      type: object
+      required: [ticker, reason]
+      properties:
+        ticker:
+          type: string
+        model_id:
+          type: string
+        reason:
+          type: string
+    UnsupportedStockInterestResponse:
+      type: object
+      required: [accepted, message]
+      properties:
+        accepted:
+          type: boolean
+        message:
+          type: string
+    ErrorResponse:
+      type: object
+      required: [error_code, message]
+      properties:
+        error_code:
+          type: string
+        message:
+          type: string
+        next_step:
+          type: string
+    DateRange:
+      type: object
+      required: [start, end]
+      properties:
+        start:
+          type: string
+          format: date
+        end:
+          type: string
+          format: date
+    Metric:
+      type: object
+      required: [name, value, interpretation]
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        interpretation:
+          type: string
+    DataSourceMode:
+      type: string
+      enum: [sample, mock, public, delayed, static, approved, live, unavailable]
