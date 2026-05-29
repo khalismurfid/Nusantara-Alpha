@@ -1,0 +1,35 @@
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile.backend
+    env_file:
+      - env.example
+    environment:
+      NUSANTARA_RUNTIME_CONTEXT: ${NUSANTARA_RUNTIME_CONTEXT:-local}
+      NUSANTARA_SQLITE_PATH: /app/.local/nusantara_alpha.sqlite3
+      NUSANTARA_MLFLOW_TRACKING_URI: /app/mlruns
+    volumes:
+      - nusantara_state:/app/.local
+      - nusantara_mlruns:/app/mlruns
+    ports:
+      - "8000:8000"
+
+  streamlit:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile.streamlit
+    env_file:
+      - env.example
+    environment:
+      NUSANTARA_API_BASE_URL: http://backend:8000
+      NUSANTARA_RUNTIME_CONTEXT: ${NUSANTARA_RUNTIME_CONTEXT:-local}
+    depends_on:
+      - backend
+    ports:
+      - "8501:8501"
+
+volumes:
+  nusantara_state:
+  nusantara_mlruns:
+

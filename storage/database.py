@@ -1,0 +1,42 @@
+"""SQLite connection and initialization helpers."""
+
+from __future__ import annotations
+
+import sqlite3
+from contextlib import contextmanager
+from pathlib import Path
+from typing import Iterator
+
+SCHEMA_PATH = Path(__file__).with_name("schema.sql")
+
+
+def connect(db_path: str | Path) -> sqlite3.Connection:
+    path = Path(db_path)
+    if path != Path(":memory:"):
+        path.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(str(path))
+    conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA foreign_keys = ON")
+    return conn
+
+
+def initialize(conn: sqlite3.Connection, schema_path: Path = SCHEMA_PATH) -> None:
+    conn.executescript(schema_path.read_text())
+    conn.commit()
+
+
+@contextmanager
+def transaction(conn: sqlite3.Connection) -> Iterator[sqlite3.Connection]:
+    try:
+        yield conn
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+
+
+def row_to_dict(row: sqlite3.Row | None) -> dict | None:
+    if row is None:
+        return None
+    return dict(row)
+

@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+dist/
+build/
+*.egg-info/
+
+# Local runtime state
+*.db
+*.sqlite
+*.sqlite3
+mlruns/
+artifacts/
+local_artifacts/
+logs/
+*.log
+
+# Secrets and private data
+.env
+.env.*
+!.env.example
+deployment/*.env
+data/private/
+data/proprietary/
+data/raw/
+secrets/
+*.key
+*.pem
+*.crt
+
+# OS/editor
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+

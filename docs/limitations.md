@@ -1,0 +1,14 @@
+# Limitations
+
+- The supported IDX universe is intentionally small for the first portfolio
+  version.
+- Historical evidence may not generalize to future market sessions.
+- Model confidence is uncertainty, not correctness.
+- Public demo data may be public, delayed, static, or otherwise approved
+  non-sensitive data rather than live market data.
+- Predictions are blocked when required evidence, required data, or feature
+  timestamps are missing, stale, unavailable, or invalid.
+- Public demo prediction availability requires a real approved model, current
+  registry sync, loaded evidence, and an approved non-sensitive data source.
+- No real-money trading, brokerage integration, position sizing, or portfolio
+  allocation advice is included.
