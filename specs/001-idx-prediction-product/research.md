@@ -12,6 +12,22 @@ control but adds complexity before the product and safety flow are proven. A
 notebook interface is fast for experiments but would read as an internal
 research artifact rather than a customer-facing product.
 
+## Decision: Prediction-first Streamlit layout for the MVP UX revision
+
+**Rationale**: The first local product review found the skeleton functionally
+present but too internal, text-heavy, and awkwardly worded for retail-style
+users or reviewers. The next iteration should keep the same safety gates while
+making the selected ticker, model signal, confidence, key context, and
+limitations the primary visible content after valid selections. Concise
+evidence remains before or alongside interpretation, while detailed
+methodology and traceability become secondary or expandable.
+
+**Alternatives considered**: Keeping the evidence panel as the dominant first
+screen would satisfy review traceability but fail the customer-facing clarity
+criteria. Building a new custom frontend would improve layout control but adds
+complexity before the current Streamlit product flow is polished. Adding more
+model capability first would not address the blocking MVP feedback.
+
 ## Decision: FastAPI for the service layer
 
 **Rationale**: FastAPI gives explicit request/response contracts, validation,

@@ -37,11 +37,13 @@ implement code yet.
 3. Open the Streamlit URL in a browser.
 4. Complete the local flow:
    - choose model
-   - inspect evidence
+   - inspect concise evidence
    - choose supported IDX stock
-   - request prediction
-   - inspect confidence, context, limitations, timestamps, traceability, and
-     disclaimer
+   - immediately understand the prediction-first view
+   - inspect confidence, why the signal appeared, key limitations, timestamps,
+     traceability, and disclaimer
+   - open detailed evidence or methodology only when more review context is
+     needed
 
 ## Public Demo Precondition
 
@@ -128,11 +130,26 @@ integration, and live trading infrastructure are out of scope.
    - data-as-of timestamp
    - evidence load status
 6. Select a supported IDX stock.
-7. Try an unsupported stock and confirm it is marked unavailable, blocks
+7. Confirm the selected ticker's prediction becomes the primary visible content
+   after valid selections and passing evidence/data gates.
+8. Confirm the primary prediction view shows, before dense methodology or raw
+   traceability:
+   - ticker
+   - model signal
+   - Low/Medium/High confidence
+   - why this signal appeared
+   - key limitations
+9. Confirm any manual action uses plain wording such as `Predict` and does not
+   use `Request educational prediction`.
+10. Confirm limitations read like product guidance rather than raw metadata,
+    cell text, or unexplained tags.
+11. Confirm detailed evidence, methodology, and traceability remain available as
+    secondary or expandable sections.
+12. Try an unsupported stock and confirm it is marked unavailable, blocks
    prediction until removed or replaced, and records only aggregate
    non-personal support interest.
-8. Request prediction.
-9. Confirm each successful output includes:
+13. Request prediction if the flow still uses a manual action.
+14. Confirm each successful output includes:
    - ticker
    - prediction target
    - model signal
@@ -148,11 +165,11 @@ integration, and live trading infrastructure are out of scope.
    - evidence reference
    - evaluation context
    - disclaimer text
-10. Confirm missing or invalid feature-generation timestamp fails prediction
+15. Confirm missing or invalid feature-generation timestamp fails prediction
     with a clear error.
-11. Confirm no screen or response uses buy/sell recommendations, guaranteed
+16. Confirm no screen or response uses buy/sell recommendations, guaranteed
    profit, position sizing, allocation advice, or personalized guidance.
-12. Confirm stale/missing/unavailable/not-loaded evidence, stale/missing data,
+17. Confirm stale/missing/unavailable/not-loaded evidence, stale/missing data,
     failed prediction, and invalid response cases show unavailable/error states
     instead of misleading output.
 
@@ -164,10 +181,10 @@ pytest tests/unit tests/contract tests/integration tests/ml_safety tests/deploym
 
 ## Expected Reviewer Outcome
 
-A reviewer can open a public URL, inspect a real approved model's loaded
-evidence, select a supported IDX stock, request a next-market-session
-prediction, and understand confidence, limitations, data-as-of timestamp,
-feature-generation timestamp, prediction timestamp, traceability, and the
-educational/research boundary without running code locally. If release gates are
-not satisfied, the reviewer sees a clearly labelled degraded demo rather than a
-claim of full prediction availability.
+A reviewer can open a public URL, inspect a real approved model's concise
+evidence summary, select a supported IDX stock, quickly understand the
+prediction-first view, and then inspect confidence, limitations, data-as-of
+timestamp, feature-generation timestamp, prediction timestamp, traceability, and
+the educational/research boundary without running code locally. If release
+gates are not satisfied, the reviewer sees a clearly labelled degraded demo
+rather than a claim of full prediction availability.

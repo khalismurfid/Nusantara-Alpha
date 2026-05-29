@@ -204,6 +204,45 @@ Represents one structured prediction result for one selected stock.
 - Public-demo outputs must not come from mock/demo-only models or dummy
   prediction generators.
 
+## Entity: Prediction View
+
+Represents the customer-facing presentation of one prediction output in the
+main Streamlit experience.
+
+**Fields**
+- `ticker`: Selected IDX ticker shown as the primary identifier.
+- `model_signal`: Predicted direction or model signal shown as the primary
+  result.
+- `confidence_category`: Low/Medium/High confidence category.
+- `confidence_explanation`: Plain-language explanation that confidence is model
+  uncertainty and can be wrong.
+- `why_signal_summary`: User-facing explanation derived from `context_summary`
+  and available model/evidence context.
+- `key_limitations`: Readable limitation guidance derived from
+  `limitation_summary`, evidence status, and data-quality notes.
+- `concise_evidence_summary`: Short evidence summary visible before or
+  alongside interpretation.
+- `detailed_evidence_available`: Whether detailed evidence is available in a
+  secondary section.
+- `traceability_details_available`: Whether model version, data-as-of,
+  feature-generation, prediction timestamp, evidence reference, and evaluation
+  context are available in a secondary section.
+- `primary_action_label`: Optional action label when automatic prediction is
+  not practical.
+- `disclaimer_text`: Educational/research disclaimer visible in the prediction
+  flow.
+
+**Validation Rules**
+- The main screen shows ticker, model signal, confidence, key context, and key
+  limitations before dense methodology or raw traceability details.
+- `primary_action_label` must be absent for automatic prediction or use simple
+  product language such as `Predict`; it must not use awkward academic wording.
+- Limitations must be presented as readable guidance, not raw metadata, isolated
+  tags, or cell-like debug text.
+- Concise evidence must be visible before or alongside interpretation, while
+  detailed evidence and traceability remain available as secondary content.
+- The view must not contain financial-advice wording or imply a trading action.
+
 ## Entity: Prediction Log
 
 Stores traceability and audit metadata for prediction attempts.
@@ -359,6 +398,8 @@ Represents a data/artifact source and whether it may be used in public demo.
   one or more `Supported IDX Stock` records.
 - `Prediction Output` belongs to one `Prediction Request` and references one
   `Model Evidence` record.
+- `Prediction View` presents one `Prediction Output` with concise evidence and
+  secondary traceability details.
 - `Prediction Log` records each successful, blocked, or failed prediction
   attempt.
 - `Public Demo Runtime` constrains which `Curated Prediction Model` and
