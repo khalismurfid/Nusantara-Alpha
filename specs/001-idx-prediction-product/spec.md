@@ -24,6 +24,23 @@ advice."
 - Q: Can the public demo use mock models or dummy predictions? → A: Public demo must use real approved models only; mock/demo models and dummy predictions are local or experimental only.
 - Q: What data may the public demo use when live/current data is unavailable? → A: It may use public, delayed, static, or otherwise approved non-sensitive data with data-as-of and limitations shown.
 
+### Session 2026-05-29
+
+- MVP local review feedback: The first working skeleton is functionally present
+  but not acceptable as a customer-facing experience. The product must move to
+  a prediction-first, clearer, less text-heavy interface with more natural
+  user-facing language, calmer limitation copy, readable grouping, and a
+  polished reviewer-ready presentation.
+- Prediction interaction decision: Once a valid model and supported ticker are
+  selected and required evidence is available, the prediction should become the
+  primary visible content and should appear automatically or with a minimal
+  action labelled in plain language such as "Predict". The product must not use
+  awkward academic action labels such as "Request educational prediction".
+- Evidence balance decision: Evidence-before-prediction remains mandatory, but
+  evidence should be presented as a concise, readable summary before or
+  alongside the prediction-first experience, with detailed methodology and
+  traceability available in secondary sections.
+
 ## Constitution Alignment *(mandatory)*
 
 - **Educational boundary**: The product frames all predictions, model evidence,
@@ -65,25 +82,29 @@ advice."
   may use permitted sample or mock data; the public demo uses real approved
   models with public, delayed, static, or otherwise approved non-sensitive data.
 - **User clarity**: The main journey remains simple for non-expert users:
-  choose a curated model, inspect evidence, choose supported IDX stocks, request
-  a prediction, and understand risk.
+  choose a curated model, choose supported IDX stocks, immediately understand
+  the prediction, inspect the supporting evidence and limitations, and
+  understand risk without reading dense internal-style text.
 
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Explore a Supported Prediction (Priority: P1)
 
-A retail-style user opens Nusantara Alpha, sees the educational framing, chooses
-an approved prediction model, reviews its evidence, selects one or more
-supported IDX stocks, requests a next-market-session prediction, and receives a
-structured output with signal, confidence, context, limitations, timestamps,
-model identity, and disclaimer.
+A retail-style user opens Nusantara Alpha, sees clear educational framing,
+chooses an approved prediction model, selects one or more supported IDX stocks,
+and immediately sees a readable next-market-session prediction view centered on
+the selected ticker, model signal, confidence, key context, and limitations.
+The user can inspect concise evidence before interpreting the output and can
+open deeper methodology or traceability details without the main screen feeling
+like an internal experiment tracker.
 
 **Why this priority**: This is the primary product journey and the minimum
 valuable experience for users, recruiters, and project reviewers.
 
 **Independent Test**: A tester can complete the full journey with one approved
-model and one supported IDX stock, then verify that the output includes all
-required fields and no financial-advice language.
+model and one supported IDX stock, then verify that the prediction is the
+primary visible content, the output includes all required fields, the wording is
+natural for non-expert users, and no financial-advice language appears.
 
 **Acceptance Scenarios**:
 
@@ -102,6 +123,16 @@ required fields and no financial-advice language.
    confidence field, **Then** the product shows a Low/Medium/High category and
    explains confidence as model uncertainty, not as a guarantee that the
    prediction is correct.
+4. **Given** the user has selected a valid model and supported ticker, **When**
+   required evidence and data are available, **Then** the prediction area is the
+   main visual focus and shows ticker, signal, confidence, context, and key
+   limitations before secondary technical details.
+5. **Given** a manual prediction action is still required, **When** the user
+   reaches the action, **Then** the label uses simple product language such as
+   "Predict" and does not use awkward academic wording.
+6. **Given** the user views the main prediction screen, **When** limitations or
+   evidence summaries are shown, **Then** they are readable as plain product
+   guidance rather than raw metadata, isolated tags, or cell-like debug text.
 
 ---
 
@@ -137,6 +168,10 @@ historical-versus-future distinctions are visible before prediction.
    inspects the evidence, **Then** the product identifies the evaluation period,
    relevant data-as-of assumptions, and any material data-quality or bias risks
    that affect interpretation.
+5. **Given** the reviewer is on the main prediction screen, **When** evidence
+   and methodology are available, **Then** the product shows a concise evidence
+   summary in the primary journey and keeps detailed methodology available as
+   secondary content.
 
 ---
 
@@ -248,6 +283,13 @@ data context without exposing restricted data.
   credential, proprietary file, or unrestricted internal artifact.
 - Public demo limitations or data-as-of timestamps are missing from evidence or
   prediction views.
+- Prediction output is buried below dense evidence or methodology text.
+- Primary action labels sound awkward, academic, or unlike a customer-facing
+  product.
+- Limitation text appears as raw metadata, isolated cells, or confusing tags.
+- The main screen overwhelms non-expert users with traceability or methodology
+  details before they understand the prediction.
+- Users mistake a dense evidence panel for the prediction itself.
 
 ## Requirements *(mandatory)*
 
@@ -405,6 +447,42 @@ data context without exposing restricted data.
 - **FR-060**: If no real approved model is available for the public demo, the
   public demo MUST block prediction and explain that public prediction is
   unavailable rather than falling back to mock or dummy outputs.
+- **FR-061**: Once a valid approved model and supported ticker are selected and
+  required evidence and data are available, the prediction output MUST become
+  the primary visible content in the main experience.
+- **FR-062**: The primary prediction view MUST prominently show selected ticker,
+  model signal or predicted direction, confidence category, key context, and
+  key limitations before secondary technical details.
+- **FR-063**: The product MUST NOT require users to read dense evidence,
+  methodology, or traceability text before they can understand the main
+  prediction output.
+- **FR-064**: The product MUST provide a concise evidence summary before or
+  alongside prediction interpretation while keeping detailed evidence,
+  methodology, and traceability in secondary or expandable sections.
+- **FR-065**: If a manual prediction action is used, the action label MUST use
+  plain customer-facing language such as "Predict" and MUST NOT use awkward
+  academic wording such as "Request educational prediction".
+- **FR-066**: When a valid model and supported ticker are selected, the product
+  SHOULD show the prediction automatically or with only a lightweight user
+  action, provided all evidence, data, chronology, and model approval gates pass.
+- **FR-067**: User-facing labels, warnings, limitations, and evidence summaries
+  MUST be written in plain, natural product language for non-expert users.
+- **FR-068**: The product MUST avoid presenting limitations as raw metadata,
+  isolated cell-like text, unexplained tags, or debug-style labels.
+- **FR-069**: Limitation copy MUST explain the practical meaning of constraints
+  in calm, readable language rather than using awkward fragments such as
+  "limited universe" as standalone UI text.
+- **FR-070**: The main prediction screen MUST group information into clear
+  user-facing sections: prediction, confidence, why this signal appeared, key
+  limitations, model evidence, and traceability details.
+- **FR-071**: Technical details and traceability MUST remain available for
+  reviewers, but they MUST be visually secondary to the main prediction,
+  confidence, context, and limitation summary.
+- **FR-072**: The main flow MUST feel like a customer-facing product experience
+  and MUST NOT feel like filling out an internal ML form or reading an
+  experiment tracker.
+- **FR-073**: The product MUST preserve no-financial-advice framing without
+  making the primary experience sound overly academic or unnatural.
 
 ### Scope Boundaries
 
@@ -442,6 +520,9 @@ data context without exposing restricted data.
   signal, Low/Medium/High confidence category, plain-language confidence
   explanation, context, limitations, model identity, evidence reference,
   evaluation context, timestamps, and disclaimer.
+- **Prediction View**: The main user-facing presentation of a prediction,
+  organized around ticker, model signal, confidence, context, limitations,
+  concise evidence summary, and secondary traceability details.
 - **Data Availability State**: The freshness, completeness, and usability status
   of required data for a selected model and stock.
 - **Educational Disclaimer**: Required user-facing language that frames the
@@ -517,6 +598,22 @@ data context without exposing restricted data.
 - **SC-020**: 0 tested public-demo model selectors, evidence views, prediction
   outputs, or error states expose mock models, demo-only models, experimental
   models, or dummy prediction outputs as public predictions.
+- **SC-021**: At least 90% of representative non-expert users can identify the
+  selected ticker, model signal, confidence category, and key limitation within
+  10 seconds of selecting a supported ticker.
+- **SC-022**: At least 4 out of 5 reviewers describe the main experience as
+  clear, polished, and customer-facing rather than internal, text-heavy, or
+  experiment-like.
+- **SC-023**: 100% of tested primary prediction screens show the prediction
+  before dense methodology, raw traceability details, or extended evidence
+  content.
+- **SC-024**: 0 tested primary action labels use awkward academic wording such
+  as "Request educational prediction".
+- **SC-025**: 100% of tested limitation displays use readable explanatory copy
+  rather than raw metadata, isolated cells, or unexplained tag-style fragments.
+- **SC-026**: At least 90% of representative users can correctly explain, after
+  viewing the main prediction screen, that the model signal is educational and
+  uncertain while still understanding the prediction itself.
 
 ## Assumptions
 
@@ -536,6 +633,12 @@ data context without exposing restricted data.
   planning and does not represent user investment intent.
 - The first release prioritizes clarity and reliability over broad model count,
   broad stock coverage, or advanced customization.
+- The next MVP iteration prioritizes prediction-first UX, plain product
+  language, readability, and customer-facing polish over adding new model
+  capability.
+- A concise evidence summary can satisfy evidence-before-prediction for the
+  main journey when detailed evidence and traceability remain available before
+  or alongside interpretation.
 - The public demo uses real approved models only; mock/demo models and dummy
   prediction outputs are limited to local development or experimentation.
 - The public demo may use public, delayed, static, or otherwise approved

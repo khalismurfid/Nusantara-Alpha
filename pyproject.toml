@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "nusantara-alpha"
 version = "0.1.0"
@@ -30,3 +34,18 @@ testpaths = [
 ]
 pythonpath = ["."]
 
+[tool.setuptools.packages.find]
+include = [
+  "app_streamlit*",
+  "backend*",
+  "ml*",
+  "model_registry*",
+  "storage*",
+]
+exclude = [
+  "data*",
+  "deployment*",
+  "docs*",
+  "specs*",
+  "tests*",
+]

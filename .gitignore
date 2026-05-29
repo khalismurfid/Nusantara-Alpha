@@ -13,9 +13,11 @@ build/
 *.egg-info/
 
 # Local runtime state
+.local/
 *.db
 *.sqlite
 *.sqlite3
+*.sqlite3-journal
 mlruns/
 artifacts/
 local_artifacts/
@@ -42,4 +44,3 @@ Thumbs.db
 *.swp
 .vscode/
 .idea/
-

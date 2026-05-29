@@ -35,6 +35,10 @@
 - Validation re-run on 2026-05-26 after adding public portfolio-demo access
   requirements; the specification remains product-focused and avoids deployment
   stack details.
+- Validation re-run on 2026-05-29 after first local MVP UX review. The new
+  requirements remain product-focused, require prediction-first readability,
+  plain user-facing language, customer-facing polish, and preserve evidence,
+  uncertainty, traceability, and no-financial-advice constraints.
 - No clarification markers remain.
 - The specification explicitly covers constitution-critical constraints:
   educational framing, no real-money execution, chronological integrity,
