@@ -22,7 +22,7 @@ class StockService:
                     "name": query.upper(),
                     "exchange": "IDX",
                     "support_status": "unsupported",
-                    "unavailable_reason": "This ticker is outside the selected model's supported universe.",
+                    "unavailable_reason": f"This model has not been reviewed for {query.upper()} yet.",
                     "data_as_of": None,
                     "freshness_status": "missing",
                     "market_data_flags": ["unsupported_universe"],

@@ -1,5 +1,10 @@
 """Centralized educational framing and copy-safety constants."""
 
+from app_streamlit.copy.product_language import (
+    has_raw_limitation_fragment,
+    is_awkward_action_label,
+)
+
 DISCLAIMER_VERSION = "2026-05-29.v1"
 
 EDUCATIONAL_DISCLAIMER = (
@@ -37,3 +42,13 @@ def contains_forbidden_advice(text: str) -> bool:
 def assert_copy_safe(text: str) -> None:
     if contains_forbidden_advice(text):
         raise ValueError("User-facing copy contains forbidden financial-advice framing.")
+
+
+def assert_action_label_safe(label: str) -> None:
+    if is_awkward_action_label(label):
+        raise ValueError("Prediction action label is awkward or too academic.")
+
+
+def assert_limitation_copy_readable(text: str) -> None:
+    if has_raw_limitation_fragment(text):
+        raise ValueError("Limitation copy looks like raw metadata instead of product guidance.")

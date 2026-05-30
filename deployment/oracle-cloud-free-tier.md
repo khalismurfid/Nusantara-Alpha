@@ -14,7 +14,16 @@ low-cost Linux server.
 7. Run the public-demo release gate through `/demo/status`.
 8. If the gate is degraded, keep prediction unavailable and show the degraded
    demo limitations.
-9. Start the stack:
+9. Validate the prediction-first public demo behavior:
+   - A supported ticker shows the prediction as the primary content only when
+     public prediction gates pass.
+   - Degraded mode shows `Demo mode: predictions unavailable` and does not
+     claim full prediction availability.
+   - The screen keeps model evidence and traceability available as secondary
+     review context.
+   - Mock models and dummy prediction outputs are not shown as public
+     predictions.
+10. Start the stack:
 
 ```bash
 docker compose -f deployment/compose.yaml --env-file deployment/env.example up --build -d
@@ -23,4 +32,3 @@ docker compose -f deployment/compose.yaml --env-file deployment/env.example up -
 Expose only the required HTTP ports. High availability, autoscaling, paid
 production deployment, brokerage integration, and live trading operations are
 out of scope.
-

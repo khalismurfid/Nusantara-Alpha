@@ -129,6 +129,9 @@ class PredictionOutput(BaseModel):
     disclaimer_text: str
     numeric_confidence: float | None = Field(default=None, ge=0, le=1)
     disclaimer_version: str | None = None
+    rank: int | None = Field(default=None, ge=1)
+    rank_universe_size: int | None = Field(default=None, ge=1)
+    ranking_score: float | None = Field(default=None, ge=0, le=1)
 
 
 BlockedReason = Literal[
@@ -170,6 +173,29 @@ class PredictionResponse(BaseModel):
     disclaimer: str
 
 
+class RankingItem(BaseModel):
+    model_config = StrictBase
+    ticker: str
+    name: str | None = None
+    rank: int = Field(ge=1)
+    model_signal: Literal["up", "down", "neutral", "unavailable"]
+    confidence_category: Literal["Low", "Medium", "High"]
+    ranking_score: float = Field(ge=0, le=1)
+    data_as_of_timestamp: datetime
+    feature_generation_timestamp: datetime
+    context_summary: str
+
+
+class RankingResponse(BaseModel):
+    model_config = StrictBase
+    model_id: str
+    model_version: str
+    generated_at: datetime
+    data_as_of_timestamp: datetime
+    rankings: list[RankingItem]
+    disclaimer: str
+
+
 class UnsupportedStockInterestRequest(BaseModel):
     model_config = StrictBase
     ticker: str
@@ -205,4 +231,3 @@ class PredictionLogRecord(BaseModel):
     disclaimer_version: str | None = None
     error_message: str | None = None
     runtime_context: RuntimeContext = "local"
-

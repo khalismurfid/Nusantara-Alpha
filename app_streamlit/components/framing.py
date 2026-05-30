@@ -1,14 +1,10 @@
-"""Educational framing component."""
-
-from app_streamlit.copy.disclaimers import EDUCATIONAL_DISCLAIMER
+"""Customer-facing project framing."""
 
 
 def framing_text() -> str:
-    return EDUCATIONAL_DISCLAIMER
-
-
-def render_framing(st=None) -> str:
-    if st is not None:
-        st.info(EDUCATIONAL_DISCLAIMER)
-    return EDUCATIONAL_DISCLAIMER
-
+    return (
+        "Nusantara Alpha gives you a quick outlook for selected Indonesian "
+        "stocks. Choose a stock to see whether the latest model read leans "
+        "upward, downward, or neutral for the next market session, then review "
+        "the confidence, main reason, and important limitations in plain language."
+    )

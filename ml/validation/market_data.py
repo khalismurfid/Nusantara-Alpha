@@ -26,13 +26,12 @@ def assess_market_data(freshness_status: str | None, quality_flags: list[str] | 
     flags = quality_flags or []
     notes: list[str] = []
     if freshness_status == "missing":
-        return MarketDataAssessment(False, flags, "missing_data", ["Required market data is missing."])
+        return MarketDataAssessment(False, flags, "missing_data", ["The latest required market data is not available yet."])
     if freshness_status == "stale":
-        return MarketDataAssessment(False, flags, "stale_data", ["Required market data is stale."])
+        return MarketDataAssessment(False, flags, "stale_data", ["The latest required market data is not fresh enough for this prediction."])
     blocking = sorted(set(flags) & BLOCKING_FLAGS)
     if blocking:
         return MarketDataAssessment(False, flags, "unreliable_or_untraceable", [f"Blocking data quality flag: {flag}" for flag in blocking])
     for flag in flags:
         notes.append(f"Data quality note: {flag}")
     return MarketDataAssessment(True, flags, None, notes)
-

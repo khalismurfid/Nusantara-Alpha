@@ -1,6 +1,7 @@
 from backend.schemas.contracts import PredictionRequest
 from backend.services.model_service import ModelService
 from backend.services.prediction_service import PredictionService
+from app_streamlit.app import public_prediction_is_available
 
 
 def test_public_demo_hides_local_mock_models(seeded_repo):
@@ -20,3 +21,12 @@ def test_public_demo_blocks_dummy_prediction_model(seeded_repo):
     assert response["predictions"] == []
     assert response["blocked"][0]["reason"] in {"public_demo_model_unavailable", "mock_model_blocked_in_public_demo"}
 
+
+def test_prediction_first_ui_blocks_when_public_demo_gate_is_closed():
+    demo_status = {
+        "release_status": "degraded",
+        "public_predictions_available": False,
+        "unavailable_reason": "Public prediction is not available until gates pass.",
+    }
+
+    assert public_prediction_is_available(demo_status) is False

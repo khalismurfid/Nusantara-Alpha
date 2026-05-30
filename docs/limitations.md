@@ -1,8 +1,9 @@
 # Limitations
 
-- The supported IDX universe is intentionally small for the first portfolio
-  version.
-- Historical evidence may not generalize to future market sessions.
+- The first portfolio version covers a small reviewed set of IDX stocks, so
+  unsupported tickers need separate model and data validation.
+- Future market sessions can behave differently from the historical evidence
+  period.
 - Model confidence is uncertainty, not correctness.
 - Public demo data may be public, delayed, static, or otherwise approved
   non-sensitive data rather than live market data.

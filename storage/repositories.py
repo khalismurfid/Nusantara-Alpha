@@ -242,6 +242,7 @@ class Repository:
             """,
             payload,
         )
+        self.conn.commit()
         return log_id
 
     def list_prediction_logs(self) -> list[dict[str, Any]]:
@@ -266,6 +267,7 @@ class Repository:
             """,
             (ticker.upper(), model_id, reason, now, now),
         )
+        self.conn.commit()
 
     def get_unsupported_interest(self, ticker: str) -> dict[str, Any] | None:
         row = self.conn.execute(
@@ -287,6 +289,7 @@ class Repository:
             """,
             payload,
         )
+        self.conn.commit()
         return conflict_id
 
     def list_open_registry_conflicts(self, model_id: str | None = None) -> list[dict[str, Any]]:
@@ -317,6 +320,119 @@ class Repository:
         ).fetchall()
         return [dict(row) for row in rows]
 
+    def upsert_idx_universe(self, record: dict[str, Any]) -> None:
+        now = utc_now_iso()
+        payload = {
+            **record,
+            "active": int(bool(record.get("active", True))),
+            "created_at": record.get("created_at", now),
+            "updated_at": now,
+        }
+        self.conn.execute(
+            """
+            INSERT INTO idx_universe (
+                ticker, company_name, yahoo_symbol, active, source, source_date, created_at, updated_at
+            ) VALUES (
+                :ticker, :company_name, :yahoo_symbol, :active, :source, :source_date, :created_at, :updated_at
+            )
+            ON CONFLICT(ticker) DO UPDATE SET
+                company_name=excluded.company_name,
+                yahoo_symbol=excluded.yahoo_symbol,
+                active=excluded.active,
+                source=excluded.source,
+                source_date=excluded.source_date,
+                updated_at=excluded.updated_at
+            """,
+            payload,
+        )
+
+    def list_idx_universe(self, active_only: bool = True) -> list[dict[str, Any]]:
+        if active_only:
+            rows = self.conn.execute("SELECT * FROM idx_universe WHERE active=1 ORDER BY ticker").fetchall()
+        else:
+            rows = self.conn.execute("SELECT * FROM idx_universe ORDER BY ticker").fetchall()
+        return [self._universe_from_row(row) for row in rows]
+
+    def upsert_market_prices(self, rows: list[dict[str, Any]]) -> None:
+        if not rows:
+            return
+        payloads = []
+        for row in rows:
+            payloads.append(
+                {
+                    **row,
+                    "ticker": row["ticker"].upper(),
+                    "fetched_at": row.get("fetched_at") or utc_now_iso(),
+                }
+            )
+        self.conn.executemany(
+            """
+            INSERT OR REPLACE INTO market_prices (
+                ticker, price_date, open, high, low, close, adj_close, volume, source, fetched_at
+            ) VALUES (
+                :ticker, :price_date, :open, :high, :low, :close, :adj_close, :volume, :source, :fetched_at
+            )
+            """,
+            payloads,
+        )
+
+    def list_market_prices(
+        self,
+        tickers: list[str] | None = None,
+        start_date: str | None = None,
+        end_date: str | None = None,
+    ) -> list[dict[str, Any]]:
+        clauses = []
+        params: list[Any] = []
+        if tickers:
+            placeholders = ",".join("?" for _ in tickers)
+            clauses.append(f"UPPER(ticker) IN ({placeholders})")
+            params.extend([ticker.upper() for ticker in tickers])
+        if start_date:
+            clauses.append("price_date >= ?")
+            params.append(start_date)
+        if end_date:
+            clauses.append("price_date <= ?")
+            params.append(end_date)
+        where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
+        rows = self.conn.execute(
+            f"SELECT * FROM market_prices {where} ORDER BY ticker, price_date",
+            params,
+        ).fetchall()
+        return [dict(row) for row in rows]
+
+    def latest_market_price_date(self, ticker: str | None = None) -> str | None:
+        if ticker:
+            row = self.conn.execute(
+                "SELECT MAX(price_date) AS price_date FROM market_prices WHERE UPPER(ticker)=UPPER(?)",
+                (ticker,),
+            ).fetchone()
+        else:
+            row = self.conn.execute("SELECT MAX(price_date) AS price_date FROM market_prices").fetchone()
+        return row["price_date"] if row and row["price_date"] else None
+
+    def upsert_feature_snapshot(self, snapshot: dict[str, Any]) -> str:
+        snapshot_id = snapshot.get("snapshot_id", str(uuid4()))
+        payload = {
+            **snapshot,
+            "snapshot_id": snapshot_id,
+            "features_json": _json(snapshot.get("features", {})),
+            "created_at": snapshot.get("created_at", utc_now_iso()),
+        }
+        self.conn.execute(
+            """
+            INSERT OR REPLACE INTO model_feature_snapshots (
+                snapshot_id, model_id, model_version, ticker, feature_date,
+                feature_generation_timestamp, features_json, feature_hash, created_at
+            ) VALUES (
+                :snapshot_id, :model_id, :model_version, :ticker, :feature_date,
+                :feature_generation_timestamp, :features_json, :feature_hash, :created_at
+            )
+            """,
+            payload,
+        )
+        return snapshot_id
+
     def _model_from_row(self, row: sqlite3.Row | None) -> dict[str, Any] | None:
         if row is None:
             return None
@@ -343,3 +459,7 @@ class Repository:
         data["market_data_flags"] = _loads(data.pop("market_data_flags_json"), [])
         return data
 
+    def _universe_from_row(self, row: sqlite3.Row | None) -> dict[str, Any]:
+        data = dict(row)
+        data["active"] = bool(data["active"])
+        return data

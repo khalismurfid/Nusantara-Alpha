@@ -99,6 +99,27 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/StockAvailability"
+  /models/{model_id}/rankings:
+    get:
+      summary: Get exploratory ranking for supported stocks in the selected model universe
+      parameters:
+        - name: model_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: model_version
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Ranked model scores for supported stocks
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RankingResponse"
   /unsupported-stock-interest:
     post:
       summary: Record aggregate non-personal unsupported-stock interest
@@ -435,6 +456,73 @@ components:
         disclaimer_text:
           type: string
         disclaimer_version:
+          type: string
+        rank:
+          type: integer
+          minimum: 1
+        rank_universe_size:
+          type: integer
+          minimum: 1
+        ranking_score:
+          type: number
+          minimum: 0
+          maximum: 1
+    RankingResponse:
+      type: object
+      required: [model_id, model_version, generated_at, data_as_of_timestamp, rankings, disclaimer]
+      properties:
+        model_id:
+          type: string
+        model_version:
+          type: string
+        generated_at:
+          type: string
+          format: date-time
+        data_as_of_timestamp:
+          type: string
+          format: date-time
+        rankings:
+          type: array
+          items:
+            $ref: "#/components/schemas/RankingItem"
+        disclaimer:
+          type: string
+    RankingItem:
+      type: object
+      required:
+        - ticker
+        - rank
+        - model_signal
+        - confidence_category
+        - ranking_score
+        - data_as_of_timestamp
+        - feature_generation_timestamp
+        - context_summary
+      properties:
+        ticker:
+          type: string
+        name:
+          type: string
+        rank:
+          type: integer
+          minimum: 1
+        model_signal:
+          type: string
+          enum: [up, down, neutral, unavailable]
+        confidence_category:
+          type: string
+          enum: [Low, Medium, High]
+        ranking_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        data_as_of_timestamp:
+          type: string
+          format: date-time
+        feature_generation_timestamp:
+          type: string
+          format: date-time
+        context_summary:
           type: string
     BlockedPrediction:
       type: object

@@ -1,10 +1,15 @@
 .git/
+.dockerignore
+Dockerfile*
 .venv/
 venv/
 __pycache__/
 *.pyc
 .pytest_cache/
+.local/
 mlruns/
+artifacts/
+local_artifacts/
 *.db
 *.sqlite
 *.sqlite3
@@ -16,4 +21,9 @@ data/raw/
 secrets/
 *.log
 coverage/
-
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/

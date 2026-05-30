@@ -18,9 +18,9 @@ working skeleton.
 
 **Purpose**: Add small shared UI/copy foundations for the next UX increment.
 
-- [ ] T001 [P] Create shared product-language constants for primary labels, section titles, and banned awkward UI phrases in `app_streamlit/copy/product_language.py`
-- [ ] T002 [P] Create shared Streamlit layout/style helpers for prediction-first sections and secondary detail containers in `app_streamlit/components/ui_shell.py`
-- [ ] T003 [P] Create reusable UI fixture builders for prediction, evidence, stock, and demo-status dictionaries in `tests/unit/ui_fixtures.py`
+- [X] T001 [P] Create shared product-language constants for primary labels, section titles, and banned awkward UI phrases in `app_streamlit/copy/product_language.py`
+- [X] T002 [P] Create shared Streamlit layout/style helpers for prediction-first sections and secondary detail containers in `app_streamlit/components/ui_shell.py`
+- [X] T003 [P] Create reusable UI fixture builders for prediction, evidence, stock, and demo-status dictionaries in `tests/unit/ui_fixtures.py`
 
 ---
 
@@ -30,11 +30,11 @@ working skeleton.
 
 **Critical**: Complete this phase before changing the main Streamlit flow.
 
-- [ ] T004 Define a prediction view formatter contract with primary, supporting, and secondary sections in `app_streamlit/components/prediction_result.py`
-- [ ] T005 Add copy-safety helpers for awkward prediction action labels and raw limitation fragments in `app_streamlit/copy/disclaimers.py`
-- [ ] T006 Add dependency-free app state helper functions for selected model, loaded evidence, supported ticker, and prediction eligibility in `app_streamlit/app.py`
-- [ ] T007 [P] Rewrite local seed model, evidence, stock, and limitation copy into calmer product language in `storage/seed_local_demo.py`
-- [ ] T008 [P] Update MVP UX validation notes for prediction-first behavior in `docs/quickstart-validation.md`
+- [X] T004 Define a prediction view formatter contract with primary, supporting, and secondary sections in `app_streamlit/components/prediction_result.py`
+- [X] T005 Add copy-safety helpers for awkward prediction action labels and raw limitation fragments in `app_streamlit/copy/disclaimers.py`
+- [X] T006 Add dependency-free app state helper functions for selected model, loaded evidence, supported ticker, and prediction eligibility in `app_streamlit/app.py`
+- [X] T007 [P] Rewrite local seed model, evidence, stock, and limitation copy into calmer product language in `storage/seed_local_demo.py`
+- [X] T008 [P] Update MVP UX validation notes for prediction-first behavior in `docs/quickstart-validation.md`
 
 **Checkpoint**: Shared copy, formatting, state, and fixture seams are ready.
 
@@ -52,20 +52,20 @@ required fields remain present, and no financial-advice framing appears.
 
 ### Tests for User Story 1
 
-- [ ] T009 [P] [US1] Add prediction view formatter tests for primary display order and secondary traceability placement in `tests/unit/test_prediction_view_presentation.py`
-- [ ] T010 [P] [US1] Add tests rejecting `Request educational prediction` and accepting automatic prediction or `Predict` in `tests/unit/test_prediction_action_copy.py`
-- [ ] T011 [P] [US1] Add app state helper tests for automatic prediction eligibility after approved model, loaded evidence, and supported ticker selection in `tests/unit/test_streamlit_prediction_flow.py`
-- [ ] T012 [P] [US1] Extend disclaimer copy tests for prediction-first labels, confidence copy, and no-advice framing in `tests/unit/test_disclaimer_copy.py`
-- [ ] T013 [P] [US1] Add API-client flow tests proving the UI still requests predictions through FastAPI rather than local model logic in `tests/unit/test_streamlit_api_client.py`
+- [X] T009 [P] [US1] Add prediction view formatter tests for primary display order and secondary traceability placement in `tests/unit/test_prediction_view_presentation.py`
+- [X] T010 [P] [US1] Add tests rejecting `Request educational prediction` and accepting automatic prediction or `Predict` in `tests/unit/test_prediction_action_copy.py`
+- [X] T011 [P] [US1] Add app state helper tests for automatic prediction eligibility after approved model, loaded evidence, and supported ticker selection in `tests/unit/test_streamlit_prediction_flow.py`
+- [X] T012 [P] [US1] Extend disclaimer copy tests for prediction-first labels, confidence copy, and no-advice framing in `tests/unit/test_disclaimer_copy.py`
+- [X] T013 [P] [US1] Add API-client flow tests proving the UI still requests predictions through FastAPI rather than local model logic in `tests/unit/test_streamlit_api_client.py`
 
 ### Implementation for User Story 1
 
-- [ ] T014 [US1] Refactor the main Streamlit journey so valid model and ticker selection triggers automatic prediction or a lightweight `Predict` action in `app_streamlit/app.py`
-- [ ] T015 [US1] Rebuild prediction rendering around sections for prediction, confidence, why this signal appeared, key limitations, concise evidence, and traceability details in `app_streamlit/components/prediction_result.py`
-- [ ] T016 [P] [US1] Apply prediction-first layout helpers to keep the main result visually dominant and traceability secondary in `app_streamlit/components/ui_shell.py`
-- [ ] T017 [P] [US1] Rewrite product framing copy to sound customer-facing while preserving the educational disclaimer in `app_streamlit/components/framing.py`
-- [ ] T018 [US1] Render blocked prediction messages in the same prediction-first area without showing partial results as valid predictions in `app_streamlit/app.py`
-- [ ] T019 [US1] Update reviewer checklist items for the prediction-first happy path in `docs/reviewer-checklist.md`
+- [X] T014 [US1] Refactor the main Streamlit journey so valid model and ticker selection triggers automatic prediction or a lightweight `Predict` action in `app_streamlit/app.py`
+- [X] T015 [US1] Rebuild prediction rendering around sections for prediction, confidence, why this signal appeared, key limitations, concise evidence, and traceability details in `app_streamlit/components/prediction_result.py`
+- [X] T016 [P] [US1] Apply prediction-first layout helpers to keep the main result visually dominant and traceability secondary in `app_streamlit/components/ui_shell.py`
+- [X] T017 [P] [US1] Rewrite product framing copy to sound customer-facing while preserving the educational disclaimer in `app_streamlit/components/framing.py`
+- [X] T018 [US1] Render blocked prediction messages in the same prediction-first area without showing partial results as valid predictions in `app_streamlit/app.py`
+- [X] T019 [US1] Update reviewer checklist items for the prediction-first happy path in `docs/reviewer-checklist.md`
 
 **Checkpoint**: User Story 1 delivers the revised MVP experience and is
 independently testable.
@@ -84,17 +84,17 @@ methodology and traceability remain secondary.
 
 ### Tests for User Story 2
 
-- [ ] T020 [P] [US2] Extend evidence presentation tests for concise summary fields, secondary detail grouping, and historical-performance caveat in `tests/unit/test_evidence_presentation.py`
-- [ ] T021 [P] [US2] Add limitation readability tests that reject raw metadata, cell-like text, and standalone `Limited universe` copy in `tests/unit/test_limitation_copy_readability.py`
-- [ ] T022 [P] [US2] Extend paper-trading display tests to keep paper-trading evidence secondary and separate from backtest evidence in `tests/unit/test_paper_trading_evidence_display.py`
+- [X] T020 [P] [US2] Extend evidence presentation tests for concise summary fields, secondary detail grouping, and historical-performance caveat in `tests/unit/test_evidence_presentation.py`
+- [X] T021 [P] [US2] Add limitation readability tests that reject raw metadata, cell-like text, and standalone `Limited universe` copy in `tests/unit/test_limitation_copy_readability.py`
+- [X] T022 [P] [US2] Extend paper-trading display tests to keep paper-trading evidence secondary and separate from backtest evidence in `tests/unit/test_paper_trading_evidence_display.py`
 
 ### Implementation for User Story 2
 
-- [ ] T023 [US2] Refactor evidence formatting into concise summary and detailed methodology sections in `app_streamlit/components/evidence_panel.py`
-- [ ] T024 [US2] Replace warning/tag-style limitation rendering with readable guidance paragraphs in `app_streamlit/components/evidence_panel.py`
-- [ ] T025 [P] [US2] Keep paper-trading evidence visually secondary and clearly separated from backtest evidence in `app_streamlit/components/paper_trading_evidence.py`
-- [ ] T026 [US2] Integrate concise evidence summary into the main prediction journey before or alongside interpretation in `app_streamlit/app.py`
-- [ ] T027 [P] [US2] Update methodology and limitations documentation with the new concise evidence and limitation wording in `docs/methodology.md` and `docs/limitations.md`
+- [X] T023 [US2] Refactor evidence formatting into concise summary and detailed methodology sections in `app_streamlit/components/evidence_panel.py`
+- [X] T024 [US2] Replace warning/tag-style limitation rendering with readable guidance paragraphs in `app_streamlit/components/evidence_panel.py`
+- [X] T025 [P] [US2] Keep paper-trading evidence visually secondary and clearly separated from backtest evidence in `app_streamlit/components/paper_trading_evidence.py`
+- [X] T026 [US2] Integrate concise evidence summary into the main prediction journey before or alongside interpretation in `app_streamlit/app.py`
+- [X] T027 [P] [US2] Update methodology and limitations documentation with the new concise evidence and limitation wording in `docs/methodology.md` and `docs/limitations.md`
 
 **Checkpoint**: User Story 2 preserves evidence-before-prediction without
 overwhelming the main product experience.
@@ -113,16 +113,16 @@ when possible, and avoids financial-advice framing.
 
 ### Tests for User Story 3
 
-- [ ] T028 [P] [US3] Add unavailable-state copy tests for plain messages, next steps, and hidden internal reason codes in `tests/unit/test_unavailable_state_copy.py`
-- [ ] T029 [P] [US3] Extend unsupported stock handling tests for customer-facing unavailable copy and aggregate non-personal interest tracking in `tests/integration/test_unsupported_stock_handling.py`
-- [ ] T030 [P] [US3] Extend error copy safety tests for unsupported stock, stale data, missing evidence, registry conflict, and invalid prediction states in `tests/unit/test_error_copy_safety.py`
+- [X] T028 [P] [US3] Add unavailable-state copy tests for plain messages, next steps, and hidden internal reason codes in `tests/unit/test_unavailable_state_copy.py`
+- [X] T029 [P] [US3] Extend unsupported stock handling tests for customer-facing unavailable copy and aggregate non-personal interest tracking in `tests/integration/test_unsupported_stock_handling.py`
+- [X] T030 [P] [US3] Extend error copy safety tests for unsupported stock, stale data, missing evidence, registry conflict, and invalid prediction states in `tests/unit/test_error_copy_safety.py`
 
 ### Implementation for User Story 3
 
-- [ ] T031 [US3] Rewrite unavailable-state formatting and rendering so users see clear product guidance instead of raw status labels in `app_streamlit/components/unavailable_state.py`
-- [ ] T032 [US3] Refactor stock search and selection to separate supported choices from unavailable tickers and block prediction until invalid selections are removed in `app_streamlit/app.py`
-- [ ] T033 [US3] Rewrite unsupported-stock and blocked-prediction service messages into plain product language in `backend/services/stock_service.py` and `backend/services/prediction_service.py`
-- [ ] T034 [US3] Update local unsupported, stale-data, and registry-conflict fixtures with user-facing unavailable reasons in `storage/seed_local_demo.py`
+- [X] T031 [US3] Rewrite unavailable-state formatting and rendering so users see clear product guidance instead of raw status labels in `app_streamlit/components/unavailable_state.py`
+- [X] T032 [US3] Refactor stock search and selection to separate supported choices from unavailable tickers and block prediction until invalid selections are removed in `app_streamlit/app.py`
+- [X] T033 [US3] Rewrite unsupported-stock and blocked-prediction service messages into plain product language in `backend/services/stock_service.py` and `backend/services/prediction_service.py`
+- [X] T034 [US3] Update local unsupported, stale-data, and registry-conflict fixtures with user-facing unavailable reasons in `storage/seed_local_demo.py`
 
 **Checkpoint**: User Story 3 invalid-state handling remains safe and reads like
 a customer-facing product.
@@ -141,14 +141,14 @@ safety remain clear and do not expose mock predictions or restricted data.
 
 ### Tests for User Story 4
 
-- [ ] T035 [P] [US4] Extend degraded demo behavior tests for polished banner copy and no false claim of full prediction availability in `tests/deployment/test_degraded_demo_behavior.py`
-- [ ] T036 [P] [US4] Extend public-demo model restriction tests for prediction-first UI states that block mock or dummy outputs in `tests/deployment/test_public_demo_model_restrictions.py`
+- [X] T035 [P] [US4] Extend degraded demo behavior tests for polished banner copy and no false claim of full prediction availability in `tests/deployment/test_degraded_demo_behavior.py`
+- [X] T036 [P] [US4] Extend public-demo model restriction tests for prediction-first UI states that block mock or dummy outputs in `tests/deployment/test_public_demo_model_restrictions.py`
 
 ### Implementation for User Story 4
 
-- [ ] T037 [US4] Rewrite full, degraded, and unavailable demo banner presentation in `app_streamlit/components/demo_banner.py`
-- [ ] T038 [US4] Integrate public-demo unavailable prediction states into the prediction-first main flow in `app_streamlit/app.py`
-- [ ] T039 [P] [US4] Update Oracle deployment notes with prediction-first public demo validation steps in `deployment/oracle-cloud-free-tier.md`
+- [X] T037 [US4] Rewrite full, degraded, and unavailable demo banner presentation in `app_streamlit/components/demo_banner.py`
+- [X] T038 [US4] Integrate public-demo unavailable prediction states into the prediction-first main flow in `app_streamlit/app.py`
+- [X] T039 [P] [US4] Update Oracle deployment notes with prediction-first public demo validation steps in `deployment/oracle-cloud-free-tier.md`
 
 **Checkpoint**: User Story 4 public-demo behavior remains safe and reviewer
 friendly.
@@ -160,11 +160,11 @@ friendly.
 **Purpose**: Validate the UX revision across copy, tests, documentation, and
 manual review.
 
-- [ ] T040 [P] Update README product-flow description to reflect prediction-first UX and lightweight prediction interaction in `README.md`
-- [ ] T041 Run focused UI/copy tests for prediction presentation, action wording, evidence readability, unavailable states, and demo banner behavior and record results in `docs/test-report.md`
-- [ ] T042 Run full pytest suite for `tests/unit/`, `tests/contract/`, `tests/integration/`, `tests/ml_safety/`, and `tests/deployment/` and record results in `docs/test-report.md`
-- [ ] T043 Run forbidden-phrase and awkward-copy audit across `app_streamlit/`, `backend/`, `storage/seed_local_demo.py`, and `docs/`, then record findings in `docs/copy-safety-audit.md`
-- [ ] T044 Run the manual quickstart validation flow for the local app and record prediction-first UX pass/fail notes in `docs/quickstart-validation.md`
+- [X] T040 [P] Update README product-flow description to reflect prediction-first UX and lightweight prediction interaction in `README.md`
+- [X] T041 Run focused UI/copy tests for prediction presentation, action wording, evidence readability, unavailable states, and demo banner behavior and record results in `docs/test-report.md`
+- [X] T042 Run full pytest suite for `tests/unit/`, `tests/contract/`, `tests/integration/`, `tests/ml_safety/`, and `tests/deployment/` and record results in `docs/test-report.md`
+- [X] T043 Run forbidden-phrase and awkward-copy audit across `app_streamlit/`, `backend/`, `storage/seed_local_demo.py`, and `docs/`, then record findings in `docs/copy-safety-audit.md`
+- [X] T044 Run the manual quickstart validation flow for the local app and record prediction-first UX pass/fail notes in `docs/quickstart-validation.md`
 
 ---
 

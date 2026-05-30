@@ -10,8 +10,9 @@ from backend.schemas.contracts import BlockedPrediction, PredictionOutput, Predi
 from backend.services.evidence_service import EvidenceService, EvidenceUnavailableError
 from backend.services.prediction_logging_service import PredictionLoggingService
 from backend.services.stock_service import StockService
+from ml.backtesting.realistic import fit_pooled_logistic_model
 from ml.features.generation import generate_features
-from ml.loading.model_loader import load_model
+from ml.loading.model_loader import LoadedModel, load_model
 from ml.prediction.engine import EnginePrediction, predict_next_session
 from ml.prediction.local_dummy import predict_local_dummy
 from ml.validation.chronology import parse_datetime, validate_prediction_timestamps
@@ -28,6 +29,7 @@ class PredictionService:
         self.evidence_service = EvidenceService(repo)
         self.stock_service = StockService(repo)
         self.logging_service = PredictionLoggingService(repo)
+        self._pooled_model_cache = {}
 
     def request_prediction(self, request: PredictionRequest) -> dict:
         request_id = str(uuid4())
@@ -62,17 +64,17 @@ class PredictionService:
             stock = self.stock_service.get_supported_stock(model, ticker)
             if not stock:
                 self.repo.record_unsupported_interest(ticker, "unsupported_for_selected_model", model["model_id"])
-                blocked.append(self._blocked(ticker, "unsupported_stock", "This ticker is outside the selected model's supported universe.", "Remove or replace this ticker."))
+                blocked.append(self._blocked(ticker, "unsupported_stock", f"This model has not been reviewed for {ticker.upper()} yet.", "Choose one of the supported tickers for this model."))
                 continue
             data_state = self.repo.get_data_availability(model["model_id"], ticker)
             if not data_state:
-                blocked.append(self._blocked(ticker, "missing_data", "Required data is missing for this ticker.", "Choose another supported ticker."))
+                blocked.append(self._blocked(ticker, "missing_data", "The latest required data is not available for this ticker yet.", "Choose another supported ticker or try again after data is refreshed."))
                 continue
             if data_state.get("chronology_status") != "valid":
-                blocked.append(self._blocked(ticker, "chronology_violation", "The requested output would require future information.", "Use data available at or before the prediction time."))
+                blocked.append(self._blocked(ticker, "chronology_violation", "This output is paused because the available data cannot be matched safely to the prediction time.", "Use data available at or before the prediction time."))
                 continue
             if not data_state.get("feature_generation_timestamp"):
-                blocked.append(self._blocked(ticker, "missing_feature_timestamp", "Feature generation timestamp is missing.", "Regenerate features with valid timestamps."))
+                blocked.append(self._blocked(ticker, "missing_feature_timestamp", "The feature timestamp is missing, so this prediction cannot be traced safely.", "Regenerate features with valid timestamps."))
                 continue
             market = assess_market_data(data_state.get("freshness_status"), data_state.get("quality_flags"))
             if not market.allowed:
@@ -80,7 +82,7 @@ class PredictionService:
                 continue
             data_as_of = parse_datetime(data_state.get("data_as_of"))
             if data_as_of is None:
-                blocked.append(self._blocked(ticker, "missing_data", "Required data timestamp is missing.", "Review data availability."))
+                blocked.append(self._blocked(ticker, "missing_data", "The data timestamp is missing, so this prediction cannot be traced safely.", "Review data availability."))
                 continue
             state_feature_ts = parse_datetime(data_state.get("feature_generation_timestamp"))
             feature_payload = generate_features(ticker, data_as_of, state_feature_ts)
@@ -91,7 +93,7 @@ class PredictionService:
             )
             if not chronology.valid:
                 reason = "missing_feature_timestamp" if chronology.reason == "missing_feature_timestamp" else "invalid_feature_timestamp"
-                blocked.append(self._blocked(ticker, reason, "Feature timestamps are missing or invalid.", "Regenerate features with valid timestamps."))
+                blocked.append(self._blocked(ticker, reason, "Feature timing is missing or later than the prediction time.", "Regenerate features with valid timestamps."))
                 continue
             try:
                 engine_prediction = self._invoke_prediction(model, ticker, feature_payload, evidence)
@@ -157,7 +159,23 @@ class PredictionService:
     def _invoke_prediction(self, model: dict, ticker: str, feature_payload, evidence: dict) -> EnginePrediction:
         if model["model_origin"] == "local_mock":
             return predict_local_dummy(ticker, self.runtime_context)
-        return predict_next_session(load_model(model), feature_payload, evidence.get("limitations"))
+        loaded = load_model(model)
+        pooled = self._load_pooled_model(model)
+        loaded = LoadedModel(
+            model_id=loaded.model_id,
+            model_version=loaded.model_version,
+            model_name=loaded.model_name,
+            artifact_uri=loaded.artifact_uri,
+            raw=pooled,
+        )
+        return predict_next_session(loaded, feature_payload, evidence.get("limitations"))
+
+    def _load_pooled_model(self, model: dict):
+        cache_key = (model["model_id"], model["model_version"])
+        if cache_key not in self._pooled_model_cache:
+            price_rows = self.repo.list_market_prices()
+            self._pooled_model_cache[cache_key] = fit_pooled_logistic_model(price_rows)
+        return self._pooled_model_cache[cache_key]
 
     def _build_output(self, request_id: str, ticker: str, target: str, model: dict, evidence: dict, prediction: EnginePrediction, data_as_of: datetime, feature_ts: datetime, prediction_ts: datetime) -> PredictionOutput:
         return PredictionOutput(
@@ -180,6 +198,9 @@ class PredictionService:
             evidence_reference=evidence["evidence_id"],
             disclaimer_text=EDUCATIONAL_DISCLAIMER,
             disclaimer_version=DISCLAIMER_VERSION,
+            rank=prediction.rank,
+            rank_universe_size=prediction.rank_universe_size,
+            ranking_score=prediction.ranking_score,
         )
 
     def _blocked_response(self, request_id: str, request: PredictionRequest, reason: str, message: str, prediction_timestamp: datetime) -> dict:

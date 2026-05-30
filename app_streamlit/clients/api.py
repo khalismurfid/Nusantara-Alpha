@@ -44,6 +44,9 @@ class APIClient:
             },
         )
 
+    def get_rankings(self, model_id: str, model_version: str) -> dict[str, Any]:
+        return self._get(f"/models/{model_id}/rankings?model_version={model_version}")
+
     def _get(self, path: str) -> dict[str, Any]:
         with urlopen(f"{self.base_url}{path}", timeout=10) as response:
             return json.loads(response.read().decode("utf-8"))
@@ -61,4 +64,3 @@ class APIClient:
         except HTTPError as exc:
             body = exc.read().decode("utf-8")
             return json.loads(body) if body else {"error_code": str(exc.code), "message": exc.reason}
-

@@ -4,10 +4,16 @@ Use this checklist when reviewing the local app or public demo.
 
 - Confirm the educational/research disclaimer is visible before or during the
   prediction flow.
-- Select a curated model and inspect evidence before requesting prediction.
+- Select a curated model and a supported ticker.
+- Confirm the selected ticker, model signal, confidence, and key limitation are
+  visible within a few seconds after choosing a supported ticker.
+- Confirm the main prediction view appears before dense methodology or raw
+  traceability details.
+- Confirm any manual prediction action is labelled `Predict`; the app should
+  not show `Request educational prediction`.
+- Inspect concise evidence before or alongside prediction interpretation.
 - Confirm evidence includes key metrics, evaluation period, supported universe,
   limitations, data-quality notes, and the historical-performance caveat.
-- Select a supported IDX stock and request prediction.
 - Confirm each prediction includes ticker, target, model signal, confidence,
   confidence explanation, context, limitations, model name, model version,
   data-as-of timestamp, feature-generation timestamp, prediction timestamp,
@@ -18,4 +24,3 @@ Use this checklist when reviewing the local app or public demo.
 - Confirm degraded demo mode does not claim full prediction availability.
 - Confirm no private datasets, credentials, proprietary files, restricted source
   data, or unrestricted internal artifacts are exposed.
-

@@ -20,11 +20,11 @@ def reconcile_model(sqlite_model: dict, mlflow_model: MLflowModelMetadata | None
     if sqlite_model.get("status") != "approved":
         return _blocked("unavailable_model", "This model is not approved for display.")
     if sqlite_model.get("registry_sync_status") == "conflict":
-        return _blocked("registry_conflict", "This model is temporarily unavailable because registry metadata conflicts.")
+        return _blocked("registry_conflict", "This model is temporarily unavailable while its approval records are reviewed.")
     if sqlite_model.get("registry_sync_status") == "stale":
-        return _blocked("sync_stale", "This model is temporarily unavailable because registry synchronization is stale.")
+        return _blocked("sync_stale", "This model is temporarily unavailable while its approval records are refreshed.")
     if sqlite_model.get("registry_sync_status") != "current":
-        return _blocked("sync_incomplete", "This model is temporarily unavailable because registry synchronization is incomplete.")
+        return _blocked("sync_incomplete", "This model is temporarily unavailable until approval records are complete.")
     if runtime_context == "public_demo":
         if sqlite_model.get("model_origin") != "real":
             return _blocked("public_demo_eligibility", "Public demo predictions require a real approved model.")
@@ -47,11 +47,10 @@ def reconcile_model(sqlite_model: dict, mlflow_model: MLflowModelMetadata | None
         if sqlite_value != mlflow_value:
             return _blocked(
                 conflict_type,
-                "This model is temporarily unavailable because registry metadata does not match the customer catalogue.",
+                "This model is temporarily unavailable while its approval records are reviewed.",
             )
     return ApprovalDecision(True, True)
 
 
 def _blocked(conflict_type: str, message: str) -> ApprovalDecision:
     return ApprovalDecision(False, False, reason=conflict_type, conflict_type=conflict_type, user_message=message)
-

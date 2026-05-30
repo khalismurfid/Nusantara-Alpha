@@ -130,3 +130,39 @@ CREATE TABLE IF NOT EXISTS deployable_data_assets (
     approval_reference TEXT
 );
 
+CREATE TABLE IF NOT EXISTS idx_universe (
+    ticker TEXT PRIMARY KEY,
+    company_name TEXT NOT NULL,
+    yahoo_symbol TEXT NOT NULL,
+    active INTEGER NOT NULL DEFAULT 1,
+    source TEXT NOT NULL,
+    source_date TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS market_prices (
+    ticker TEXT NOT NULL,
+    price_date TEXT NOT NULL,
+    open REAL NOT NULL,
+    high REAL NOT NULL,
+    low REAL NOT NULL,
+    close REAL NOT NULL,
+    adj_close REAL,
+    volume REAL NOT NULL,
+    source TEXT NOT NULL,
+    fetched_at TEXT NOT NULL,
+    PRIMARY KEY (ticker, price_date)
+);
+
+CREATE TABLE IF NOT EXISTS model_feature_snapshots (
+    snapshot_id TEXT PRIMARY KEY,
+    model_id TEXT NOT NULL,
+    model_version TEXT NOT NULL,
+    ticker TEXT NOT NULL,
+    feature_date TEXT NOT NULL,
+    feature_generation_timestamp TEXT NOT NULL,
+    features_json TEXT NOT NULL,
+    feature_hash TEXT NOT NULL,
+    created_at TEXT NOT NULL
+);

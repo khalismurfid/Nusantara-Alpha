@@ -21,8 +21,17 @@ Result:
   list, not as product recommendation copy.
 - The code avoids presenting prediction outputs as instructions, guaranteed
   outcomes, position sizing, allocation advice, or personalized guidance.
+- MVP UX wording audit found `Request educational prediction`, `Limited
+  universe`, and `No guarantee...` only in guard lists, tests, or validation
+  instructions that reject those phrases. Runtime seed copy and Streamlit
+  service copy now use plain guidance such as reviewed tickers, model evidence,
+  and future market sessions may differ.
+- Primary action copy is automatic where possible; the accepted fallback label
+  is `Predict`.
 
 Residual risk:
 
 - Future UI copy changes must continue using the centralized disclaimer and
   forbidden-phrase tests.
+- Future limitation copy should avoid raw metadata fragments and pass
+  `assert_limitation_copy_readable`.
