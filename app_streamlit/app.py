@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+
 from app_streamlit.clients.api import APIClient
 from app_streamlit.components.demo_banner import render_demo_banner
 from app_streamlit.components.evidence_panel import format_evidence, render_evidence_panel
@@ -10,12 +12,15 @@ from app_streamlit.components.paper_trading_evidence import render_paper_trading
 from app_streamlit.components.prediction_result import render_prediction_result
 from app_streamlit.components.ui_shell import inject_customer_styles, render_app_header, render_context_strip, render_section_heading
 from app_streamlit.components.unavailable_state import render_unavailable_state
-from backend.config import get_settings
 
 try:
     import streamlit as st  # type: ignore
 except Exception:
     st = None
+
+
+def configured_api_base_url() -> str:
+    return os.getenv("NUSANTARA_API_BASE_URL", "http://localhost:8000")
 
 
 def evidence_is_loaded(evidence: dict | None) -> bool:
@@ -96,8 +101,7 @@ def render_market_ranking(client: APIClient, selected_model: dict, selected_tick
 
 
 def run_app() -> None:
-    settings = get_settings()
-    client = APIClient(settings.api_base_url)
+    client = APIClient(configured_api_base_url())
     if st is None:
         return
     st.set_page_config(page_title="Nusantara Alpha", layout="wide")

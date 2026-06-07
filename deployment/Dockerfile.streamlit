@@ -6,7 +6,6 @@ ENV PYTHONUNBUFFERED=1
 
 COPY pyproject.toml /app/
 COPY app_streamlit /app/app_streamlit
-COPY backend/config.py /app/backend/config.py
 
 RUN adduser --disabled-password --gecos "" appuser
 RUN pip install --no-cache-dir .
@@ -14,4 +13,3 @@ USER appuser
 
 EXPOSE 8501
 CMD ["streamlit", "run", "app_streamlit/app.py", "--server.address=0.0.0.0", "--server.port=8501"]
-
