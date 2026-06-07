@@ -20,7 +20,7 @@ class ModelService:
         for model in self.repo.list_models(self.runtime_context):
             decision = reconcile_model(
                 model,
-                self.mlflow_client.get_model_metadata(model["model_id"], model["model_version"]),
+                self.mlflow_client.get_model_metadata(model["model_id"], model["model_version"], model.get("mlflow_run_id")),
                 self.runtime_context,
             )
             if decision.visible:
@@ -43,7 +43,7 @@ class ModelService:
             return None
         decision = reconcile_model(
             model,
-            self.mlflow_client.get_model_metadata(model_id, model_version),
+            self.mlflow_client.get_model_metadata(model_id, model_version, model.get("mlflow_run_id")),
             self.runtime_context,
         )
         if not decision.prediction_allowed:
@@ -77,4 +77,3 @@ class ModelService:
             evidence_load_status=model["evidence_load_status"],
             limitations=model["limitations"],
         )
-

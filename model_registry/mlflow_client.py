@@ -25,7 +25,7 @@ class MLflowMetadataClient:
         self.tracking_uri = resolve_mlflow_tracking_uri(tracking_uri)
         self.in_memory = in_memory or {}
 
-    def get_model_metadata(self, model_id: str, model_version: str) -> MLflowModelMetadata | None:
+    def get_model_metadata(self, model_id: str, model_version: str, run_id: str | None = None) -> MLflowModelMetadata | None:
         key = (model_id, model_version)
         if key in self.in_memory:
             return self.in_memory[key]
@@ -37,30 +37,39 @@ class MLflowMetadataClient:
         mlflow.set_tracking_uri(prepare_mlflow_tracking_uri(self.tracking_uri))
         try:
             client = MlflowClient()
+            if run_id:
+                run = client.get_run(run_id)
+                return self._metadata_from_run(run, model_id, model_version)
             experiments = client.search_experiments()
             experiment_ids = [experiment.experiment_id for experiment in experiments]
             if not experiment_ids:
                 return None
             runs = client.search_runs(
                 experiment_ids=experiment_ids,
-                max_results=1000,
+                filter_string=f"tags.model_id = '{model_id}' and tags.model_version = '{model_version}'",
+                max_results=1,
                 order_by=["attributes.start_time DESC"],
             )
         except Exception:
             return None
         for run in runs:
-            tags = run.data.tags
-            if tags.get("model_id") != model_id or tags.get("model_version") != model_version:
-                continue
-            public_demo_eligible = str(tags.get("public_demo_eligible", "false")).lower() == "true"
-            return MLflowModelMetadata(
-                model_id=model_id,
-                model_version=model_version,
-                approval_status=tags.get("approval_status", "experimental"),
-                artifact_uri=tags.get("artifact_uri"),
-                supported_universe_id=tags.get("supported_universe_id"),
-                public_demo_eligible=public_demo_eligible,
-                registry_revision=tags.get("registry_revision"),
-                raw={"run_id": run.info.run_id, "tags": dict(tags), "params": dict(run.data.params), "metrics": dict(run.data.metrics)},
-            )
+            metadata = self._metadata_from_run(run, model_id, model_version)
+            if metadata is not None:
+                return metadata
         return None
+
+    def _metadata_from_run(self, run, model_id: str, model_version: str) -> MLflowModelMetadata | None:
+        tags = run.data.tags
+        if tags.get("model_id") != model_id or tags.get("model_version") != model_version:
+            return None
+        public_demo_eligible = str(tags.get("public_demo_eligible", "false")).lower() == "true"
+        return MLflowModelMetadata(
+            model_id=model_id,
+            model_version=model_version,
+            approval_status=tags.get("approval_status", "experimental"),
+            artifact_uri=tags.get("artifact_uri"),
+            supported_universe_id=tags.get("supported_universe_id"),
+            public_demo_eligible=public_demo_eligible,
+            registry_revision=tags.get("registry_revision"),
+            raw={"run_id": run.info.run_id, "tags": dict(tags), "params": dict(run.data.params), "metrics": dict(run.data.metrics)},
+        )

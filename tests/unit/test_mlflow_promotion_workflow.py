@@ -123,3 +123,46 @@ def test_promote_candidate_writes_catalogue_evidence_and_mlflow_sync_metadata(tm
     assert metadata is not None
     assert metadata.approval_status == "approved"
     assert metadata.artifact_uri == promotion.artifact_uri
+
+
+def test_mlflow_metadata_client_uses_exact_run_id(tmp_path):
+    rows = _sample_market_prices(
+        [
+            ("BBCA", "Bank Central Asia Tbk"),
+            ("TLKM", "Telkom Indonesia Tbk"),
+            ("ASII", "Astra International Tbk"),
+        ]
+    )
+    result = run_baseline_logistic_experiment(rows)
+    tracking_uri = _sqlite_tracking_uri(tmp_path)
+    logged = log_baseline_experiment_to_mlflow(
+        result,
+        rows,
+        tracking_uri=tracking_uri,
+        experiment_name="run-id-test",
+        run_name="direct-run-lookup",
+    )
+    promotion = promote_candidate(
+        PromotionRequest(
+            run_id=logged.run_id,
+            model_id="idx-test-model",
+            model_version="2026.06",
+            model_name="IDX Test Model",
+            supported_universe_id="idx-approved-universe",
+            approved=True,
+            public_demo_eligible=True,
+            sqlite_path=tmp_path / "test.sqlite3",
+            tracking_uri=tracking_uri,
+            artifact_path=tmp_path / "artifacts" / "model.joblib",
+        )
+    )
+
+    metadata = MLflowMetadataClient(tracking_uri=tracking_uri).get_model_metadata(
+        "idx-test-model",
+        "2026.06",
+        logged.run_id,
+    )
+
+    assert metadata is not None
+    assert promotion.registry_sync_status == "current"
+    assert metadata.raw["run_id"] == logged.run_id
