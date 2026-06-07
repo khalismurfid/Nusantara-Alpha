@@ -3,15 +3,20 @@
 from __future__ import annotations
 
 import json
+import socket
+import time
 from dataclasses import dataclass
 from typing import Any
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 
 @dataclass
 class APIClient:
     base_url: str
+    timeout_seconds: int = 10
+    transient_retry_attempts: int = 5
+    retry_delay_seconds: float = 0.5
 
     def get_health(self) -> dict[str, Any]:
         return self._get("/health")
@@ -48,7 +53,7 @@ class APIClient:
         return self._get(f"/models/{model_id}/rankings?model_version={model_version}")
 
     def _get(self, path: str) -> dict[str, Any]:
-        with urlopen(f"{self.base_url}{path}", timeout=10) as response:
+        with self._open_with_transient_dns_retry(f"{self.base_url}{path}") as response:
             return json.loads(response.read().decode("utf-8"))
 
     def _post(self, path: str, payload: dict[str, Any]) -> dict[str, Any]:
@@ -59,8 +64,25 @@ class APIClient:
             method="POST",
         )
         try:
-            with urlopen(request, timeout=10) as response:
+            with self._open_with_transient_dns_retry(request) as response:
                 return json.loads(response.read().decode("utf-8"))
         except HTTPError as exc:
             body = exc.read().decode("utf-8")
             return json.loads(body) if body else {"error_code": str(exc.code), "message": exc.reason}
+
+    def _open_with_transient_dns_retry(self, request_or_url):
+        for attempt in range(self.transient_retry_attempts):
+            try:
+                return urlopen(request_or_url, timeout=self.timeout_seconds)
+            except HTTPError:
+                raise
+            except URLError as exc:
+                if not self._is_transient_dns_error(exc) or attempt == self.transient_retry_attempts - 1:
+                    raise
+                time.sleep(self.retry_delay_seconds)
+        raise RuntimeError("unreachable retry loop")
+
+    @staticmethod
+    def _is_transient_dns_error(exc: URLError) -> bool:
+        reason = exc.reason
+        return isinstance(reason, socket.gaierror) and reason.errno == socket.EAI_AGAIN

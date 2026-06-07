@@ -3,6 +3,7 @@ services:
     build:
       context: ..
       dockerfile: deployment/Dockerfile.backend
+    restart: unless-stopped
     env_file:
       - env.example
     environment:
@@ -13,17 +14,25 @@ services:
       - ../.local:/app/.local
     ports:
       - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:8000/health', timeout=2).read()"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
 
   streamlit:
     build:
       context: ..
       dockerfile: deployment/Dockerfile.streamlit
+    restart: unless-stopped
     env_file:
       - env.example
     environment:
       NUSANTARA_API_BASE_URL: http://backend:8000
       NUSANTARA_RUNTIME_CONTEXT: ${NUSANTARA_RUNTIME_CONTEXT:-public_demo}
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     ports:
       - "8501:8501"

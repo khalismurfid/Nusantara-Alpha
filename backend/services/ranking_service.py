@@ -3,14 +3,18 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from pathlib import Path
 
 from app_streamlit.copy.disclaimers import EDUCATIONAL_DISCLAIMER
 from backend.schemas.contracts import RankingItem, RankingResponse
 from backend.services.evidence_service import EvidenceService, EvidenceUnavailableError
-from ml.backtesting.realistic import fit_pooled_logistic_model, predict_scores
+from ml.backtesting.realistic import fit_pooled_logistic_model, load_pooled_model, predict_scores
 from ml.features.generation import generate_features
 from model_registry.approval import reconcile_model
 from storage.repositories import Repository
+
+MAX_RUNTIME_RANKING_TICKERS = 100
+MAX_RUNTIME_RANKING_PRICE_ROWS = 100_000
 
 
 class RankingService:
@@ -31,17 +35,27 @@ class RankingService:
             self.evidence_service.require_loaded_evidence(model_id, model_version)
         except EvidenceUnavailableError:
             return self._empty(model_id, model_version, generated_at)
-        price_rows = self.repo.list_market_prices()
-        try:
-            pooled = fit_pooled_logistic_model(price_rows)
-        except ValueError:
-            return self._empty(model_id, model_version, generated_at)
-        scores = predict_scores(pooled)
         stocks = {
             stock["ticker"]: stock
             for stock in self.repo.search_stocks(model["supported_universe_id"])
             if stock["support_status"] == "supported"
         }
+        pooled = self._load_local_artifact(model) if self.runtime_context == "public_demo" else None
+        if pooled is None:
+            supported_tickers = list(stocks)
+            if len(supported_tickers) > MAX_RUNTIME_RANKING_TICKERS:
+                return self._empty(model_id, model_version, generated_at)
+            price_rows = self.repo.list_market_prices(tickers=supported_tickers)
+            if len(price_rows) > MAX_RUNTIME_RANKING_PRICE_ROWS:
+                return self._empty(model_id, model_version, generated_at)
+            try:
+                pooled = fit_pooled_logistic_model(price_rows)
+            except (MemoryError, ValueError):
+                return self._empty(model_id, model_version, generated_at)
+        try:
+            scores = predict_scores(pooled)
+        except Exception:
+            return self._empty(model_id, model_version, generated_at)
         rankings = []
         for _, row in scores.iterrows():
             ticker = str(row["ticker"])
@@ -74,6 +88,18 @@ class RankingService:
             rankings=rankings,
             disclaimer=EDUCATIONAL_DISCLAIMER,
         ).model_dump(mode="json")
+
+    def _load_local_artifact(self, model: dict):
+        uri = model.get("mlflow_model_uri")
+        if not uri or not str(uri).startswith("file:"):
+            return None
+        path = Path(str(uri).removeprefix("file:"))
+        if not path.exists():
+            return None
+        try:
+            return load_pooled_model(path)
+        except Exception:
+            return None
 
     def _empty(self, model_id: str, model_version: str, generated_at: datetime) -> dict:
         return RankingResponse(
