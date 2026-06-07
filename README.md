@@ -73,3 +73,10 @@ Public-demo prediction availability requires a real approved model, current
 registry synchronization, loaded required evidence, and approved non-sensitive
 data. If any gate is missing, the app may run only as a degraded demo with
 prediction unavailable.
+
+For a small VPS deployment, use the Docker Compose stack in `deployment/`.
+The public demo exposes Streamlit on port `8501`; the FastAPI backend is bound
+to localhost on the server and is not intended to be opened directly to public
+reviewers. Approved runtime state must be copied separately into `.local/`
+because local databases, model artifacts, secrets, and private data are not
+committed to Git.
