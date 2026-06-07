@@ -19,7 +19,8 @@ nusantara-ingest-yfinance \
   --source-date 2026-05-30 \
   --start 2018-01-01 \
   --model-id idx-direction-baseline \
-  --universe-id idx-liquid-demo
+  --universe-id idx-approved-universe \
+  --refresh-baseline-artifact
 ```
 
 The public demo may use only public, delayed, static, or otherwise approved

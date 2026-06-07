@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS model_evidence (
     evidence_load_status TEXT NOT NULL,
     evidence_as_of TEXT NOT NULL,
     data_source_mode TEXT NOT NULL,
+    barrier_config_json TEXT NOT NULL DEFAULT '{}',
     paper_trading_summary TEXT,
     FOREIGN KEY (model_id, model_version) REFERENCES model_catalogue(model_id, model_version)
 );

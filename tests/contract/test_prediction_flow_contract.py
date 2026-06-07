@@ -20,10 +20,23 @@ def test_happy_path_contracts(seeded_repo):
         model_id=model["model_id"],
         model_version=model["model_version"],
         tickers=["BBCA"],
-        target="next_market_session_direction",
+        target="near_term_barrier_signal",
     )
     response = PredictionService(seeded_repo).request_prediction(request)
     parsed = PredictionResponse.model_validate(response)
     assert parsed.predictions
+    assert parsed.predictions[0].prediction_target == "near_term_barrier_signal"
     assert parsed.blocked == []
 
+
+def test_legacy_next_session_target_is_accepted_as_compatibility_alias(seeded_repo):
+    request = PredictionRequest(
+        model_id="idx-direction-baseline",
+        model_version="2026.05",
+        tickers=["BBCA"],
+        target="next_market_session_direction",
+    )
+    response = PredictionService(seeded_repo).request_prediction(request)
+    parsed = PredictionResponse.model_validate(response)
+
+    assert parsed.predictions[0].prediction_target == "near_term_barrier_signal"

@@ -71,6 +71,37 @@ class Repository:
             ).fetchone()
         return self._model_from_row(row)
 
+    def retire_model(self, model_id: str, model_version: str | None = None, reason: str | None = None) -> None:
+        now = utc_now_iso()
+        if model_version:
+            self.conn.execute(
+                """
+                UPDATE model_catalogue
+                SET status='hidden',
+                    public_demo_eligible=0,
+                    evidence_load_status='unavailable',
+                    registry_sync_status='incomplete',
+                    registry_conflict_reason=?,
+                    updated_at=?
+                WHERE model_id=? AND model_version=?
+                """,
+                (reason, now, model_id, model_version),
+            )
+        else:
+            self.conn.execute(
+                """
+                UPDATE model_catalogue
+                SET status='hidden',
+                    public_demo_eligible=0,
+                    evidence_load_status='unavailable',
+                    registry_sync_status='incomplete',
+                    registry_conflict_reason=?,
+                    updated_at=?
+                WHERE model_id=?
+                """,
+                (reason, now, model_id),
+            )
+
     def list_models(self, runtime_context: str = "local") -> list[dict[str, Any]]:
         rows = self.conn.execute(
             "SELECT * FROM model_catalogue WHERE status='approved' ORDER BY model_name"
@@ -92,6 +123,7 @@ class Repository:
             "supported_universe_json": _json(evidence.get("supported_universe", [])),
             "known_limitations_json": _json(evidence.get("limitations", [])),
             "data_quality_notes_json": _json(evidence.get("data_quality_notes", [])),
+            "barrier_config_json": _json(evidence.get("barrier_config", {})),
         }
         self.conn.execute(
             """
@@ -100,13 +132,15 @@ class Repository:
                 evaluation_period_start, evaluation_period_end, key_metrics_json,
                 performance_summary, supported_universe_json, known_limitations_json,
                 data_quality_notes_json, historical_performance_caveat, evidence_status,
-                evidence_load_status, evidence_as_of, data_source_mode, paper_trading_summary
+                evidence_load_status, evidence_as_of, data_source_mode,
+                barrier_config_json, paper_trading_summary
             ) VALUES (
                 :evidence_id, :model_id, :model_version, :evidence_type,
                 :evaluation_period_start, :evaluation_period_end, :key_metrics_json,
                 :performance_summary, :supported_universe_json, :known_limitations_json,
                 :data_quality_notes_json, :historical_performance_caveat, :evidence_status,
-                :evidence_load_status, :evidence_as_of, :data_source_mode, :paper_trading_summary
+                :evidence_load_status, :evidence_as_of, :data_source_mode,
+                :barrier_config_json, :paper_trading_summary
             )
             """,
             payload,
@@ -401,6 +435,10 @@ class Repository:
         ).fetchall()
         return [dict(row) for row in rows]
 
+    def has_market_prices(self) -> bool:
+        row = self.conn.execute("SELECT 1 FROM market_prices LIMIT 1").fetchone()
+        return row is not None
+
     def latest_market_price_date(self, ticker: str | None = None) -> str | None:
         if ticker:
             row = self.conn.execute(
@@ -450,6 +488,7 @@ class Repository:
         data["supported_universe"] = _loads(data.pop("supported_universe_json"), [])
         data["limitations"] = _loads(data.pop("known_limitations_json"), [])
         data["data_quality_notes"] = _loads(data.pop("data_quality_notes_json"), [])
+        data["barrier_config"] = _loads(data.pop("barrier_config_json", None), {})
         return data
 
     def _stock_from_row(self, row: sqlite3.Row | None) -> dict[str, Any] | None:

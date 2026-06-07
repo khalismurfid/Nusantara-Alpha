@@ -11,6 +11,7 @@ from typing import Sequence
 from ml.market_data.yfinance_ingestion import ingest_yfinance_to_repository, load_universe_csv
 from storage.database import connect, initialize
 from storage.repositories import Repository
+from storage.seed_local_demo import BASELINE_ARTIFACT_PATH, refresh_baseline_artifact, refresh_baseline_evidence
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -31,6 +32,24 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--model-id", help="Optional model id whose data availability should be refreshed.")
     parser.add_argument("--universe-id", help="Optional supported-stock universe id to sync after ingestion.")
+    parser.add_argument("--chunk-size", type=int, default=80, help="Number of yfinance symbols to fetch per request batch.")
+    parser.add_argument(
+        "--min-usable-rows",
+        type=int,
+        default=60,
+        help="Minimum downloaded OHLCV rows required before a ticker is marked supported.",
+    )
+    parser.add_argument(
+        "--refresh-baseline-artifact",
+        action="store_true",
+        help="Retrain and save the local logistic regression artifact from the ingested approved rows.",
+    )
+    parser.add_argument(
+        "--artifact-path",
+        type=Path,
+        default=BASELINE_ARTIFACT_PATH,
+        help="Where to save the refreshed baseline artifact when --refresh-baseline-artifact is used.",
+    )
     return parser
 
 
@@ -47,7 +66,18 @@ def main(argv: Sequence[str] | None = None) -> int:
             end=args.end,
             model_id=args.model_id,
             universe_id=args.universe_id,
+            chunk_size=args.chunk_size,
+            min_usable_rows=args.min_usable_rows,
         )
+        if args.refresh_baseline_artifact:
+            refreshed = refresh_baseline_artifact(Repository(conn), args.artifact_path)
+            result["refreshed_artifact_path"] = str(args.artifact_path)
+            result["refreshed_model_tickers"] = len(refreshed.trained_tickers)
+            result["refreshed_training_rows"] = refreshed.training_rows
+            result["refreshed_evidence"] = refresh_baseline_evidence(
+                Repository(conn),
+                f"{args.source} yfinance OHLCV",
+            )
         conn.commit()
     finally:
         conn.close()

@@ -7,14 +7,14 @@ def prediction_output(**overrides):
     payload = {
         "prediction_id": "pred-001",
         "ticker": "BBCA",
-        "prediction_target": "next_market_session_direction",
+        "prediction_target": "near_term_barrier_signal",
         "model_signal": "up",
         "confidence_category": "Medium",
         "numeric_confidence": 0.62,
         "confidence_explanation": "Medium confidence means the model sees a moderate signal, but it can still be wrong.",
         "context_summary": "Recent price and momentum features leaned positive in the latest available sample.",
-        "limitation_summary": "This result covers a small demo set of liquid IDX names and may not transfer to every market condition.",
-        "model_name": "IDX Direction Baseline",
+        "limitation_summary": "This result depends on the approved IDX data loaded for this model and may not transfer to every market condition.",
+        "model_name": "Logistic Regression Model",
         "model_id": "idx-direction-baseline",
         "model_version": "2026.05",
         "data_as_of_timestamp": "2026-05-28T16:00:00+07:00",
@@ -38,14 +38,14 @@ def evidence_response(**overrides):
         "evaluation_period": {"start": "2024-01-01", "end": "2026-05-01"},
         "key_metrics": [
             {
-                "name": "Directional accuracy",
+                "name": "Triple-barrier accuracy",
                 "value": "54%",
-                "interpretation": "Slightly above a naive directional baseline in the tested period.",
+                "interpretation": "Share of held-out near-term barrier labels classified correctly.",
             }
         ],
         "supported_universe": ["BBCA", "TLKM", "ASII"],
         "limitations": [
-            "The model currently covers a small group of liquid IDX names, so unsupported stocks need separate validation."
+            "Coverage depends on the approved IDX universe and market data loaded for this model."
         ],
         "data_quality_notes": ["Uses static delayed demo data reviewed through 2026-05-01."],
         "historical_performance_caveat": "Historical performance may not generalize to future market sessions.",
@@ -53,6 +53,14 @@ def evidence_response(**overrides):
         "evidence_load_status": "loaded",
         "evidence_as_of": "2026-05-28T12:00:00+07:00",
         "data_source_mode": "static",
+        "barrier_config": {
+            "horizon": "Looks up to 5 IDX trading sessions ahead.",
+            "entry": "Uses the next session open after the signal date.",
+            "volatility_measure": "20-day ATR",
+            "profit_barrier": "Upward barrier at +1x ATR from entry.",
+            "stop_barrier": "Downward barrier at -1x ATR from entry.",
+            "neutral_policy": "Neutral when neither barrier is reached within 5 trading sessions.",
+        },
     }
     payload.update(overrides)
     return payload

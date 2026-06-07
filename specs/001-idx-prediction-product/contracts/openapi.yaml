@@ -4,7 +4,7 @@ info:
   version: 0.1.0
   description: >
     Service contract for curated model selection, evidence review, supported IDX
-    stock checks, next-market-session prediction, prediction logging, and public
+    stock checks, near-term barrier signals, prediction logging, and public
     demo status.
 servers:
   - url: http://localhost:8000
@@ -138,7 +138,7 @@ paths:
                 $ref: "#/components/schemas/UnsupportedStockInterestResponse"
   /predictions:
     post:
-      summary: Request next-market-session predictions
+      summary: Request near-term barrier signals
       requestBody:
         required: true
         content:
@@ -333,6 +333,9 @@ components:
           format: date-time
         data_source_mode:
           $ref: "#/components/schemas/DataSourceMode"
+        barrier_config:
+          type: object
+          additionalProperties: true
     StockAvailability:
       type: object
       required: [ticker, name, exchange, support_status]
@@ -374,7 +377,7 @@ components:
             type: string
         target:
           type: string
-          enum: [next_market_session_direction]
+          enum: [near_term_barrier_signal, next_market_session_direction]
     PredictionResponse:
       type: object
       required: [request_id, predictions, blocked, disclaimer]
@@ -418,6 +421,7 @@ components:
           type: string
         prediction_target:
           type: string
+          enum: [near_term_barrier_signal]
         model_signal:
           type: string
           enum: [up, down, neutral, unavailable]

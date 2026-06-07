@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from pathlib import Path
 from uuid import uuid4
 
 from app_streamlit.copy.disclaimers import DISCLAIMER_VERSION, EDUCATIONAL_DISCLAIMER, assert_copy_safe
@@ -10,16 +11,18 @@ from backend.schemas.contracts import BlockedPrediction, PredictionOutput, Predi
 from backend.services.evidence_service import EvidenceService, EvidenceUnavailableError
 from backend.services.prediction_logging_service import PredictionLoggingService
 from backend.services.stock_service import StockService
-from ml.backtesting.realistic import fit_pooled_logistic_model
+
+from ml.backtesting.realistic import fit_pooled_logistic_model, load_pooled_model
 from ml.features.generation import generate_features
 from ml.loading.model_loader import LoadedModel, load_model
 from ml.prediction.engine import EnginePrediction, predict_next_session
-from ml.prediction.local_dummy import predict_local_dummy
 from ml.validation.chronology import parse_datetime, validate_prediction_timestamps
 from ml.validation.market_data import assess_market_data
 from model_registry.approval import reconcile_model
 from model_registry.conflict_log import log_conflict
 from storage.repositories import Repository
+
+CANONICAL_PREDICTION_TARGET = "near_term_barrier_signal"
 
 
 class PredictionService:
@@ -100,7 +103,7 @@ class PredictionService:
                 output = self._build_output(
                     request_id,
                     ticker,
-                    request.target,
+                    self._canonical_target(request.target),
                     model,
                     evidence,
                     engine_prediction,
@@ -157,8 +160,6 @@ class PredictionService:
         return response.model_dump(mode="json")
 
     def _invoke_prediction(self, model: dict, ticker: str, feature_payload, evidence: dict) -> EnginePrediction:
-        if model["model_origin"] == "local_mock":
-            return predict_local_dummy(ticker, self.runtime_context)
         loaded = load_model(model)
         pooled = self._load_pooled_model(model)
         loaded = LoadedModel(
@@ -173,9 +174,34 @@ class PredictionService:
     def _load_pooled_model(self, model: dict):
         cache_key = (model["model_id"], model["model_version"])
         if cache_key not in self._pooled_model_cache:
-            price_rows = self.repo.list_market_prices()
-            self._pooled_model_cache[cache_key] = fit_pooled_logistic_model(price_rows)
+            artifact = self._load_local_artifact(model)
+            if artifact is not None:
+                self._pooled_model_cache[cache_key] = artifact
+            else:
+                supported = self._supported_tickers_for_model(model)
+                price_rows = self.repo.list_market_prices(tickers=supported or None)
+                self._pooled_model_cache[cache_key] = fit_pooled_logistic_model(price_rows)
         return self._pooled_model_cache[cache_key]
+
+    def _load_local_artifact(self, model: dict):
+        uri = model.get("mlflow_model_uri")
+        if not uri or not str(uri).startswith("file:"):
+            return None
+        path = Path(str(uri).removeprefix("file:"))
+        if not path.exists():
+            return None
+        artifact = load_pooled_model(path)
+        supported = self._supported_tickers_for_model(model)
+        if supported and set(artifact.trained_tickers) != set(supported):
+            return None
+        return artifact
+
+    def _supported_tickers_for_model(self, model: dict) -> list[str]:
+        return [
+            stock["ticker"]
+            for stock in self.repo.search_stocks(model["supported_universe_id"])
+            if stock["support_status"] == "supported"
+        ]
 
     def _build_output(self, request_id: str, ticker: str, target: str, model: dict, evidence: dict, prediction: EnginePrediction, data_as_of: datetime, feature_ts: datetime, prediction_ts: datetime) -> PredictionOutput:
         return PredictionOutput(
@@ -236,3 +262,8 @@ class PredictionService:
             "public_demo_eligibility": "public_demo_model_unavailable",
             "artifact_uri": "public_demo_release_gate_failed",
         }.get(reason or "", "unavailable_model")
+
+    def _canonical_target(self, target: str) -> str:
+        if target == "next_market_session_direction":
+            return CANONICAL_PREDICTION_TARGET
+        return target

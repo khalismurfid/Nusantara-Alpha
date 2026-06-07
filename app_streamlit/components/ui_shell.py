@@ -22,7 +22,7 @@ def render_app_header(title: str, subtitle: str, st=None) -> None:
     steps[0].write("**1. Pick a stock**")
     steps[0].caption("Choose one supported Indonesian stock.")
     steps[1].write("**2. See the signal**")
-    steps[1].caption("View the model's next-session direction read.")
+    steps[1].caption("View the model's near-term read.")
     steps[2].write("**3. Read the context**")
     steps[2].caption("Check confidence, reason, and limitations.")
 
@@ -61,7 +61,7 @@ def render_primary_signal(
         signal_column, confidence_column = st.columns([2.3, 1])
         signal_column.caption(f"{ticker} | {target}")
         signal_column.header(signal)
-        signal_column.caption("Model signal for the next market session.")
+        signal_column.caption("Model signal looking up to 5 trading days ahead.")
 
         confidence_column.metric("Confidence", confidence, confidence_value)
         confidence_column.progress(clamped_width / 100)

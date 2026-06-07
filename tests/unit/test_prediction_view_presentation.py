@@ -10,7 +10,7 @@ def test_prediction_view_uses_primary_supporting_secondary_sections():
     assert formatted["primary"]["signal"] == "Upward model signal"
     assert formatted["primary"]["confidence"] == "Medium"
     assert formatted["primary"]["confidence_value"] == "62%"
-    assert formatted["primary"]["target"] == "Next session direction"
+    assert formatted["primary"]["target"] == "Near-term signal"
     assert formatted["primary"]["meta_items"][0]["label"] == "Model"
 
     assert formatted["supporting"]["why_signal_title"] == "What influenced the signal"

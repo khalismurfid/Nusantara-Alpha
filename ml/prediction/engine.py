@@ -25,26 +25,7 @@ class EnginePrediction:
 def predict_next_session(model: LoadedModel, features: FeaturePayload, limitations: list[str] | None = None) -> EnginePrediction:
     if isinstance(model.raw, PooledLogisticSignalModel):
         return _predict_with_pooled_model(model.raw, features, limitations)
-    if model.artifact_uri:
-        raise ValueError("Loaded model artifact does not contain a usable pooled signal model.")
-    ticker_score = sum(ord(ch) for ch in features.ticker)
-    signal = ["down", "neutral", "up"][ticker_score % 3]
-    confidence_value = 0.55 + ((ticker_score % 15) / 100)
-    if confidence_value >= 0.66:
-        confidence_category = "High"
-    elif confidence_value >= 0.58:
-        confidence_category = "Medium"
-    else:
-        confidence_category = "Low"
-    limitation_text = "; ".join(limitations or ["Evidence is limited and may not generalize."])
-    return EnginePrediction(
-        model_signal=signal,
-        confidence_category=confidence_category,
-        numeric_confidence=round(confidence_value, 2),
-        confidence_explanation="Confidence is model uncertainty, not a guarantee of correctness.",
-        context_summary=f"{model.model_name} generated an exploratory next-session signal for {features.ticker}.",
-        limitation_summary=limitation_text,
-    )
+    raise ValueError("Baseline logistic regression model is required for prediction.")
 
 
 def _predict_with_pooled_model(model: PooledLogisticSignalModel, features: FeaturePayload, limitations: list[str] | None = None) -> EnginePrediction:
@@ -54,10 +35,13 @@ def _predict_with_pooled_model(model: PooledLogisticSignalModel, features: Featu
         raise ValueError(f"{features.ticker.upper()} is not available in the latest pooled model feature set.")
     latest = row.iloc[0]
     probability = float(latest["model_score"])
+    upside_probability = float(latest.get("up_probability", 0.0))
+    downside_probability = float(latest.get("down_probability", 0.0))
+    neutral_probability = float(latest.get("neutral_probability", 0.0))
     limitation_text = "; ".join(
         [
             *(limitations or ["Historical evidence is limited and may not generalize."]),
-            "Backtest evidence uses next-session open-to-close timing with a 0.25% round-trip cost assumption.",
+            "Backtest evidence uses a 5-trading-day ATR barrier test with upward, downward, and neutral outcomes.",
         ]
     )
     relative_return = float(latest.get("relative_return", 0.0))
@@ -67,13 +51,14 @@ def _predict_with_pooled_model(model: PooledLogisticSignalModel, features: Featu
         model_signal=str(latest["model_signal"]),
         confidence_category=str(latest["confidence_category"]),
         numeric_confidence=round(probability, 4),
-        confidence_explanation="Confidence reflects how far the model probability is from neutral; it can still be wrong.",
+        confidence_explanation="Confidence reflects the model's strongest class probability; it can still be wrong.",
         context_summary=(
-            f"{features.ticker.upper()} ranks {rank} of {universe_size} by model score. "
-            f"Its latest return was {relative_return:.2%} versus the model universe average."
+            f"{features.ticker.upper()} ranks {rank} of {universe_size} by upside barrier probability. "
+            f"Latest relative return was {relative_return:.2%}; class probabilities are "
+            f"up {upside_probability:.0%}, neutral {neutral_probability:.0%}, down {downside_probability:.0%}."
         ),
         limitation_summary=limitation_text,
         rank=rank,
         rank_universe_size=universe_size,
-        ranking_score=round(probability, 4),
+        ranking_score=round(float(latest.get("ranking_score", upside_probability)), 4),
     )

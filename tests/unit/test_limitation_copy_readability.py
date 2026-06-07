@@ -21,5 +21,5 @@ def test_evidence_formatter_rewrites_raw_limitation_fragments():
     rendered = " ".join(formatted["limitations"]).lower()
     assert "limited universe" not in rendered
     assert "no guarantee" not in rendered
-    assert "separate validation" in rendered
+    assert "approved idx universe" in rendered
     assert "historical test period" in rendered

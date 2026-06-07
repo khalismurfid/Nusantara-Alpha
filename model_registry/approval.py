@@ -19,6 +19,8 @@ class ApprovalDecision:
 def reconcile_model(sqlite_model: dict, mlflow_model: MLflowModelMetadata | None, runtime_context: str = "local") -> ApprovalDecision:
     if sqlite_model.get("status") != "approved":
         return _blocked("unavailable_model", "This model is not approved for display.")
+    if sqlite_model.get("model_origin") != "real":
+        return _blocked("non_real_model", "Only real approved models are available for prediction.")
     if sqlite_model.get("registry_sync_status") == "conflict":
         return _blocked("registry_conflict", "This model is temporarily unavailable while its approval records are reviewed.")
     if sqlite_model.get("registry_sync_status") == "stale":
@@ -26,8 +28,6 @@ def reconcile_model(sqlite_model: dict, mlflow_model: MLflowModelMetadata | None
     if sqlite_model.get("registry_sync_status") != "current":
         return _blocked("sync_incomplete", "This model is temporarily unavailable until approval records are complete.")
     if runtime_context == "public_demo":
-        if sqlite_model.get("model_origin") != "real":
-            return _blocked("public_demo_eligibility", "Public demo predictions require a real approved model.")
         if not sqlite_model.get("public_demo_eligible"):
             return _blocked("public_demo_eligibility", "This model is not eligible for public demo prediction.")
     if mlflow_model is None:

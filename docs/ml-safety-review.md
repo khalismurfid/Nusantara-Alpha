@@ -16,8 +16,10 @@ Implemented controls:
 - Prediction logs store data-as-of, feature-generation, prediction timestamp,
   model identity, ticker, confidence, disclaimer version, and status.
 - The realistic prediction engine trains a pooled logistic regression on
-  historical OHLCV rows stored in SQLite and uses next-session open-to-close
-  targets only after feature rows have been generated from prior data.
+  historical OHLCV rows stored in SQLite and uses triple-barrier labels only
+  after feature rows have been generated from prior data. The barriers use
+  20-day ATR, a five-session horizon, and neutral timeout/ambiguous outcomes
+  without using future information as features.
 - Ranking responses reuse the same approved model, loaded evidence, and stored
   market-data constraints; rankings are educational context, not advice.
 

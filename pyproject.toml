@@ -15,6 +15,7 @@ dependencies = [
   "mlflow>=2.14",
   "pandas>=2.2",
   "scikit-learn>=1.5",
+  "joblib>=1.4",
   "PyYAML>=6.0",
   "yfinance>=0.2.66",
 ]
@@ -23,10 +24,14 @@ dependencies = [
 dev = [
   "pytest>=8.2",
   "httpx>=0.27",
+  "ipykernel>=6.29",
+  "jupyter>=1.1",
+  "matplotlib>=3.9",
 ]
 
 [project.scripts]
 nusantara-ingest-yfinance = "ml.market_data.cli:main"
+nusantara-promote-model = "model_registry.promote_candidate:main"
 
 [tool.pytest.ini_options]
 testpaths = [

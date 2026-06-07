@@ -60,6 +60,6 @@ class EvidenceService:
             evidence_load_status=evidence["evidence_load_status"],
             evidence_as_of=evidence["evidence_as_of"],
             data_source_mode=evidence["data_source_mode"],
+            barrier_config=evidence.get("barrier_config", {}),
             paper_trading_summary=evidence.get("paper_trading_summary"),
         )
-

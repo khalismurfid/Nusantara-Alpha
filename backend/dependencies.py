@@ -13,7 +13,7 @@ def get_repository() -> Repository:
     conn = connect(settings.sqlite_path)
     initialize(conn)
     repo = Repository(conn)
-    needs_local_seed = not settings.is_public_demo and not repo.list_market_prices()
+    needs_local_seed = not settings.is_public_demo and not repo.has_market_prices()
     if not repo.get_active_disclaimer() or needs_local_seed:
         seed_connection(repo)
         conn.commit()

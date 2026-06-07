@@ -21,6 +21,8 @@ def test_evidence_panel_provides_concise_summary_and_secondary_details(seeded_re
     assert summary["section_title"] == "Past performance snapshot"
     assert summary["headline"] == "Historical test period: 2023-01-01 to 2026-04-30"
     assert summary["metric_highlights"]
-    assert summary["metric_highlights"][0]["name"] == "Directional accuracy"
+    assert summary["metric_highlights"][0]["name"] == "Triple-barrier accuracy"
     assert "reviewed IDX tickers" in summary["stocks_covered"]
+    assert summary["barrier_config"]["volatility_measure"] == "20-day ATR"
+    assert "5 IDX trading sessions" in summary["barrier_config"]["horizon"]
     assert formatted["details_title"] == "More model details"

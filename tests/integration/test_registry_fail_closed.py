@@ -10,7 +10,7 @@ def test_registry_conflict_hides_model_and_logs_conflict(seeded_repo):
                 model_version="2026.05",
                 approval_status="approved",
                 artifact_uri="models:/different/uri",
-                supported_universe_id="idx-liquid-demo",
+                supported_universe_id="idx-approved-universe",
                 public_demo_eligible=True,
                 registry_revision="registry-2026-05-29",
                 raw={},
@@ -22,4 +22,3 @@ def test_registry_conflict_hides_model_and_logs_conflict(seeded_repo):
     assert not result.prediction_allowed
     conflicts = seeded_repo.list_open_registry_conflicts("idx-direction-baseline")
     assert conflicts
-

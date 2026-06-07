@@ -2,15 +2,17 @@
 
 Nusantara Alpha is an educational Indonesian equity prediction product for
 portfolio and academic review. Users choose a curated model, select a supported
-IDX ticker, and immediately see a next-market-session model signal as the main
-content. The prediction view leads with the ticker, signal, confidence, context,
-and key limitations, while evidence, methodology, timestamps, and traceability
-remain available for review.
+IDX ticker, and immediately see a near-term model signal as the main content.
+The prediction view leads with the ticker, signal, confidence, context, and key
+limitations, while evidence, methodology, timestamps, and traceability remain
+available for review.
 
 The current prediction engine trains a pooled logistic regression model on
-approved historical IDX OHLCV data stored in SQLite. It evaluates next-session
-open-to-close behavior with a 0.25% round-trip transaction-cost assumption and
-shows an exploratory market ranking for supported stocks.
+approved historical IDX OHLCV data stored in SQLite. It uses triple-barrier
+labels, so signals can be upward, downward, or neutral based on a profit
+target, stop-loss, and time barrier. The first baseline looks up to five
+trading days ahead with symmetric 20-day ATR barriers. It also shows an
+exploratory market ranking for supported stocks.
 
 The product is not financial advice. It does not provide trade instructions,
 personalized guidance, position sizing, portfolio allocation advice, guaranteed
@@ -43,7 +45,8 @@ nusantara-ingest-yfinance \
   --source-date 2026-05-30 \
   --start 2018-01-01 \
   --model-id idx-direction-baseline \
-  --universe-id idx-liquid-demo
+  --universe-id idx-approved-universe \
+  --refresh-baseline-artifact
 ```
 
 4. Start the API:

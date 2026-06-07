@@ -34,7 +34,8 @@ SIGNAL_LABELS = {
 }
 
 TARGET_LABELS = {
-    "next_market_session_direction": "Next session direction",
+    "near_term_barrier_signal": "Near-term signal",
+    "next_market_session_direction": "Near-term signal",
 }
 
 SIGNAL_TONES = {

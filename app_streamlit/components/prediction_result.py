@@ -94,7 +94,7 @@ def render_prediction_result(output: dict, st=None, concise_evidence_summary: di
         supporting = formatted["supporting"]
         render_section_heading(
             primary["section_title"],
-            "Next-session direction estimate with confidence and context.",
+            "Near-term signal looking up to 5 trading days ahead, with confidence and context.",
             st,
         )
         render_primary_signal(

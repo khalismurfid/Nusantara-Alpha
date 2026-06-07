@@ -1,0 +1,908 @@
+ticker,company_name,yahoo_symbol,active
+AADI,PT Adaro Andalan Indonesia Tbk,AADI.JK,1
+AALI,PT Astra Agro Lestari Tbk,AALI.JK,1
+ABBA,PT Mahaka Media Tbk,ABBA.JK,1
+ABDA,PT Asuransi Bina Dana Arta Tbk,ABDA.JK,1
+ABMM,PT ABM Investama Tbk,ABMM.JK,1
+ACES,PT Aspirasi Hidup Indonesia Tbk,ACES.JK,1
+ACRO,PT Samcro Hyosung Adilestari Tbk,ACRO.JK,1
+ACST,PT Acset Indonusa Tbk,ACST.JK,1
+ADCP,PT Adhi Commuter Properti Tbk,ADCP.JK,1
+ADES,PT Akasha Wira International Tbk,ADES.JK,1
+ADHI,PT Adhi Karya (Persero) Tbk,ADHI.JK,1
+ADMF,PT Adira Dinamika Multi Finance Tbk,ADMF.JK,1
+ADMG,PT. Polychem Indonesia Tbk,ADMG.JK,1
+ADMR,PT Alamtri Minerals Indonesia Tbk,ADMR.JK,1
+ADRO,PT Alamtri Resources Indonesia Tbk,ADRO.JK,1
+AEGS,PT. Anugerah Spareparts Sejahtera Tbk,AEGS.JK,1
+AGAR,PT Asia Sejahtera Mina Tbk,AGAR.JK,1
+AGII,PT Samator Indo Gas Tbk,AGII.JK,1
+AGRO,PT Bank Raya Indonesia Tbk,AGRO.JK,1
+AGRS,PT Bank IBK Indonesia Tbk,AGRS.JK,1
+AHAP,PT Asuransi Harta Aman Pratama Tbk,AHAP.JK,1
+AIMS,PT Artha Mahiya Investama Tbk,AIMS.JK,1
+AISA,PT FKS Food Sejahtera Tbk,AISA.JK,1
+AKKU,PT Anugerah Kagum Karya Utama Tbk,AKKU.JK,1
+AKPI,PT Argha Karya Prima Industry Tbk,AKPI.JK,1
+AKRA,PT AKR Corporindo Tbk,AKRA.JK,1
+AKSI,PT Mineral Sumberdaya Mandiri Tbk,AKSI.JK,1
+ALDO,PT Alkindo Naratama Tbk,ALDO.JK,1
+ALII,PT Ancara Logistics Indonesia Tbk,ALII.JK,1
+ALKA,PT Alakasa Industrindo Tbk,ALKA.JK,1
+ALMI,PT Alumindo Light Metal Industry Tbk,ALMI.JK,1
+ALTO,PT Tri Banyan Tirta Tbk,ALTO.JK,1
+AMAG,PT Asuransi Multi Artha Guna Tbk,AMAG.JK,1
+AMAN,PT Makmur Berkah Amanda Tbk,AMAN.JK,1
+AMAR,PT Bank Amar Indonesia Tbk,AMAR.JK,1
+AMFG,PT Asahimas Flat Glass Tbk,AMFG.JK,1
+AMIN,PT Ateliers Mecaniques D'Indonesie Tbk,AMIN.JK,1
+AMMN,PT Amman Mineral Internasional Tbk,AMMN.JK,1
+AMMS,PT Agung Menjangan Mas Tbk,AMMS.JK,1
+AMOR,PT Ashmore Asset Management Indonesia Tbk,AMOR.JK,1
+AMRT,PT Sumber Alfaria Trijaya Tbk,AMRT.JK,1
+ANDI,"PT Andira Agro, Tbk",ANDI.JK,1
+ANJT,PT Austindo Nusantara Jaya Tbk,ANJT.JK,1
+ANTM,PT Antam (Persero) Tbk,ANTM.JK,1
+APEX,PT Apexindo Pratama Duta Tbk,APEX.JK,1
+APIC,PT Pacific Strategic Financial Tbk,APIC.JK,1
+APII,PT Arita Prima Indonesia Tbk,APII.JK,1
+APLI,PT Asiaplast Industries Tbk,APLI.JK,1
+APLN,PT Agung Podomoro Land Tbk,APLN.JK,1
+ARCI,PT Archi Indonesia Tbk,ARCI.JK,1
+AREA,PT Dunia Virtual Online Tbk,AREA.JK,1
+ARGO,PT Argo Pantes Tbk,ARGO.JK,1
+ARII,PT Atlas Resources Tbk,ARII.JK,1
+ARKA,PT Arkha Jayanti Persada Tbk,ARKA.JK,1
+ARKO,PT Arkora Hydro Tbk,ARKO.JK,1
+ARNA,PT Arwana Citramulia Tbk,ARNA.JK,1
+ARTA,PT Arthavest Tbk,ARTA.JK,1
+ARTO,PT Bank Jago Tbk,ARTO.JK,1
+ASBI,PT Asuransi Bintang Tbk,ASBI.JK,1
+ASDM,PT Asuransi Dayin Mitra Tbk,ASDM.JK,1
+ASGR,PT Astra Graphia Tbk,ASGR.JK,1
+ASHA,PT Cilacap Samudera Fishing Industry Tbk,ASHA.JK,1
+ASII,PT Astra International Tbk,ASII.JK,1
+ASJT,PT Asuransi Jasa Tania Tbk,ASJT.JK,1
+ASLC,PT Autopedia Sukses Lestari Tbk,ASLC.JK,1
+ASLI,PT Asri Karya Lestari Tbk,ASLI.JK,1
+ASMI,PT Asuransi Maximus Graha Persada Tbk,ASMI.JK,1
+ASPI,PT Andalan Sakti Primaindo Tbk,ASPI.JK,1
+ASPR,PT Asia Pramulia Tbk,ASPR.JK,1
+ASRI,PT Alam Sutera Realty Tbk,ASRI.JK,1
+ASRM,PT Asuransi Ramayana Tbk,ASRM.JK,1
+ASSA,PT Adi Sarana Armada Tbk,ASSA.JK,1
+ATAP,PT Trimitra Prawara Goldland Tbk,ATAP.JK,1
+ATIC,PT Anabatic Technologies Tbk,ATIC.JK,1
+ATLA,PT Atlantis Subsea Indonesia Tbk,ATLA.JK,1
+AUTO,PT Astra Otoparts Tbk,AUTO.JK,1
+AVIA,PT Avia Avian Tbk,AVIA.JK,1
+AWAN,PT Era Digital Media Tbk,AWAN.JK,1
+AXIO,PT Tera Data Indonusa Tbk,AXIO.JK,1
+AYAM,PT Janu Putra Sejahtera Tbk.,AYAM.JK,1
+AYLS,PT Agro Yasa Lestari Tbk,AYLS.JK,1
+BABP,PT Bank MNC Internasional Tbk,BABP.JK,1
+BABY,PT Multitrend Indo Tbk,BABY.JK,1
+BACA,PT Bank Capital Indonesia Tbk,BACA.JK,1
+BAIK,PT Bersama Mencapai Puncak Tbk,BAIK.JK,1
+BAJA,PT Saranacentral Bajatama Tbk,BAJA.JK,1
+BALI,PT Bali Towerindo Sentra Tbk,BALI.JK,1
+BANK,PT Bank Aladin Syariah Tbk,BANK.JK,1
+BAPA,PT Bekasi Asri Pemula Tbk,BAPA.JK,1
+BAPI,PT Bhakti Agung Propertindo Tbk,BAPI.JK,1
+BATA,PT Sepatu Bata Tbk.,BATA.JK,1
+BATR,PT Benteng Api Technic Tbk,BATR.JK,1
+BAUT,PT Mitra Angkasa Sejahtera Tbk,BAUT.JK,1
+BAYU,PT Bayu Buana Tbk,BAYU.JK,1
+BBCA,PT Bank Central Asia Tbk,BBCA.JK,1
+BBHI,PT Allo Bank Indonesia Tbk,BBHI.JK,1
+BBKP,PT Bank KB Indonesia Tbk,BBKP.JK,1
+BBLD,PT Buana Finance Tbk,BBLD.JK,1
+BBMD,PT Bank Mestika Dharma Tbk,BBMD.JK,1
+BBNI,PT Bank Negara Indonesia (Persero) Tbk,BBNI.JK,1
+BBRI,PT Bank Rakyat Indonesia (Persero) Tbk,BBRI.JK,1
+BBRM,PT Pelayaran Nasional Bina Buana Raya Tbk,BBRM.JK,1
+BBSI,PT Krom Bank Indonesia Tbk,BBSI.JK,1
+BBSS,PT Bumi Benowo Sukses Sejahtera Tbk,BBSS.JK,1
+BBTN,PT Bank Tabungan Negara (Persero) Tbk,BBTN.JK,1
+BBYB,PT Bank Neo Commerce Tbk,BBYB.JK,1
+BCAP,PT MNC Kapital Indonesia Tbk,BCAP.JK,1
+BCIC,PT Bank JTrust Indonesia Tbk,BCIC.JK,1
+BCIP,PT Bumi Citra Permai Tbk,BCIP.JK,1
+BDKR,PT Berdikari Pondasi Perkasa Tbk,BDKR.JK,1
+BDMN,PT Bank Danamon Indonesia Tbk,BDMN.JK,1
+BEBS,PT Berkah Beton Sadaya Tbk,BEBS.JK,1
+BEEF,PT Estika Tata Tiara Tbk,BEEF.JK,1
+BEER,PT Jobubu Jarum Minahasa Tbk,BEER.JK,1
+BEKS,"PT. Bank Pembangunan Daerah Banten, Tbk",BEKS.JK,1
+BELI,PT Global Digital Niaga Tbk,BELI.JK,1
+BELL,PT Trisula Textile Industries Tbk,BELL.JK,1
+BESS,PT Batulicin Nusantara Maritim Tbk,BESS.JK,1
+BEST,PT Bekasi Fajar Industrial Estate Tbk,BEST.JK,1
+BFIN,PT BFI Finance Indonesia Tbk,BFIN.JK,1
+BGTG,PT Bank Ganesha Tbk,BGTG.JK,1
+BHAT,PT Bhakti Multi Artha Tbk,BHAT.JK,1
+BHIT,PT MNC Asia Holding Tbk,BHIT.JK,1
+BIKE,PT Sepeda Bersama Indonesia Tbk,BIKE.JK,1
+BIMA,"PT. Primarindo Asia Infrastructure, Tbk.",BIMA.JK,1
+BINA,PT Bank Ina Perdana Tbk,BINA.JK,1
+BINO,PT Perma Plasindo Tbk,BINO.JK,1
+BIPI,PT Astrindo Nusantara Infrastruktur Tbk,BIPI.JK,1
+BIPP,PT Bhuwanatala Indah Permai Tbk,BIPP.JK,1
+BIRD,PT Blue Bird Tbk,BIRD.JK,1
+BISI,PT BISI International Tbk,BISI.JK,1
+BJBR,PT Bank Pembangunan Daerah Jawa Barat dan Banten Tbk,BJBR.JK,1
+BJTM,PT Bank Pembangunan Daerah Jawa Timur Tbk,BJTM.JK,1
+BKDP,PT Bukit Darmo Property Tbk,BKDP.JK,1
+BKSL,PT Sentul City Tbk,BKSL.JK,1
+BKSW,PT Bank QNB Indonesia Tbk,BKSW.JK,1
+BLES,PT Superior Prima Sukses Tbk,BLES.JK,1
+BLOG,PT Trimitra Trans Persada Tbk,BLOG.JK,1
+BLTA,PT Berlian Laju Tanker Tbk,BLTA.JK,1
+BLTZ,PT Graha Layar Prima Tbk,BLTZ.JK,1
+BLUE,PT Berkah Prima Perkasa Tbk,BLUE.JK,1
+BMAS,PT Bank Maspion Indonesia Tbk,BMAS.JK,1
+BMBL,PT Lavender Bina Cendikia Tbk,BMBL.JK,1
+BMHS,PT Bundamedik Tbk,BMHS.JK,1
+BMRI,PT Bank Mandiri (Persero) Tbk,BMRI.JK,1
+BMSR,PT Bintang Mitra Semestaraya Tbk,BMSR.JK,1
+BMTR,PT Global Mediacom Tbk,BMTR.JK,1
+BNBA,PT Bank Bumi Arta Tbk,BNBA.JK,1
+BNBR,PT Bakrie & Brothers Tbk,BNBR.JK,1
+BNGA,PT Bank CIMB Niaga Tbk,BNGA.JK,1
+BNII,PT Bank Maybank Indonesia Tbk,BNII.JK,1
+BNLI,PT Bank Permata Tbk,BNLI.JK,1
+BOAT,PT Newport Marine Services TBK,BOAT.JK,1
+BOBA,PT Formosa Ingredient Factory Tbk,BOBA.JK,1
+BOGA,PT Apollo Global Interactive Tbk,BOGA.JK,1
+BOLA,PT Bali Bintang Sejahtera Tbk,BOLA.JK,1
+BOLT,PT Garuda Metalindo Tbk,BOLT.JK,1
+BPFI,PT Woori Finance Indonesia Tbk,BPFI.JK,1
+BPII,PT Batavia Prosperindo Internasional Tbk,BPII.JK,1
+BPTR,PT Batavia Prosperindo Trans Tbk,BPTR.JK,1
+BRAM,PT Indo Kordsa Tbk,BRAM.JK,1
+BREN,PT Barito Renewables Energy Tbk,BREN.JK,1
+BRIS,PT Bank Syariah Indonesia Tbk,BRIS.JK,1
+BRMS,PT Bumi Resources Minerals Tbk,BRMS.JK,1
+BRNA,PT Berlina Tbk,BRNA.JK,1
+BRPT,PT Barito Pacific Tbk,BRPT.JK,1
+BRRC,PT Raja Roti Cemerlang Tbk,BRRC.JK,1
+BSBK,PT Wulandari Bangun Laksana Tbk,BSBK.JK,1
+BSDE,PT Bumi Serpong Damai Tbk,BSDE.JK,1
+BSIM,PT Bank Sinarmas Tbk,BSIM.JK,1
+BSML,PT Bintang Samudera Mandiri Lines Tbk,BSML.JK,1
+BSSR,PT Baramulti Suksessarana Tbk,BSSR.JK,1
+BSWD,PT Bank of India Indonesia Tbk,BSWD.JK,1
+BTEK,PT Bumi Teknokultura Unggul Tbk,BTEK.JK,1
+BTON,PT Betonjaya Manunggal Tbk,BTON.JK,1
+BTPN,PT Bank SMBC Indonesia Tbk,BTPN.JK,1
+BTPS,PT Bank BTPN Syariah Tbk,BTPS.JK,1
+BUAH,PT Segar Kumala Indonesia Tbk,BUAH.JK,1
+BUDI,PT Budi Starch & Sweetener Tbk,BUDI.JK,1
+BUKA,PT Bukalapak.com Tbk.,BUKA.JK,1
+BUKK,PT Bukaka Teknik Utama Tbk.,BUKK.JK,1
+BULL,PT Buana Lintas Lautan Tbk,BULL.JK,1
+BUMI,PT Bumi Resources Tbk,BUMI.JK,1
+BUVA,PT Bukit Uluwatu Villa Tbk,BUVA.JK,1
+BVIC,PT Bank Victoria International Tbk,BVIC.JK,1
+BWPT,PT Eagle High Plantations Tbk,BWPT.JK,1
+BYAN,PT Bayan Resources Tbk.,BYAN.JK,1
+CAKK,PT Cahayaputra Asa Keramik Tbk,CAKK.JK,1
+CAMP,"PT Campina Ice Cream Industry, Tbk.",CAMP.JK,1
+CANI,PT Capitol Nusantara Indonesia Tbk,CANI.JK,1
+CARE,PT Metro Healthcare Indonesia Tbk,CARE.JK,1
+CARS,PT Industri dan Perdagangan Bintraco Dharma Tbk,CARS.JK,1
+CASA,PT Capital Financial Indonesia Tbk,CASA.JK,1
+CASH,PT Cashlez Worldwide Indonesia Tbk,CASH.JK,1
+CASS,PT Cahaya Aero Services Tbk,CASS.JK,1
+CBDK,PT Bangun Kosambi Sukses Tbk,CBDK.JK,1
+CBPE,PT Citra Buana Prasida Tbk,CBPE.JK,1
+CBRE,PT Cakra Buana Resources Energi Tbk,CBRE.JK,1
+CBUT,PT Citra Borneo Utama Tbk,CBUT.JK,1
+CCSI,PT Communication Cable Systems Indonesia Tbk,CCSI.JK,1
+CDIA,PT Chandra Daya Investasi TBK.,CDIA.JK,1
+CEKA,PT Wilmar Cahaya Indonesia Tbk.,CEKA.JK,1
+CENT,PT Centratama Telekomunikasi Indonesia Tbk,CENT.JK,1
+CFIN,PT. Clipan Finance Indonesia Tbk,CFIN.JK,1
+CGAS,PT Citra Nusantara Gemilang Tbk,CGAS.JK,1
+CHEK,PT Diastika Biotekindo Tbk,CHEK.JK,1
+CHEM,PT Chemstar Indonesia Tbk,CHEM.JK,1
+CHIP,PT Pelita Teknologi Global Tbk,CHIP.JK,1
+CINT,PT Chitose Internasional Tbk,CINT.JK,1
+CITA,PT Cita Mineral Investindo Tbk,CITA.JK,1
+CITY,PT Natura City Developments Tbk,CITY.JK,1
+CLAY,PT Citra Putra Realty Tbk,CLAY.JK,1
+CLEO,PT Sariguna Primatirta Tbk,CLEO.JK,1
+CLPI,PT Colorpak Indonesia Tbk,CLPI.JK,1
+CMNP,PT Citra Marga Nusaphala Persada Tbk,CMNP.JK,1
+CMNT,PT Cemindo Gemilang Tbk,CMNT.JK,1
+CMPP,PT AirAsia Indonesia Tbk,CMPP.JK,1
+CMRY,PT Cisarua Mountain Dairy Tbk,CMRY.JK,1
+CNKO,PT Exploitasi Energi Indonesia Tbk,CNKO.JK,1
+CNMA,PT Nusantara Sejahtera Raya Tbk,CNMA.JK,1
+COAL,PT Black Diamond Resources Tbk,COAL.JK,1
+COCO,PT Wahana Interfood Nusantara Tbk,COCO.JK,1
+COIN,PT Indokripto Koin Semesta Tbk,COIN.JK,1
+CPIN,PT Charoen Pokphand Indonesia Tbk,CPIN.JK,1
+CPRO,PT Central Proteina Prima Tbk,CPRO.JK,1
+CRAB,PT Toba Surimi Industries Tbk,CRAB.JK,1
+CRSN,PT Carsurin Tbk,CRSN.JK,1
+CSAP,PT Catur Sentosa Adiprana Tbk,CSAP.JK,1
+CSIS,PT Cahayasakti Investindo Sukses Tbk,CSIS.JK,1
+CSMI,PT Cipta Selera Murni Tbk,CSMI.JK,1
+CSRA,PT Cisadane Sawit Raya Tbk,CSRA.JK,1
+CTBN,PT Citra Tubindo Tbk,CTBN.JK,1
+CTRA,PT Ciputra Development Tbk,CTRA.JK,1
+CTTH,PT Citatah Tbk,CTTH.JK,1
+CUAN,PT Petrindo Jaya Kreasi Tbk,CUAN.JK,1
+CYBR,PT ITSEC Asia Tbk,CYBR.JK,1
+DAAZ,PT Daaz Bara Lestari Tbk,DAAZ.JK,1
+DADA,PT Diamond Citra Propertindo Tbk,DADA.JK,1
+DART,PT Duta Anggada Realty Tbk.,DART.JK,1
+DATA,PT Remala Abadi Tbk,DATA.JK,1
+DAYA,PT Duta Intidaya Tbk,DAYA.JK,1
+DCII,PT DCI Indonesia Tbk,DCII.JK,1
+DEFI,PT Danasupra Erapacific Tbk,DEFI.JK,1
+DEPO,PT Caturkarda Depo Bangunan Tbk,DEPO.JK,1
+DEWA,PT Darma Henwa Tbk,DEWA.JK,1
+DEWI,PT Dewi Shri Farmindo Tbk.,DEWI.JK,1
+DFAM,PT Dafam Property Indonesia Tbk,DFAM.JK,1
+DGIK,PT Nusa Konstruksi Enjiniring Tbk,DGIK.JK,1
+DGNS,PT Diagnos Laboratorium Utama Tbk,DGNS.JK,1
+DGWG,PT Delta Giri Wacana Tbk,DGWG.JK,1
+DIGI,PT Arkadia Digital Media Tbk,DIGI.JK,1
+DILD,PT Intiland Development Tbk,DILD.JK,1
+DIVA,PT Distribusi Voucher Nusantara Tbk,DIVA.JK,1
+DKFT,PT Central Omega Resources Tbk,DKFT.JK,1
+DKHH,PT Cipta Sarana Medika Tbk,DKHH.JK,1
+DLTA,PT Delta Djakarta Tbk,DLTA.JK,1
+DMAS,PT Puradelta Lestari Tbk,DMAS.JK,1
+DMMX,PT Digital Mediatama Maxima Tbk,DMMX.JK,1
+DMND,PT Diamond Food Indonesia Tbk,DMND.JK,1
+DNAR,PT Bank Oke Indonesia Tbk,DNAR.JK,1
+DNET,PT Indoritel Makmur Internasional Tbk.,DNET.JK,1
+DOID,PT Buma Internasional Grup Tbk,DOID.JK,1
+DOOH,PT Era Media Sejahtera Tbk,DOOH.JK,1
+DOSS,PT Global Sukses Digital Tbk,DOSS.JK,1
+DPNS,PT Duta Pertiwi Nusantara Tbk,DPNS.JK,1
+DPUM,PT Dua Putra Utama Makmur Tbk,DPUM.JK,1
+DRMA,PT Dharma Polimetal Tbk,DRMA.JK,1
+DSFI,PT Dharma Samudera Fishing Industries Tbk,DSFI.JK,1
+DSNG,PT Dharma Satya Nusantara Tbk,DSNG.JK,1
+DSSA,PT Dian Swastatika Sentosa Tbk,DSSA.JK,1
+DUTI,PT Duta Pertiwi Tbk,DUTI.JK,1
+DVLA,PT Darya-Varia Laboratoria Tbk,DVLA.JK,1
+DWGL,PT Dwi Guna Laksana Tbk,DWGL.JK,1
+DYAN,PT Dyandra Media International Tbk,DYAN.JK,1
+EAST,PT Eastparc Hotel Tbk,EAST.JK,1
+ECII,PT Electronic City Indonesia Tbk,ECII.JK,1
+EDGE,PT Indointernet Tbk.,EDGE.JK,1
+EKAD,PT Ekadharma International Tbk,EKAD.JK,1
+ELIT,PT Data Sinergitama Jaya Tbk,ELIT.JK,1
+ELPI,PT Pelayaran Nasional Ekalya Purnamasari Tbk,ELPI.JK,1
+ELSA,PT Elnusa Tbk,ELSA.JK,1
+ELTY,PT Bakrieland Development Tbk,ELTY.JK,1
+EMAS,PT Merdeka Gold Resources Tbk,EMAS.JK,1
+EMDE,PT Megapolitan Developments Tbk,EMDE.JK,1
+EMTK,PT Elang Mahkota Teknologi Tbk,EMTK.JK,1
+ENAK,PT Champ Resto Indonesia Tbk,ENAK.JK,1
+ENRG,PT Energi Mega Persada Tbk,ENRG.JK,1
+ENZO,PT Morenzo Abadi Perkasa Tbk,ENZO.JK,1
+EPAC,PT Megalestari Epack Sentosaraya Tbk,EPAC.JK,1
+EPMT,PT Enseval Putera Megatrading Tbk.,EPMT.JK,1
+ERAA,PT Erajaya Swasembada Tbk,ERAA.JK,1
+ERAL,PT Sinar Eka Selaras Tbk,ERAL.JK,1
+ERTX,PT Eratex Djaja Tbk,ERTX.JK,1
+ESIP,PT Sinergi Inti Plastindo Tbk,ESIP.JK,1
+ESSA,PT ESSA Industries Indonesia Tbk.,ESSA.JK,1
+ESTA,PT Esta Multi Usaha Tbk,ESTA.JK,1
+ESTI,PT Ever Shine Tex Tbk,ESTI.JK,1
+EURO,PT Estee Gold Feet Tbk,EURO.JK,1
+EXCL,PT XLSMART Telecom Sejahtera Tbk,EXCL.JK,1
+FAPA,PT FAP Agri Tbk,FAPA.JK,1
+FAST,PT Fast Food Indonesia Tbk,FAST.JK,1
+FASW,PT Fajar Surya Wisesa Tbk,FASW.JK,1
+FILM,PT.MD Entertainment Tbk,FILM.JK,1
+FIMP,PT Fimperkasa Utama Tbk,FIMP.JK,1
+FIRE,PT Alfa Energi Investama Tbk,FIRE.JK,1
+FISH,PT FKS Multi Agro Tbk,FISH.JK,1
+FITT,PT Hotel Fitra International Tbk,FITT.JK,1
+FLMC,PT Falmaco Nonwoven Industri Tbk,FLMC.JK,1
+FMII,PT Fortune Mate Indonesia Tbk,FMII.JK,1
+FOLK,PT Multi Garam Utama Tbk,FOLK.JK,1
+FOOD,PT Sentra Food Indonesia Tbk,FOOD.JK,1
+FORE,PT Fore Kopi Indonesia Tbk,FORE.JK,1
+FORU,PT Fortune Indonesia Tbk,FORU.JK,1
+FPNI,PT Lotte Chemical Titan Tbk,FPNI.JK,1
+FUJI,PT Fuji Finance Indonesia Tbk,FUJI.JK,1
+FUTR,PT Lini Imaji Kreasi Ekosistem Tbk,FUTR.JK,1
+FWCT,PT Wijaya Cahaya Timber Tbk,FWCT.JK,1
+GDST,PT Gunawan Dianjaya Steel Tbk,GDST.JK,1
+GDYR,PT Goodyear Indonesia Tbk,GDYR.JK,1
+GEMA,PT Gema Grahasarana Tbk,GEMA.JK,1
+GEMS,PT Golden Energy Mines Tbk,GEMS.JK,1
+GGRM,PT Gudang Garam Tbk,GGRM.JK,1
+GGRP,PT Gunung Raja Paksi Tbk,GGRP.JK,1
+GHON,PT Gihon Telekomunikasi Indonesia Tbk,GHON.JK,1
+GIAA,PT. Garuda Indonesia (Persero) Tbk,GIAA.JK,1
+GJTL,PT. Gajah Tunggal Tbk,GJTL.JK,1
+GLOB,PT Globe Kita Terang Tbk,GLOB.JK,1
+GLVA,PT Galva Technologies Tbk,GLVA.JK,1
+GMFI,PT Garuda Maintenance Facility Aero Asia Tbk,GMFI.JK,1
+GMTD,PT Gowa Makassar Tourism Development Tbk,GMTD.JK,1
+GOLD,PT Visi Telekomunikasi Infrastruktur Tbk,GOLD.JK,1
+GOLF,PT Intra Golflink Resorts Tbk,GOLF.JK,1
+GOOD,PT Garudafood Putra Putri Jaya Tbk,GOOD.JK,1
+GOTO,PT GoTo Gojek Tokopedia Tbk,GOTO.JK,1
+GPRA,PT Perdana Gapuraprima Tbk,GPRA.JK,1
+GPSO,PT Geoprima Solusi Tbk,GPSO.JK,1
+GRIA,PT Ingria Pratama Capitalindo Tbk,GRIA.JK,1
+GRPH,PT Griptha Putra Persada Tbk,GRPH.JK,1
+GRPM,PT Graha Prima Mentari Tbk,GRPM.JK,1
+GSMF,PT Equity Development Investment Tbk,GSMF.JK,1
+GTBO,PT Garda Tujuh Buana Tbk,GTBO.JK,1
+GTRA,PT Grahaprima Suksesmandiri Tbk,GTRA.JK,1
+GTSI,PT GTS Internasional Tbk,GTSI.JK,1
+GULA,PT Aman Agrindo Tbk,GULA.JK,1
+GUNA,PT Gunanusa Eramandiri Tbk,GUNA.JK,1
+GWSA,PT Greenwood Sejahtera Tbk,GWSA.JK,1
+GZCO,PT Gozco Plantations Tbk,GZCO.JK,1
+HADE,PT Himalaya Energi Perkasa Tbk,HADE.JK,1
+HAIS,PT Hasnur Internasional Shipping Tbk,HAIS.JK,1
+HAJJ,PT Arsy Buana Travelindo Tbk,HAJJ.JK,1
+HALO,PT Haloni Jane Tbk,HALO.JK,1
+HATM,PT Habco Trans Maritima Tbk,HATM.JK,1
+HBAT,PT Minahasa Membangun Hebat Tbk,HBAT.JK,1
+HDFA,PT Radana Bhaskara Finance Tbk,HDFA.JK,1
+HDIT,PT Hensel Davest Indonesia Tbk,HDIT.JK,1
+HEAL,PT Medikaloka Hermina Tbk,HEAL.JK,1
+HELI,PT Jaya Trishindo Tbk,HELI.JK,1
+HERO,PT DFI Retail Nusantara Tbk,HERO.JK,1
+HEXA,PT Hexindo Adiperkasa Tbk,HEXA.JK,1
+HGII,PT Hero Global Investment Tbk,HGII.JK,1
+HILL,PT Hillcon Tbk,HILL.JK,1
+HITS,PT Humpuss Intermoda Transportasi Tbk.,HITS.JK,1
+HMSP,PT Hanjaya Mandala Sampoerna Tbk,HMSP.JK,1
+HOKI,PT Buyung Poetra Sembada Tbk,HOKI.JK,1
+HOMI,PT Grand House Mulia Tbk,HOMI.JK,1
+HOPE,PT Harapan Duta Pertiwi Tbk,HOPE.JK,1
+HRME,PT Menteng Heritage Realty Tbk,HRME.JK,1
+HRTA,PT Hartadinata Abadi Tbk,HRTA.JK,1
+HRUM,PT Harum Energy Tbk,HRUM.JK,1
+HUMI,PT Humpuss Maritim Internasional Tbk,HUMI.JK,1
+HYGN,PT Ecocare Indo Pasifik Tbk,HYGN.JK,1
+IATA,PT MNC Energy Investments Tbk,IATA.JK,1
+IBFN,PT Intan Baru Prana Tbk,IBFN.JK,1
+IBOS,PT Indo Boga Sukses Tbk,IBOS.JK,1
+IBST,PT Inti Bangun Sejahtera Tbk,IBST.JK,1
+ICBP,PT Indofood CBP Sukses Makmur Tbk,ICBP.JK,1
+ICON,PT Island Concepts Indonesia Tbk,ICON.JK,1
+IDEA,PT Idea Indonesia Akademi Tbk,IDEA.JK,1
+IDPR,PT Indonesia Pondasi Raya Tbk,IDPR.JK,1
+IFII,PT Indonesia Fibreboard Industry Tbk,IFII.JK,1
+IFSH,PT Ifishdeco Tbk,IFSH.JK,1
+IGAR,PT Champion Pacific Indonesia Tbk,IGAR.JK,1
+IKAI,PT Intikeramik Alamasri Industri Tbk,IKAI.JK,1
+IKAN,PT Era Mandiri Cemerlang Tbk,IKAN.JK,1
+IKBI,PT Sumi Indo Kabel Tbk,IKBI.JK,1
+IKPM,PT Ikapharmindo Putramas Tbk,IKPM.JK,1
+IMAS,PT Indomobil Sukses Internasional Tbk,IMAS.JK,1
+IMJS,PT Indomobil Multi Jasa Tbk,IMJS.JK,1
+IMPC,PT Impack Pratama Industri Tbk,IMPC.JK,1
+INAF,PT Indofarma Tbk,INAF.JK,1
+INAI,PT Indal Aluminium Industry Tbk,INAI.JK,1
+INCF,PT Indo Komoditi Korpora Tbk,INCF.JK,1
+INCI,PT Intanwijaya Internasional Tbk,INCI.JK,1
+INCO,PT Vale Indonesia Tbk,INCO.JK,1
+INDF,PT Indofood Sukses Makmur Tbk,INDF.JK,1
+INDO,PT Royalindo Investa Wijaya Tbk,INDO.JK,1
+INDR,PT. Indo-Rama Synthetics Tbk,INDR.JK,1
+INDS,PT Indospring Tbk,INDS.JK,1
+INDX,PT Tanah Laut Tbk,INDX.JK,1
+INDY,PT. Indika Energy Tbk,INDY.JK,1
+INET,PT Sinergi Inti Andalan Prima Tbk,INET.JK,1
+INKP,PT Indah Kiat Pulp & Paper Tbk,INKP.JK,1
+INOV,PT Inocycle Technology Group Tbk,INOV.JK,1
+INPC,PT Bank Artha Graha Internasional Tbk,INPC.JK,1
+INPP,PT Indonesian Paradise Property Tbk,INPP.JK,1
+INPS,PT Indah Prakasa Sentosa Tbk,INPS.JK,1
+INRU,PT Toba Pulp Lestari Tbk,INRU.JK,1
+INTA,PT Intraco Penta Tbk,INTA.JK,1
+INTD,PT Inter Delta Tbk,INTD.JK,1
+INTP,PT Indocement Tunggal Prakarsa Tbk,INTP.JK,1
+IOTF,PT Sumber Sinergi Makmur Tbk,IOTF.JK,1
+IPAC,PT Era Graharealty Tbk,IPAC.JK,1
+IPCC,PT Indonesia Kendaraan Terminal Tbk,IPCC.JK,1
+IPCM,PT Jasa Armada Indonesia Tbk,IPCM.JK,1
+IPOL,PT Indopoly Swakarsa Industry Tbk,IPOL.JK,1
+IPPE,PT Indo Pureco Pratama Tbk,IPPE.JK,1
+IPTV,PT MNC Vision Networks Tbk,IPTV.JK,1
+IRRA,PT Itama Ranoraya Tbk,IRRA.JK,1
+IRSX,PT Folago Global Nusantara Tbk,IRSX.JK,1
+ISAP,PT Isra Presisi Indonesia Tbk,ISAP.JK,1
+ISAT,PT Indosat Ooredoo Hutchison Tbk,ISAT.JK,1
+ISEA,PT Indo American Seafoods Tbk,ISEA.JK,1
+ISSP,PT Steel Pipe Industry of Indonesia Tbk,ISSP.JK,1
+ITIC,PT Indonesian Tobacco Tbk,ITIC.JK,1
+ITMA,PT Sumber Energi Andalan Tbk,ITMA.JK,1
+ITMG,PT Indo Tambangraya Megah Tbk,ITMG.JK,1
+JARR,PT Jhonlin Agro Raya Tbk,JARR.JK,1
+JAST,PT. Jasnita Telekomindo Tbk,JAST.JK,1
+JATI,PT Informasi Teknologi Indonesia Tbk,JATI.JK,1
+JAWA,PT Jaya Agra Wattie Tbk,JAWA.JK,1
+JAYA,PT Armada Berjaya Trans Tbk,JAYA.JK,1
+JECC,PT Jembo Cable Company Tbk,JECC.JK,1
+JGLE,PT Graha Andrasentra Propertindo Tbk,JGLE.JK,1
+JIHD,PT Jakarta International Hotels & Development Tbk,JIHD.JK,1
+JKON,PT Jaya Konstruksi Manggala Pratama Tbk,JKON.JK,1
+JMAS,PT Asuransi Jiwa Syariah Jasa Mitra Abadi Tbk,JMAS.JK,1
+JPFA,PT Japfa Comfeed Indonesia Tbk,JPFA.JK,1
+JRPT,"PT Jaya Real Property, Tbk.",JRPT.JK,1
+JSMR,PT Jasa Marga (Persero) Tbk,JSMR.JK,1
+JSPT,PT Jakarta Setiabudi Internasional Tbk,JSPT.JK,1
+JTPE,PT Jasuindo Tiga Perkasa Tbk,JTPE.JK,1
+KAEF,PT Kimia Farma Tbk,KAEF.JK,1
+KAQI,PT Jantra Grupo Indonesia Tbk,KAQI.JK,1
+KARW,PT Meratus Jasa Prima Tbk,KARW.JK,1
+KBAG,PT Karya Bersama Anugerah Tbk,KBAG.JK,1
+KBLI,PT KMI Wire and Cable Tbk,KBLI.JK,1
+KBLM,PT Kabelindo Murni Tbk,KBLM.JK,1
+KBLV,PT First Media Tbk,KBLV.JK,1
+KDSI,PT Kedawung Setia Industrial Tbk,KDSI.JK,1
+KDTN,PT Puri Sentul Permai Tbk,KDTN.JK,1
+KEEN,PT Kencana Energi Lestari Tbk,KEEN.JK,1
+KEJU,PT Mulia Boga Raya Tbk,KEJU.JK,1
+KETR,PT Ketrosden Triasmitra,KETR.JK,1
+KIAS,PT Keramika Indonesia Assosiasi Tbk,KIAS.JK,1
+KICI,PT Kedaung Indah Can Tbk,KICI.JK,1
+KIJA,PT Kawasan Industri Jababeka Tbk,KIJA.JK,1
+KING,PT Hoffmen Cleanindo Tbk,KING.JK,1
+KINO,PT Kino Indonesia Tbk,KINO.JK,1
+KIOS,PT Kioson Komersial Indonesia Tbk,KIOS.JK,1
+KJEN,PT Krida Jaringan Nusantara Tbk,KJEN.JK,1
+KKES,PT Kusuma Kemindo Sentosa Tbk,KKES.JK,1
+KKGI,PT Resource Alam Indonesia Tbk,KKGI.JK,1
+KLAS,PT Pelayaran Kurnia Lautan Semesta Tbk,KLAS.JK,1
+KLBF,PT Kalbe Farma Tbk.,KLBF.JK,1
+KLIN,PT Klinko Karya Imaji Tbk,KLIN.JK,1
+KMDS,"PT Kurniamitra Duta Sentosa, Tbk",KMDS.JK,1
+KMTR,PT Kirana Megatara Tbk,KMTR.JK,1
+KOBX,PT Kobexindo Tractors Tbk,KOBX.JK,1
+KOCI,PT Kokoh Exa Nusantara Tbk,KOCI.JK,1
+KOIN,PT Kokoh Inti Arebama Tbk,KOIN.JK,1
+KOKA,PT Koka Indonesia Tbk,KOKA.JK,1
+KONI,PT Perdana Bangun Pusaka Tbk,KONI.JK,1
+KOPI,PT Mitra Energi Persada Tbk,KOPI.JK,1
+KOTA,PT DMS Propertindo Tbk,KOTA.JK,1
+KPIG,PT MNC Tourism Indonesia Tbk,KPIG.JK,1
+KRAS,PT Krakatau Steel (Persero) Tbk,KRAS.JK,1
+KREN,PT Quantum Clovera Investama Tbk,KREN.JK,1
+KRYA,PT Bangun Karya Perkasa Jaya Tbk,KRYA.JK,1
+KSIX,PT Kentanix Supra International Tbk,KSIX.JK,1
+KUAS,PT Ace Oldfields Tbk,KUAS.JK,1
+LABA,PT Green Power Group Tbk,LABA.JK,1
+LABS,PT UBC Medical Indonesia Tbk,LABS.JK,1
+LAJU,PT Jasa Berdikari Logistics Tbk,LAJU.JK,1
+LAND,PT Trimitra Propertindo Tbk,LAND.JK,1
+LAPD,PT Leyand International Tbk,LAPD.JK,1
+LCKM,PT LCK Global Kedaton Tbk,LCKM.JK,1
+LEAD,PT Logindo Samudramakmur Tbk.,LEAD.JK,1
+LFLO,PT Imago Mulia Persada Tbk,LFLO.JK,1
+LIFE,PT MSIG Life Insurance Indonesia Tbk,LIFE.JK,1
+LINK,PT Link Net Tbk,LINK.JK,1
+LION,PT Lion Metal Works Tbk,LION.JK,1
+LIVE,PT Homeco Victoria Makmur Tbk,LIVE.JK,1
+LMAX,PT Lupromax Pelumas Indonesia Tbk,LMAX.JK,1
+LMPI,PT Langgeng Makmur Industri Tbk,LMPI.JK,1
+LMSH,PT Lionmesh Prima Tbk,LMSH.JK,1
+LOPI,PT Logisticsplus International Tbk,LOPI.JK,1
+LPCK,PT Lippo Cikarang Tbk,LPCK.JK,1
+LPGI,PT Lippo General Insurance Tbk,LPGI.JK,1
+LPIN,PT Multi Prima Sejahtera Tbk,LPIN.JK,1
+LPKR,PT Lippo Karawaci Tbk,LPKR.JK,1
+LPLI,PT Star Pacific Tbk,LPLI.JK,1
+LPPF,PT MDS Retailing Tbk,LPPF.JK,1
+LPPS,PT Lenox Pasifik Investama Tbk,LPPS.JK,1
+LRNA,PT Eka Sari Lorena Transport Tbk,LRNA.JK,1
+LSIP,PT Perusahaan Perkebunan London Sumatra Indonesia Tbk,LSIP.JK,1
+LTLS,PT Lautan Luas Tbk,LTLS.JK,1
+LUCK,PT Sentral Mitra Informatika Tbk,LUCK.JK,1
+LUCY,PT Lima Dua Lima Tiga Tbk,LUCY.JK,1
+MAHA,PT Mandiri Herindo Adiperkasa Tbk,MAHA.JK,1
+MAIN,PT Malindo Feedmill Tbk,MAIN.JK,1
+MANG,PT Manggung Polahraya Tbk,MANG.JK,1
+MAPA,PT Map Aktif Adiperkasa Tbk,MAPA.JK,1
+MAPB,PT Map Boga Adiperkasa Tbk,MAPB.JK,1
+MAPI,PT. Mitra Adiperkasa Tbk,MAPI.JK,1
+MARI,PT Mahaka Radio Integra Tbk,MARI.JK,1
+MARK,PT Mark Dynamics Indonesia Tbk,MARK.JK,1
+MASB,PT Bank Multiarta Sentosa Tbk,MASB.JK,1
+MAXI,PT Maxindo Karya Anugerah Tbk,MAXI.JK,1
+MAYA,PT Bank Mayapada Internasional Tbk,MAYA.JK,1
+MBAP,PT Mitrabara Adiperdana Tbk,MBAP.JK,1
+MBMA,PT Merdeka Battery Materials Tbk.,MBMA.JK,1
+MBSS,PT Mitrabahtera Segara Sejati Tbk,MBSS.JK,1
+MBTO,PT Martina Berto Tbk,MBTO.JK,1
+MCAS,PT M Cash Integrasi Tbk,MCAS.JK,1
+MCOL,PT Prima Andalan Mandiri Tbk,MCOL.JK,1
+MCOR,PT Bank China Construction Bank Indonesia Tbk,MCOR.JK,1
+MDIA,PT Intermedia Capital Tbk,MDIA.JK,1
+MDIY,PT Daya Intiguna Yasa Tbk,MDIY.JK,1
+MDKA,PT Merdeka Copper Gold Tbk,MDKA.JK,1
+MDKI,PT Emdeki Utama Tbk,MDKI.JK,1
+MDLA,PT Medela Potentia Tbk,MDLA.JK,1
+MDLN,PT Modernland Realty Tbk,MDLN.JK,1
+MDRN,PT Modern Internasional Tbk,MDRN.JK,1
+MEDC,PT Medco Energi Internasional Tbk,MEDC.JK,1
+MEDS,PT Hetzer Medical Indonesia Tbk,MEDS.JK,1
+MEGA,PT Bank Mega Tbk,MEGA.JK,1
+MEJA,PT Harta Djaya Karya Tbk,MEJA.JK,1
+MENN,PT Menn Teknologi Indonesia Tbk,MENN.JK,1
+MERI,PT Merry Riana Edukasi Tbk,MERI.JK,1
+MERK,PT Merck Tbk,MERK.JK,1
+MFMI,PT Multifiling Mitra Indonesia Tbk,MFMI.JK,1
+MGLV,PT Panca Anugrah Wisesa Tbk,MGLV.JK,1
+MGNA,PT Magna Investama Mandiri Tbk,MGNA.JK,1
+MGRO,PT Mahkota Group Tbk,MGRO.JK,1
+MHKI,PT Multi Hanna Kreasindo Tbk,MHKI.JK,1
+MICE,PT Multi Indocitra Tbk,MICE.JK,1
+MIDI,PT Midi Utama Indonesia Tbk,MIDI.JK,1
+MIKA,PT Mitra Keluarga Karyasehat Tbk,MIKA.JK,1
+MINA,PT Sanurhasta Mitra Tbk,MINA.JK,1
+MINE,PT SINAR TERANG MANDIRI Tbk,MINE.JK,1
+MIRA,PT Mitra International Resources Tbk,MIRA.JK,1
+MITI,PT Mitra Investindo Tbk,MITI.JK,1
+MKAP,PT Multikarya Asia Pasifik Raya Tbk,MKAP.JK,1
+MKNT,PT Mitra Komunikasi Nusantara Tbk,MKNT.JK,1
+MKPI,PT Metropolitan Kentjana Tbk,MKPI.JK,1
+MKTR,PT Menthobi Karyatama Raya Tbk,MKTR.JK,1
+MLBI,PT Multi Bintang Indonesia Tbk,MLBI.JK,1
+MLIA,PT Mulia Industrindo Tbk,MLIA.JK,1
+MLPL,PT Multipolar Tbk,MLPL.JK,1
+MLPT,PT Multipolar Technology Tbk,MLPT.JK,1
+MMIX,PT Multi Medika Internasional Tbk,MMIX.JK,1
+MMLP,PT Mega Manunggal Property Tbk,MMLP.JK,1
+MNCN,PT. Media Nusantara Citra Tbk,MNCN.JK,1
+MOLI,PT Madusari Murni Indah Tbk,MOLI.JK,1
+MORA,PT Mora Telematika Indonesia Tbk,MORA.JK,1
+MPIX,PT Mitra Pedagang Indonesia Tbk,MPIX.JK,1
+MPMX,PT Mitra Pinasthika Mustika Tbk,MPMX.JK,1
+MPOW,PT Megapower Makmur Tbk,MPOW.JK,1
+MPPA,PT Matahari Putra Prima Tbk,MPPA.JK,1
+MPRO,PT Maha Properti Indonesia Tbk,MPRO.JK,1
+MPXL,PT MPX Logistics International Tbk,MPXL.JK,1
+MRAT,PT Mustika Ratu Tbk,MRAT.JK,1
+MREI,PT Maskapai Reasuransi Indonesia Tbk,MREI.JK,1
+MSIE,PT Multisarana Intan Eduka Tbk,MSIE.JK,1
+MSIN,PT MNC Digital Entertainment Tbk,MSIN.JK,1
+MSJA,PT Multi Spunindo Jaya Tbk,MSJA.JK,1
+MSKY,PT MNC Sky Vision Tbk,MSKY.JK,1
+MSTI,PT Mastersystem Infotama Tbk,MSTI.JK,1
+MTDL,PT Metrodata Electronics Tbk,MTDL.JK,1
+MTEL,PT Dayamitra Telekomunikasi Tbk.,MTEL.JK,1
+MTFN,PT Capitalinc Investment Tbk,MTFN.JK,1
+MTLA,PT Metropolitan Land Tbk,MTLA.JK,1
+MTMH,PT Murni Sadar Tbk,MTMH.JK,1
+MTPS,PT Meta Epsi Tbk.,MTPS.JK,1
+MTSM,PT Metro Realty Tbk,MTSM.JK,1
+MTWI,PT Malacca Trust Wuwungan Insurance Tbk,MTWI.JK,1
+MUTU,PT Mutuagung Lestari Tbk,MUTU.JK,1
+MYOH,PT Samindo Resources Tbk,MYOH.JK,1
+MYOR,PT Mayora Indah Tbk,MYOR.JK,1
+MYTX,PT Asia Pacific Investama Tbk,MYTX.JK,1
+NAIK,PT Adiwarna Anugerah Abadi Tbk,NAIK.JK,1
+NANO,PT Nanotech Indonesia Global Tbk,NANO.JK,1
+NASA,PT Andalan Perkasa Abadi Tbk,NASA.JK,1
+NASI,PT Wahana Inti Makmur Tbk,NASI.JK,1
+NATO,PT Surya Permata Andalan Tbk,NATO.JK,1
+NAYZ,PT Hassana Boga Sejahtera Tbk,NAYZ.JK,1
+NCKL,PT Trimegah Bangun Persada Tbk,NCKL.JK,1
+NELY,PT Pelayaran Nelly Dwi Putri Tbk,NELY.JK,1
+NEST,PT Esta Indonesia Tbk,NEST.JK,1
+NETV,PT MDTV Media Technologies Tbk,NETV.JK,1
+NFCX,PT NFC Indonesia Tbk,NFCX.JK,1
+NICE,PT Adhi Kartiko Pratama Tbk,NICE.JK,1
+NICK,PT Charnic Capital Tbk,NICK.JK,1
+NICL,PT PAM Mineral Tbk,NICL.JK,1
+NIKL,PT Pelat Timah Nusantara Tbk,NIKL.JK,1
+NINE,PT Techno9 Indonesia Tbk,NINE.JK,1
+NIRO,PT City Retail Developments Tbk,NIRO.JK,1
+NISP,PT Bank OCBC NISP Tbk,NISP.JK,1
+NOBU,PT Bank Nationalnobu Tbk,NOBU.JK,1
+NPGF,PT Nusa Palapa Gemilang Tbk,NPGF.JK,1
+NRCA,PT Nusa Raya Cipta Tbk,NRCA.JK,1
+NSSS,PT Nusantara Sawit Sejahtera Tbk,NSSS.JK,1
+NTBK,PT Nusatama Berkah Tbk,NTBK.JK,1
+NZIA,PT Nusantara Almazia Tbk,NZIA.JK,1
+OASA,PT Maharaksa Biru Energi Tbk,OASA.JK,1
+OBAT,PT Brigit Biofarmaka Technologi Tbk,OBAT.JK,1
+OBMD,PT OBM Drilchem Tbk,OBMD.JK,1
+OILS,PT Indo Oil Perkasa Tbk,OILS.JK,1
+OKAS,PT Ancora Indonesia Resources Tbk,OKAS.JK,1
+OLIV,PT Oscar Mitra Sukses Sejahtera Tbk,OLIV.JK,1
+OMED,PT Jayamas Medica Industri Tbk,OMED.JK,1
+OMRE,PT Indonesia Prima Property Tbk,OMRE.JK,1
+OPMS,PT Optima Prima Metal Sinergi Tbk,OPMS.JK,1
+PACK,PT Abadi Nusantara Hijau Investama Tbk,PACK.JK,1
+PADA,PT Personel Alih Daya Tbk,PADA.JK,1
+PADI,PT Minna Padi Investama Sekuritas Tbk,PADI.JK,1
+PALM,PT Provident Investasi Bersama Tbk,PALM.JK,1
+PAMG,PT Bima Sakti Pertiwi Tbk,PAMG.JK,1
+PANI,PT Pantai Indah Kapuk Dua Tbk,PANI.JK,1
+PANR,PT Panorama Sentrawisata Tbk,PANR.JK,1
+PANS,PT Panin Sekuritas Tbk,PANS.JK,1
+PART,PT Cipta Perdana Lancar Tbk,PART.JK,1
+PBID,PT Panca Budi Idaman Tbk,PBID.JK,1
+PBRX,PT Pan Brothers Tbk,PBRX.JK,1
+PBSA,PT Paramita Bangun Sarana Tbk,PBSA.JK,1
+PCAR,PT Prima Cakrawala Abadi Tbk,PCAR.JK,1
+PDES,PT Destinasi Tirta Nusantara Tbk,PDES.JK,1
+PDPP,PT Primadaya Plastisindo Tbk,PDPP.JK,1
+PEGE,PT Panca Global Kapital Tbk,PEGE.JK,1
+PEHA,PT Phapros Tbk,PEHA.JK,1
+PEVE,PT. Penta Valent Tbk,PEVE.JK,1
+PGAS,PT Perusahaan Gas Negara (Persero) Tbk,PGAS.JK,1
+PGEO,PT Pertamina Geothermal Energy Tbk,PGEO.JK,1
+PGJO,PT Bahtera Bumi Raya Tbk,PGJO.JK,1
+PGLI,PT Pembangunan Graha Lestari Indah Tbk,PGLI.JK,1
+PGUN,PT Pradiksi Gunatama Tbk,PGUN.JK,1
+PICO,PT Pelangi Indah Canindo Tbk,PICO.JK,1
+PIPA,PT. Multi Makmur Lemindo,PIPA.JK,1
+PJAA,PT Pembangunan Jaya Ancol Tbk,PJAA.JK,1
+PJHB,PT Pelayaran Jaya Hidup Baru TBK,PJHB.JK,1
+PKPK,PT Paragon Karya Perkasa Tbk,PKPK.JK,1
+PLAN,PT Planet Properindo Jaya Tbk,PLAN.JK,1
+PLIN,PT Plaza Indonesia Realty Tbk,PLIN.JK,1
+PMJS,PT Putra Mandiri Jembar Tbk,PMJS.JK,1
+PMMP,PT Panca Mitra Multiperdana Tbk,PMMP.JK,1
+PMUI,PT Prima Multi Usaha Indonesia Tbk,PMUI.JK,1
+PNBN,PT Bank Pan Indonesia Tbk,PNBN.JK,1
+PNBS,PT Bank Panin Dubai Syariah Tbk,PNBS.JK,1
+PNGO,PT PINAGO UTAMA Tbk,PNGO.JK,1
+PNIN,PT Paninvest Tbk,PNIN.JK,1
+PNLF,PT Panin Financial Tbk,PNLF.JK,1
+PNSE,PT Pudjiadi and Sons Tbk,PNSE.JK,1
+POLA,PT Pool Advista Finance Tbk,POLA.JK,1
+POLI,PT Pollux Hotels Group Tbk,POLI.JK,1
+POLU,PT Golden Flower Tbk,POLU.JK,1
+POLY,PT Asia Pacific Fibers Tbk,POLY.JK,1
+PORT,PT Nusantara Pelabuhan Handal Tbk,PORT.JK,1
+POWR,PT Cikarang Listrindo Tbk,POWR.JK,1
+PPGL,PT Prima Globalindo Logistik Tbk,PPGL.JK,1
+PPRE,PT PP Presisi Tbk,PPRE.JK,1
+PPRI,PT Paperocks Indonesia Tbk,PPRI.JK,1
+PPRO,PT Pembangunan Perumahan Properti Tbk,PPRO.JK,1
+PRAY,PT Famon Awal Bros Sedaya Tbk,PRAY.JK,1
+PRDA,PT Prodia Widyahusada Tbk,PRDA.JK,1
+PRIM,PT Royal Prima Tbk,PRIM.JK,1
+PSAB,PT J Resources Asia Pasifik Tbk,PSAB.JK,1
+PSAT,PT Pancaran Samudera Transport Tbk,PSAT.JK,1
+PSDN,PT Prasidha Aneka Niaga Tbk,PSDN.JK,1
+PSGO,PT Palma Serasih Tbk,PSGO.JK,1
+PSKT,PT Red Planet Indonesia Tbk,PSKT.JK,1
+PSSI,PT IMC Pelita Logistik Tbk,PSSI.JK,1
+PTBA,PT Bukit Asam (Persero) Tbk,PTBA.JK,1
+PTDU,PT Djasa Ubersakti Tbk,PTDU.JK,1
+PTIS,PT Indo Straits Tbk,PTIS.JK,1
+PTMP,PT Mitra Pack Tbk,PTMP.JK,1
+PTMR,PT Master Print Tbk,PTMR.JK,1
+PTPP,PT PP (Persero) Tbk,PTPP.JK,1
+PTPS,PT Pulau Subur Tbk,PTPS.JK,1
+PTPW,PT Pratama Widya Tbk,PTPW.JK,1
+PTRO,PT Petrosea Tbk,PTRO.JK,1
+PTSN,PT Sat Nusapersada Tbk,PTSN.JK,1
+PTSP,PT Pioneerindo Gourmet International Tbk,PTSP.JK,1
+PUDP,PT Pudjiadi Prestige Tbk,PUDP.JK,1
+PURA,PT Putra Rajawali Kencana Tbk,PURA.JK,1
+PURI,PT Puri Global Sukses Tbk,PURI.JK,1
+PWON,PT Pakuwon Jati Tbk,PWON.JK,1
+PYFA,PT Pyridam Farma Tbk,PYFA.JK,1
+PZZA,PT Sarimelati Kencana Tbk,PZZA.JK,1
+RAAM,PT Tripar Multivision Plus Tbk,RAAM.JK,1
+RAFI,PT Sari Kreasi Boga Tbk,RAFI.JK,1
+RAJA,PT Rukun Raharja Tbk,RAJA.JK,1
+RALS,PT Ramayana Lestari Sentosa Tbk,RALS.JK,1
+RANC,PT Supra Boga Lestari Tbk,RANC.JK,1
+RATU,PT Raharja Energi Cepu Tbk,RATU.JK,1
+RBMS,PT Ristia Bintang Mahkotasejati Tbk,RBMS.JK,1
+RCCC,PT Utama Radar Cahaya Tbk,RCCC.JK,1
+RDTX,PT Roda Vivatex Tbk,RDTX.JK,1
+REAL,PT Repower Asia Indonesia Tbk,REAL.JK,1
+RELF,PT Graha Mitra Asia Tbk,RELF.JK,1
+RELI,PT Reliance Sekuritas Indonesia Tbk,RELI.JK,1
+RGAS,PT Kian Santang Muliatama Tbk,RGAS.JK,1
+RICY,PT Ricky Putra Globalindo Tbk,RICY.JK,1
+RIGS,PT Rig Tenders Indonesia Tbk,RIGS.JK,1
+RISE,PT Jaya Sukses Makmur Sentosa Tbk,RISE.JK,1
+RLCO,PT Abadi Lestari Indonesia Tbk,RLCO.JK,1
+RMKE,PT RMK Energy Tbk,RMKE.JK,1
+RMKO,PT Royaltama Mulia Kontraktorindo Tbk,RMKO.JK,1
+ROCK,PT Rockfields Properti Indonesia Tbk.,ROCK.JK,1
+RODA,PT Pikko Land Development Tbk,RODA.JK,1
+RONY,PT Aesler Grup Internasional Tbk,RONY.JK,1
+ROTI,PT Nippon Indosari Corpindo Tbk,ROTI.JK,1
+RSCH,PT Charlie Hospital Semarang Tbk,RSCH.JK,1
+RSGK,PT Kedoya Adyaraya Tbk,RSGK.JK,1
+RUIS,PT Radiant Utama Interinsco Tbk,RUIS.JK,1
+RUNS,PT Global Sukses Solusi Tbk,RUNS.JK,1
+SAFE,PT Steady Safe Tbk,SAFE.JK,1
+SAGE,PT Saptausaha Gemilangindah Tbk,SAGE.JK,1
+SAME,PT Sarana Meditama Metropolitan Tbk,SAME.JK,1
+SAMF,"PT Saraswanti Anugerah Makmur, Tbk",SAMF.JK,1
+SAPX,PT Satria Antaran Prima Tbk,SAPX.JK,1
+SATU,PT Kota Satu Properti Tbk,SATU.JK,1
+SBMA,PT Surya Biru Murni Acetylene Tbk,SBMA.JK,1
+SCCO,PT Supreme Cable Manufacturing & Commerce Tbk,SCCO.JK,1
+SCMA,PT Surya Citra Media Tbk,SCMA.JK,1
+SCNP,PT Selaras Citra Nusantara Perkasa Tbk,SCNP.JK,1
+SDMU,PT Sidomulyo Selaras Tbk,SDMU.JK,1
+SDPC,PT Millennium Pharmacon International Tbk,SDPC.JK,1
+SDRA,PT Bank Woori Saudara Indonesia 1906 Tbk,SDRA.JK,1
+SEMA,PT Semacom Integrated Tbk,SEMA.JK,1
+SFAN,PT Surya Fajar Capital Tbk,SFAN.JK,1
+SGER,PT Sumber Global Energy Tbk,SGER.JK,1
+SGRO,PT Prime Agri Resources Tbk,SGRO.JK,1
+SHID,PT Hotel Sahid Jaya International Tbk,SHID.JK,1
+SHIP,PT Sillo Maritime Perdana Tbk,SHIP.JK,1
+SICO,PT Sigma Energy Compressindo Tbk,SICO.JK,1
+SIDO,PT Industri Jamu dan Farmasi Sido Muncul Tbk,SIDO.JK,1
+SILO,PT Siloam International Hospitals Tbk,SILO.JK,1
+SIMP,PT Salim Ivomas Pratama Tbk,SIMP.JK,1
+SINI,PT Singaraja Putra Tbk,SINI.JK,1
+SIPD,PT Sreeya Sewu Indonesia Tbk,SIPD.JK,1
+SKBM,PT Sekar Bumi Tbk,SKBM.JK,1
+SKLT,PT Sekar Laut Tbk,SKLT.JK,1
+SKRN,PT Superkrane Mitra Utama Tbk,SKRN.JK,1
+SLIS,PT Gaya Abadi Sempurna Tbk,SLIS.JK,1
+SMAR,PT Sinar Mas Agro Resources and Technology Tbk,SMAR.JK,1
+SMBR,PT Semen Baturaja (Persero) Tbk,SMBR.JK,1
+SMCB,PT Solusi Bangun Indonesia Tbk,SMCB.JK,1
+SMDM,PT Suryamas Dutamakmur Tbk,SMDM.JK,1
+SMDR,PT Samudera Indonesia Tbk,SMDR.JK,1
+SMGA,PT Sumber Mineral Global Abadi Tbk,SMGA.JK,1
+SMGR,PT Semen Indonesia (Persero) Tbk,SMGR.JK,1
+SMIL,PT Sarana Mitra Luas Tbk,SMIL.JK,1
+SMKL,PT Satyamitra Kemas Lestari Tbk,SMKL.JK,1
+SMKM,PT Sumber Mas Konstruksi Tbk,SMKM.JK,1
+SMLE,PT Sinergi Multi Lestarindo Tbk,SMLE.JK,1
+SMMA,PT Sinar Mas Multiartha Tbk,SMMA.JK,1
+SMMT,PT Golden Eagle Energy Tbk,SMMT.JK,1
+SMRA,PT Summarecon Agung Tbk,SMRA.JK,1
+SMSM,PT Selamat Sempurna Tbk,SMSM.JK,1
+SNLK,PT Sunter Lakeside Hotel Tbk,SNLK.JK,1
+SOCI,PT Soechi Lines Tbk,SOCI.JK,1
+SOFA,PT Solusi Environment Asia Tbk,SOFA.JK,1
+SOHO,PT Soho Global Health Tbk,SOHO.JK,1
+SOLA,PT Xolare RCR Energy TBK,SOLA.JK,1
+SONA,PT Sona Topas Tourism Industry Tbk,SONA.JK,1
+SOSS,PT Shield On Service Tbk,SOSS.JK,1
+SOTS,PT Satria Mega Kencana Tbk,SOTS.JK,1
+SOUL,PT Mitra Tirta Buwana Tbk,SOUL.JK,1
+SPMA,PT Suparma Tbk,SPMA.JK,1
+SPRE,PT Soraya Berjaya Indonesia Tbk,SPRE.JK,1
+SPTO,PT Surya Pertiwi Tbk,SPTO.JK,1
+SQMI,PT Wilton Makmur Indonesia Tbk.,SQMI.JK,1
+SRAJ,PT Sejahteraraya Anugrahjaya Tbk,SRAJ.JK,1
+SRSN,PT Indo Acidatama Tbk,SRSN.JK,1
+SRTG,PT Saratoga Investama Sedaya Tbk,SRTG.JK,1
+SSIA,PT Surya Semesta Internusa Tbk,SSIA.JK,1
+SSMS,PT Sawit Sumbermas Sarana Tbk.,SSMS.JK,1
+SSTM,PT Sunson Textile Manufacturer Tbk,SSTM.JK,1
+STAA,PT Sumber Tani Agung Resources Tbk,STAA.JK,1
+STAR,PT Buana Artha Anugerah Tbk,STAR.JK,1
+STRK,PT Lovina Beach Brewery Tbk,STRK.JK,1
+STTP,PT Siantar Top Tbk,STTP.JK,1
+SULI,PT SLJ Global Tbk,SULI.JK,1
+SUNI,PT Sunindo Pratama Tbk,SUNI.JK,1
+SUPA,PT Super Bank Indonesia Tbk,SUPA.JK,1
+SUPR,PT Solusi Tunas Pratama Tbk,SUPR.JK,1
+SURE,PT Super Energy Tbk,SURE.JK,1
+SURI,PT Maja Agung Latexindo Tbk,SURI.JK,1
+SWAT,PT Sriwahana Adityakarta Tbk,SWAT.JK,1
+SWID,PT Saraswanti Indoland Development Tbk,SWID.JK,1
+TALF,PT Tunas Alfin Tbk,TALF.JK,1
+TAMA,PT Lancartama Sejati Tbk,TAMA.JK,1
+TAMU,PT Pelayaran Tamarin Samudra Tbk,TAMU.JK,1
+TAPG,PT Triputra Agro Persada Tbk,TAPG.JK,1
+TARA,PT Agung Semesta Sejahtera Tbk,TARA.JK,1
+TAXI,PT Express Transindo Utama Tbk,TAXI.JK,1
+TAYS,PT Jaya Swarasa Agung Tbk,TAYS.JK,1
+TBIG,PT Tower Bersama Infrastructure Tbk,TBIG.JK,1
+TBLA,PT Tunas Baru Lampung Tbk,TBLA.JK,1
+TBMS,PT Tembaga Mulia Semanan Tbk,TBMS.JK,1
+TCID,PT. Mandom Indonesia Tbk,TCID.JK,1
+TCPI,PT Transcoal Pacific Tbk,TCPI.JK,1
+TEBE,PT Dana Brata Luhur Tbk,TEBE.JK,1
+TELE,PT Omni Inovasi Indonesia Tbk,TELE.JK,1
+TFAS,PT Telefast Indonesia Tbk,TFAS.JK,1
+TFCO,PT Tifico Fiber Indonesia Tbk,TFCO.JK,1
+TGKA,PT Tigaraksa Satria Tbk,TGKA.JK,1
+TGRA,PT. Terregra Asia Energy Tbk,TGRA.JK,1
+TGUK,PT Platinum Wahab Nusantara Tbk,TGUK.JK,1
+TIFA,PT KDB Tifa Finance Tbk,TIFA.JK,1
+TINS,PT TIMAH Tbk,TINS.JK,1
+TIRA,PT Tira Austenite Tbk,TIRA.JK,1
+TIRT,PT Tirta Mahakam Resources Tbk,TIRT.JK,1
+TKIM,PT Pabrik Kertas Tjiwi Kimia Tbk,TKIM.JK,1
+TLDN,PT Teladan Prima Agro Tbk,TLDN.JK,1
+TLKM,Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk,TLKM.JK,1
+TMAS,PT Temas Tbk.,TMAS.JK,1
+TMPO,PT Tempo Inti Media Tbk,TMPO.JK,1
+TNCA,PT Trimuda Nuansa Citra Tbk,TNCA.JK,1
+TOBA,PT TBS Energi Utama Tbk,TOBA.JK,1
+TOOL,PT Rohartindo Nusantara Luas Tbk,TOOL.JK,1
+TOPS,PT Totalindo Eka Persada Tbk,TOPS.JK,1
+TOSK,PT Topindo Solusi Komunika Tbk,TOSK.JK,1
+TOTL,PT Total Bangun Persada Tbk,TOTL.JK,1
+TOTO,PT Surya Toto Indonesia Tbk,TOTO.JK,1
+TOWR,PT Sarana Menara Nusantara Tbk.,TOWR.JK,1
+TPIA,PT Chandra Asri Pacific Tbk,TPIA.JK,1
+TPMA,PT Trans Power Marine Tbk,TPMA.JK,1
+TRGU,PT Cerestar Indonesia Tbk,TRGU.JK,1
+TRIM,PT Trimegah Sekuritas Indonesia Tbk,TRIM.JK,1
+TRIN,PT Perintis Triniti Properti Tbk,TRIN.JK,1
+TRIS,PT Trisula International Tbk,TRIS.JK,1
+TRJA,PT Transkon Jaya Tbk,TRJA.JK,1
+TRON,PT Teknologi Karya Digital Nusa Tbk,TRON.JK,1
+TRST,PT Trias Sentosa Tbk,TRST.JK,1
+TRUE,PT Triniti Dinamik Tbk,TRUE.JK,1
+TRUK,PT Guna Timur Raya Tbk,TRUK.JK,1
+TRUS,PT Trust Finance Indonesia Tbk,TRUS.JK,1
+TSPC,PT Tempo Scan Pacific Tbk,TSPC.JK,1
+TUGU,PT Asuransi Tugu Pratama Indonesia Tbk,TUGU.JK,1
+TYRE,PT King Tire Indonesia Tbk,TYRE.JK,1
+UANG,PT Pakuan Tbk,UANG.JK,1
+UCID,PT Uni-Charm Indonesia Tbk,UCID.JK,1
+UDNG,PT Agro Bahari Nusantara Tbk,UDNG.JK,1
+UFOE,PT Damai Sejahtera Abadi Tbk,UFOE.JK,1
+ULTJ,PT Ultrajaya Milk Industry & Trading Company Tbk,ULTJ.JK,1
+UNIC,PT Unggul Indah Cahaya Tbk,UNIC.JK,1
+UNIQ,PT Ulima Nitra Tbk,UNIQ.JK,1
+UNSP,PT Bakrie Sumatera Plantations Tbk,UNSP.JK,1
+UNTD,PT Terang Dunia Internusa Tbk,UNTD.JK,1
+UNTR,PT United Tractors Tbk,UNTR.JK,1
+UNVR,PT Unilever Indonesia Tbk,UNVR.JK,1
+URBN,PT Urban Jakarta Propertindo Tbk.,URBN.JK,1
+UVCR,PT Trimegah Karya Pratama Tbk,UVCR.JK,1
+VAST,PT Vastland Indonesia Tbk,VAST.JK,1
+VERN,PT Verona Indah Pictures Tbk,VERN.JK,1
+VICI,PT Victoria Care Indonesia Tbk,VICI.JK,1
+VICO,PT Victoria Investama Tbk,VICO.JK,1
+VINS,PT Victoria Insurance Tbk,VINS.JK,1
+VISI,PT Satu Visi Putra Tbk,VISI.JK,1
+VIVA,PT Visi Media Asia Tbk,VIVA.JK,1
+VKTR,PT VKTR Teknologi Mobilitas Tbk,VKTR.JK,1
+VOKS,PT Voksel Electric Tbk,VOKS.JK,1
+VRNA,PT Mizuho Leasing Indonesia Tbk,VRNA.JK,1
+VTNY,PT Venteny Fortuna International Tbk,VTNY.JK,1
+WAPO,PT Wahana Pronatural Tbk,WAPO.JK,1
+WBSA,PT BSA Logistics Indonesia Tbk,WBSA.JK,1
+WEGE,PT Wijaya Karya Bangunan Gedung Tbk,WEGE.JK,1
+WEHA,PT WEHA Transportasi Indonesia Tbk,WEHA.JK,1
+WGSH,PT Wira Global Solusi Tbk,WGSH.JK,1
+WICO,Pt Wicaksana Overseas International Tbk,WICO.JK,1
+WIDI,PT Widiant Jaya Krenindo Tbk,WIDI.JK,1
+WIFI,PT Solusi Sinergi Digital Tbk,WIFI.JK,1
+WIIM,PT Wismilak Inti Makmur Tbk,WIIM.JK,1
+WIKA,PT Wijaya Karya (Persero) Tbk,WIKA.JK,1
+WINE,PT HATTEN BALI Tbk,WINE.JK,1
+WINR,PT Winner Nusantara Jaya Tbk,WINR.JK,1
+WINS,PT Wintermar Offshore Marine Tbk,WINS.JK,1
+WIRG,PT WIR ASIA Tbk,WIRG.JK,1
+WMPP,PT Widodo Makmur Perkasa Tbk,WMPP.JK,1
+WMUU,PT Widodo Makmur Unggas Tbk,WMUU.JK,1
+WOMF,PT Wahana Ottomitra Multiartha Tbk,WOMF.JK,1
+WOOD,PT Integra Indocabinet Tbk,WOOD.JK,1
+WOWS,PT Ginting Jaya Energi Tbk,WOWS.JK,1
+WSBP,PT Waskita Beton Precast Tbk,WSBP.JK,1
+WTON,PT Wijaya Karya Beton Tbk,WTON.JK,1
+XCIS,DIRE Ciptadana Properti Ritel Indonesia,XCIS.JK,1
+YELO,PT Yelooo Integra Datanet Tbk,YELO.JK,1
+YOII,PT Asuransi Digital Bersama TBK,YOII.JK,1
+YPAS,PT Yanaprima Hastapersada Tbk,YPAS.JK,1
+YULE,PT Yulie Sekuritas Indonesia Tbk,YULE.JK,1
+YUPI,PT Yupi Indo Jelly Gum Tbk,YUPI.JK,1
+ZATA,PT Bersama Zatta Jaya Tbk,ZATA.JK,1
+ZBRA,PT Dosni Roha Indonesia Tbk,ZBRA.JK,1
+ZINC,PT Kapuas Prima Coal Tbk,ZINC.JK,1
+ZONE,PT Mega Perintis Tbk,ZONE.JK,1
+ZYRX,PT Zyrexindo Mandiri Buana Tbk,ZYRX.JK,1

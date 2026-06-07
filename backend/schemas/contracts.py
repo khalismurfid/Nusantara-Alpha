@@ -85,6 +85,7 @@ class ModelEvidence(BaseModel):
     evidence_load_status: Literal["loaded", "missing", "stale", "unavailable", "not_loaded"]
     evidence_as_of: datetime
     data_source_mode: DataSourceMode
+    barrier_config: dict[str, Any] = Field(default_factory=dict)
     paper_trading_summary: str | None = None
 
 
@@ -105,14 +106,14 @@ class PredictionRequest(BaseModel):
     model_id: str
     model_version: str
     tickers: list[str] = Field(min_length=1)
-    target: Literal["next_market_session_direction"]
+    target: Literal["near_term_barrier_signal", "next_market_session_direction"]
 
 
 class PredictionOutput(BaseModel):
     model_config = StrictBase
     prediction_id: str
     ticker: str
-    prediction_target: str
+    prediction_target: Literal["near_term_barrier_signal"]
     model_signal: Literal["up", "down", "neutral", "unavailable"]
     confidence_category: Literal["Low", "Medium", "High"]
     confidence_explanation: str

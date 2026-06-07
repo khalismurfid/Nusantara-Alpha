@@ -24,11 +24,7 @@ def format_evidence(evidence: dict) -> dict:
         }
         for metric in metrics
     ]
-    stocks_covered = (
-        f"{len(supported_universe)} reviewed IDX tickers: {', '.join(supported_universe)}"
-        if supported_universe
-        else "Reviewed stock list is unavailable."
-    )
+    stocks_covered = _coverage_summary(supported_universe)
     concise_summary = {
         "section_title": SECTION_TITLES["evidence_snapshot"],
         "headline": f"Historical test period: {evaluation_period['start']} to {evaluation_period['end']}",
@@ -37,6 +33,7 @@ def format_evidence(evidence: dict) -> dict:
         "metrics": metric_highlights[:3],
         "stocks_covered": stocks_covered,
         "caveat": evidence.get("historical_performance_caveat", ""),
+        "barrier_config": evidence.get("barrier_config", {}),
     }
     return {
         "evidence_id": evidence["evidence_id"],
@@ -49,9 +46,18 @@ def format_evidence(evidence: dict) -> dict:
         "evidence_status": evidence.get("evidence_status"),
         "evidence_load_status": evidence.get("evidence_load_status"),
         "evidence_as_of": evidence.get("evidence_as_of"),
+        "barrier_config": evidence.get("barrier_config", {}),
         "concise_summary": concise_summary,
         "details_title": "More model details",
     }
+
+
+def _coverage_summary(supported_universe: list[str]) -> str:
+    if not supported_universe:
+        return "Reviewed stock list is unavailable."
+    if len(supported_universe) <= 12:
+        return f"{len(supported_universe)} reviewed IDX tickers: {', '.join(supported_universe)}"
+    return f"{len(supported_universe)} reviewed IDX tickers loaded for this model."
 
 
 def _readable_limitation(limitation: str) -> str:
@@ -59,7 +65,7 @@ def _readable_limitation(limitation: str) -> str:
         return limitation
     normalized = " ".join(limitation.lower().split())
     if "limited universe" in normalized or "small supported universe" in normalized:
-        return "This model currently covers a small reviewed set of IDX stocks, so other tickers need separate validation."
+        return "Coverage depends on the approved IDX universe and market data loaded for this model."
     if "no guarantee" in normalized:
         return "Future market sessions can behave differently from the historical test period."
     return limitation
@@ -87,6 +93,20 @@ def render_evidence_panel(evidence: dict, st=None) -> dict:
             st.write("Data notes")
             for note in formatted["data_quality_notes"]:
                 st.caption(note)
+            barrier_config = formatted.get("barrier_config") or {}
+            if barrier_config:
+                st.write("How the near-term signal is defined")
+                for label, key in [
+                    ("Time window", "horizon"),
+                    ("Entry assumption", "entry"),
+                    ("Volatility measure", "volatility_measure"),
+                    ("Upward barrier", "profit_barrier"),
+                    ("Downward barrier", "stop_barrier"),
+                    ("Neutral signal", "neutral_policy"),
+                ]:
+                    value = barrier_config.get(key)
+                    if value:
+                        st.caption(f"{label}: {value}")
             st.write("Limitations")
             render_guidance_items(formatted["limitations"], st)
     return formatted

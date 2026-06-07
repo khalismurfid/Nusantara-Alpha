@@ -59,10 +59,10 @@ class RankingService:
                     rank=int(row["rank"]),
                     model_signal=str(row["model_signal"]),
                     confidence_category=str(row["confidence_category"]),
-                    ranking_score=round(float(row["model_score"]), 4),
+                    ranking_score=round(float(row["ranking_score"]), 4),
                     data_as_of_timestamp=feature_payload.data_as_of_timestamp,
                     feature_generation_timestamp=feature_payload.feature_generation_timestamp,
-                    context_summary=f"Ranked {int(row['rank'])} of {len(scores)} by current model score.",
+                    context_summary=f"Ranked {int(row['rank'])} of {len(scores)} by upside barrier probability.",
                 )
             )
         data_as_of = rankings[0].data_as_of_timestamp if rankings else generated_at

@@ -40,7 +40,7 @@ class APIClient:
                 "model_id": model_id,
                 "model_version": model_version,
                 "tickers": tickers,
-                "target": "next_market_session_direction",
+                "target": "near_term_barrier_signal",
             },
         )
 

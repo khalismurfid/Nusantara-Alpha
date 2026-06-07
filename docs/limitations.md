@@ -1,7 +1,8 @@
 # Limitations
 
-- The first portfolio version covers a small reviewed set of IDX stocks, so
-  unsupported tickers need separate model and data validation.
+- The local seed includes a small approved sample universe. Broader coverage
+  requires an approved IDX universe, approved OHLCV rows, and a refreshed
+  logistic regression artifact.
 - Future market sessions can behave differently from the historical evidence
   period.
 - Model confidence is uncertainty, not correctness.

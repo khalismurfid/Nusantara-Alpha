@@ -33,6 +33,7 @@ def test_prediction_request_uses_api_post(monkeypatch):
     assert calls[0][1] == "POST"
     assert '"model_id": "idx-direction-baseline"' in calls[0][2]
     assert '"tickers": ["BBCA"]' in calls[0][2]
+    assert '"target": "near_term_barrier_signal"' in calls[0][2]
 
 
 def test_ranking_request_uses_model_endpoint(monkeypatch):

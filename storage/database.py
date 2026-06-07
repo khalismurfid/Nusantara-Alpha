@@ -23,7 +23,14 @@ def connect(db_path: str | Path) -> sqlite3.Connection:
 
 def initialize(conn: sqlite3.Connection, schema_path: Path = SCHEMA_PATH) -> None:
     conn.executescript(schema_path.read_text())
+    _apply_lightweight_migrations(conn)
     conn.commit()
+
+
+def _apply_lightweight_migrations(conn: sqlite3.Connection) -> None:
+    existing = {row["name"] for row in conn.execute("PRAGMA table_info(model_evidence)").fetchall()}
+    if "barrier_config_json" not in existing:
+        conn.execute("ALTER TABLE model_evidence ADD COLUMN barrier_config_json TEXT NOT NULL DEFAULT '{}'")
 
 
 @contextmanager

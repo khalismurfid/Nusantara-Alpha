@@ -11,7 +11,7 @@ def test_model_list_hides_unapproved_and_conflicted_models(seeded_repo):
             "status": "experimental",
             "model_origin": "experimental",
             "public_demo_eligible": False,
-            "supported_universe_id": "idx-liquid-demo",
+            "supported_universe_id": "idx-approved-universe",
             "evaluation_period_start": "2025-01-01",
             "evaluation_period_end": "2025-12-31",
             "evidence_available": False,
@@ -34,7 +34,7 @@ def test_model_list_hides_unapproved_and_conflicted_models(seeded_repo):
             "status": "approved",
             "model_origin": "real",
             "public_demo_eligible": True,
-            "supported_universe_id": "idx-liquid-demo",
+            "supported_universe_id": "idx-approved-universe",
             "evaluation_period_start": "2025-01-01",
             "evaluation_period_end": "2025-12-31",
             "evidence_available": True,
@@ -53,3 +53,10 @@ def test_model_list_hides_unapproved_and_conflicted_models(seeded_repo):
     assert "experimental-model" not in ids
     assert "conflicted-model" not in ids
 
+
+def test_seeded_customer_flow_exposes_only_baseline_logistic_model(seeded_repo):
+    models = ModelService(seeded_repo).list_models()["models"]
+
+    assert [model["model_id"] for model in models] == ["idx-direction-baseline"]
+    assert models[0]["model_name"] == "Logistic Regression Model"
+    assert "logistic regression" in models[0]["description"].lower()
