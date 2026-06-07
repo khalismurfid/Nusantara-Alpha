@@ -5,22 +5,20 @@ from __future__ import annotations
 from backend.schemas.contracts import CuratedModel, DateRange
 from model_registry.approval import reconcile_model
 from model_registry.conflict_log import log_conflict
-from model_registry.mlflow_client import MLflowMetadataClient
 from storage.repositories import Repository
 
 
 class ModelService:
-    def __init__(self, repo: Repository, runtime_context: str = "local", mlflow_client: MLflowMetadataClient | None = None):
+    def __init__(self, repo: Repository, runtime_context: str = "local"):
         self.repo = repo
         self.runtime_context = runtime_context
-        self.mlflow_client = mlflow_client or MLflowMetadataClient()
 
     def list_models(self) -> dict:
         visible = []
         for model in self.repo.list_models(self.runtime_context):
             decision = reconcile_model(
                 model,
-                self.mlflow_client.get_model_metadata(model["model_id"], model["model_version"], model.get("mlflow_run_id")),
+                None,
                 self.runtime_context,
             )
             if decision.visible:
@@ -43,7 +41,7 @@ class ModelService:
             return None
         decision = reconcile_model(
             model,
-            self.mlflow_client.get_model_metadata(model_id, model_version, model.get("mlflow_run_id")),
+            None,
             self.runtime_context,
         )
         if not decision.prediction_allowed:

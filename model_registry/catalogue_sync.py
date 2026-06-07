@@ -17,7 +17,7 @@ class CatalogueSyncService:
         model = self.repo.get_model(model_id, model_version)
         if not model:
             return ApprovalDecision(False, False, reason="unavailable_model", user_message="Model not found.")
-        mlflow_model = self.mlflow_client.get_model_metadata(model_id, model_version)
+        mlflow_model = self.mlflow_client.get_model_metadata(model_id, model_version, model.get("mlflow_run_id"))
         decision = reconcile_model(model, mlflow_model, runtime_context="public_demo" if model.get("public_demo_eligible") else "local")
         if not decision.prediction_allowed and decision.conflict_type:
             sqlite_value = model.get("mlflow_model_uri") if decision.conflict_type == "artifact_uri" else model.get(decision.conflict_type)
@@ -32,4 +32,3 @@ class CatalogueSyncService:
                 decision.user_message or "Model registry conflict.",
             )
         return decision
-

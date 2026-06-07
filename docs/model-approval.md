@@ -7,7 +7,13 @@ universe, has known limitations, and has traceability metadata.
 MLflow may store model artifacts, metrics, runs, and registry metadata. SQLite
 stores the customer-facing model catalogue and public-demo eligibility.
 
-The system fails closed when MLflow and SQLite disagree on any of these fields:
+The customer-facing app reads the already-promoted SQLite catalogue and local
+artifact path. It does not query MLflow during page loads or prediction
+requests. MLflow consistency is checked during promotion or explicit registry
+sync, and the result is stored in SQLite as `registry_sync_status`.
+
+The system fails closed when promotion or registry sync detects that MLflow and
+SQLite disagree on any of these fields:
 
 - approval status;
 - model version;
@@ -25,6 +31,9 @@ Fail-closed means:
 Public-demo prediction additionally requires `model_origin=real`,
 `public_demo_eligible=true`, current registry synchronization, loaded required
 evidence, and approved non-sensitive data.
+
+If `registry_sync_status` is stale, incomplete, or conflicted, the live app
+hides the model and blocks prediction without performing a live MLflow lookup.
 
 ## Notebook-To-Live Workflow
 

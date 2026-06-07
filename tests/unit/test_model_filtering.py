@@ -1,6 +1,19 @@
 from backend.services.model_service import ModelService
 
 
+def test_customer_model_list_uses_promoted_sqlite_catalogue_not_live_mlflow(seeded_repo, monkeypatch):
+    from model_registry.mlflow_client import MLflowMetadataClient
+
+    def fail_live_mlflow_lookup(*args, **kwargs):
+        raise AssertionError("customer model list should not query MLflow live")
+
+    monkeypatch.setattr(MLflowMetadataClient, "get_model_metadata", fail_live_mlflow_lookup)
+
+    models = ModelService(seeded_repo, runtime_context="public_demo").list_models()["models"]
+
+    assert [model["model_id"] for model in models] == ["idx-direction-baseline"]
+
+
 def test_model_list_hides_unapproved_and_conflicted_models(seeded_repo):
     seeded_repo.upsert_model(
         {
