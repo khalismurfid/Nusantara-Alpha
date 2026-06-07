@@ -1,4 +1,5 @@
 from app_streamlit.app import (
+    _format_ranking_row,
     evidence_is_loaded,
     prediction_cache_key,
     prediction_is_ready,
@@ -59,3 +60,21 @@ def test_prediction_cache_key_tracks_model_tickers_and_evidence():
         "evidence-idx-direction-baseline-2026.05",
         "2026-05-28T12:00:00+07:00",
     )
+
+
+def test_ranking_row_uses_readable_signal_and_percent_score():
+    row = _format_ranking_row(
+        {
+            "rank": 38,
+            "ticker": "BBCA",
+            "name": "Bank Central Asia Tbk",
+            "model_signal": "up",
+            "confidence_category": "Low",
+            "ranking_score": 0.4197,
+        },
+        {"BBCA"},
+    )
+
+    assert row["Signal"] == "UP - leans toward the upward barrier"
+    assert row["Upside score"] == 42
+    assert row["Selected"] == "Selected stock"

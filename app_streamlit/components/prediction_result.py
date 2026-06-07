@@ -14,6 +14,8 @@ from app_streamlit.copy.product_language import (
     format_confidence_value,
     format_signal,
     format_target,
+    signal_badge,
+    signal_summary,
     signal_tone,
 )
 
@@ -48,6 +50,8 @@ def format_prediction_result(output: dict, concise_evidence_summary: dict | None
             "section_title": SECTION_TITLES["market_snapshot"],
             "ticker": output["ticker"],
             "signal": format_signal(output["model_signal"]),
+            "signal_badge": signal_badge(output["model_signal"]),
+            "signal_summary": signal_summary(output["model_signal"]),
             "raw_signal": output["model_signal"],
             "tone": signal_tone(output["model_signal"]),
             "target": target,
@@ -100,6 +104,8 @@ def render_prediction_result(output: dict, st=None, concise_evidence_summary: di
         render_primary_signal(
             primary["ticker"],
             primary["signal"],
+            primary["signal_badge"],
+            primary["signal_summary"],
             primary["confidence"],
             primary["target"],
             primary["confidence_value"],

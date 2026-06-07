@@ -12,6 +12,7 @@ from app_streamlit.components.paper_trading_evidence import render_paper_trading
 from app_streamlit.components.prediction_result import render_prediction_result
 from app_streamlit.components.ui_shell import inject_customer_styles, render_app_header, render_context_strip, render_section_heading
 from app_streamlit.components.unavailable_state import render_unavailable_state
+from app_streamlit.copy.product_language import format_signal, signal_badge
 
 try:
     import streamlit as st  # type: ignore
@@ -84,20 +85,54 @@ def render_market_ranking(client: APIClient, selected_model: dict, selected_tick
     if not rows:
         return
     selected = set(selected_tickers)
+    selected_rows = [row for row in rows if row["ticker"] in selected]
     st.subheader("Market ranking")
-    st.caption("Exploratory model scores across currently supported stocks. This is not a recommendation.")
-    display_rows = [
-        {
-            "Rank": row["rank"],
-            "Stock": row["ticker"],
-            "Signal": row["model_signal"],
-            "Confidence": row["confidence_category"],
-            "Score": round(row["ranking_score"], 3),
-            "Selected": "Yes" if row["ticker"] in selected else "",
+    st.caption("Exploratory scores across reviewed stocks. Higher upside score means the model assigned more weight to the upward barrier outcome.")
+    if selected_rows:
+        selected_row = selected_rows[0]
+        with st.container(border=True):
+            rank_col, signal_col, score_col = st.columns([1, 1.2, 1])
+            rank_col.metric("Selected stock rank", f"{selected_row['rank']} of {len(rows)}")
+            signal_col.metric("Selected signal", signal_badge(selected_row["model_signal"]))
+            score_col.metric("Upside score", f"{round(selected_row['ranking_score'] * 100)}%")
+            if selected_row["model_signal"] == "up":
+                st.success(format_signal(selected_row["model_signal"]))
+            elif selected_row["model_signal"] == "down":
+                st.error(format_signal(selected_row["model_signal"]))
+            else:
+                st.info(format_signal(selected_row["model_signal"]))
+
+    top_rows = rows[:25]
+    selected_outside_top = [row for row in selected_rows if row not in top_rows]
+    display_rows = [_format_ranking_row(row, selected) for row in [*top_rows, *selected_outside_top]]
+    column_config = None
+    if hasattr(st, "column_config"):
+        column_config = {
+            "Upside score": st.column_config.ProgressColumn(
+                "Upside score",
+                min_value=0,
+                max_value=100,
+                format="%d%%",
+            ),
         }
-        for row in rows
-    ]
-    st.dataframe(display_rows, hide_index=True, use_container_width=True)
+    st.dataframe(
+        display_rows,
+        hide_index=True,
+        use_container_width=True,
+        column_config=column_config,
+    )
+
+
+def _format_ranking_row(row: dict, selected_tickers: set[str]) -> dict:
+    return {
+        "Rank": row["rank"],
+        "Stock": row["ticker"],
+        "Name": row.get("name") or "",
+        "Signal": format_signal(row["model_signal"]),
+        "Confidence": row["confidence_category"],
+        "Upside score": round(row["ranking_score"] * 100),
+        "Selected": "Selected stock" if row["ticker"] in selected_tickers else "",
+    }
 
 
 def run_app() -> None:
@@ -154,15 +189,6 @@ def run_app() -> None:
         )
         selected_tickers = selected_ticker_from_stock(selected_stock)
 
-    render_context_strip(
-        [
-            ("Model", selected_model["model_name"]),
-            ("Stocks covered", str(len(evidence.get("supported_universe", [])))),
-            ("Tested period", model_evaluation_period(selected_model)),
-        ],
-        st,
-    )
-
     if prediction_is_ready(selected_model, evidence, selected_tickers):
         concise_evidence_summary = formatted_evidence["concise_summary"]
         if not public_prediction_is_available(demo_status):
@@ -212,6 +238,15 @@ def run_app() -> None:
             "The signal appears after the selections pass the product checks.",
             st,
         )
+
+    render_context_strip(
+        [
+            ("Model", selected_model["model_name"]),
+            ("Stocks covered", str(len(evidence.get("supported_universe", [])))),
+            ("Tested period", model_evaluation_period(selected_model)),
+        ],
+        st,
+    )
 
     render_section_heading(
         "What this is based on",

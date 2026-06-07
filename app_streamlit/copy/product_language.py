@@ -27,10 +27,24 @@ RAW_LIMITATION_FRAGMENTS = {
 }
 
 SIGNAL_LABELS = {
-    "up": "Upward model signal",
-    "down": "Downward model signal",
-    "neutral": "Neutral model signal",
+    "up": "UP - leans toward the upward barrier",
+    "down": "DOWN - leans toward the downward barrier",
+    "neutral": "NEUTRAL - mixed or range-bound read",
     "unavailable": "Unavailable",
+}
+
+SIGNAL_BADGES = {
+    "up": "UP",
+    "down": "DOWN",
+    "neutral": "NEUTRAL",
+    "unavailable": "N/A",
+}
+
+SIGNAL_SUMMARIES = {
+    "up": "The model puts more weight on the upward barrier outcome.",
+    "down": "The model puts more weight on the downward barrier outcome.",
+    "neutral": "The model does not show a clear upward or downward lean.",
+    "unavailable": "A signal is not available for this selection.",
 }
 
 TARGET_LABELS = {
@@ -61,6 +75,14 @@ def has_raw_limitation_fragment(text: str) -> bool:
 
 def format_signal(signal: str) -> str:
     return SIGNAL_LABELS.get(normalize_copy(signal), signal.replace("_", " ").title())
+
+
+def signal_badge(signal: str) -> str:
+    return SIGNAL_BADGES.get(normalize_copy(signal), signal.replace("_", " ").upper())
+
+
+def signal_summary(signal: str) -> str:
+    return SIGNAL_SUMMARIES.get(normalize_copy(signal), "The model signal needs review.")
 
 
 def signal_tone(signal: str) -> str:

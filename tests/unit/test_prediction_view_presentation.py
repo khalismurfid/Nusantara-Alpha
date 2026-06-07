@@ -7,7 +7,9 @@ def test_prediction_view_uses_primary_supporting_secondary_sections():
 
     assert list(formatted.keys()) == ["primary", "supporting", "secondary", "disclaimer"]
     assert formatted["primary"]["ticker"] == "BBCA"
-    assert formatted["primary"]["signal"] == "Upward model signal"
+    assert formatted["primary"]["signal"] == "UP - leans toward the upward barrier"
+    assert formatted["primary"]["signal_badge"] == "UP"
+    assert "upward barrier" in formatted["primary"]["signal_summary"].lower()
     assert formatted["primary"]["confidence"] == "Medium"
     assert formatted["primary"]["confidence_value"] == "62%"
     assert formatted["primary"]["target"] == "Near-term signal"
